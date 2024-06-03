@@ -1,0 +1,6 @@
+[book]
+authors = ["Victor Miguel de Morais Costa"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Bleach Language Specification and Interpreter Documentation"
