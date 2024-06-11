@@ -27,3 +27,34 @@ primary → NUMBER | STRING | "true" | "false" | "nil" | "(" expression ")
 ```
 
 ## Version 0.3.0 (Chapter 8)
+```txt
+program → statement* EOF
+statement → exprStmt | printStmt | varDeclStmt
+exprStmt → expression ";"
+printStmt → "print" expression ";"
+varDeclStmt → "let" IDENTIFIER ( "=" expression )? ";"
+expression → equality
+equality → comparison ( ( "!=" | "==" ) comparison )*
+comparison → term ( ( ">" | ">=" | "<" | "<=" ) term )*
+term → factor ( ( "-" | "+" ) factor )*
+factor → unary ( ( "/" | "*" ) unary )*
+unary → ( "!" | "-" ) unary | primary
+primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER ;
+```
+
+# Version 0.4.0 (Chapter 8)
+```txt
+program → statement* EOF
+statement → exprStmt | printStmt | varDeclStmt
+exprStmt → expression ";"
+printStmt → "print" expression ";"
+varDeclStmt → "let" IDENTIFIER ( "=" expression )? ";"
+expression → assignment
+assignment → IDENTIFIER "=" assignment | equality
+equality → comparison ( ( "!=" | "==" ) comparison )*
+comparison → term ( ( ">" | ">=" | "<" | "<=" ) term )*
+term → factor ( ( "-" | "+" ) factor )*
+factor → unary ( ( "/" | "*" ) unary )*
+unary → ( "!" | "-" ) unary | primary
+primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER ;
+```
