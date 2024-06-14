@@ -84,12 +84,35 @@ statement → block | exprStmt | ifStmt | printStmt | varDeclStmt
 block → "{" statement* "}"
 exprStmt → expression ";"
 ifStmt → "if" "(" expression ")" statement
-         ("elif" "(" expression ")" statement)*
-         ("else" statement)?
+         ( "elif" "(" expression ")" statement )*
+         ( "else" statement )?
 printStmt → "print" expression ";"
 varDeclStmt → "let" IDENTIFIER ( "=" expression )? ";"
 expression → assignment
 assignment → IDENTIFIER "=" assignment | equality
+equality → comparison ( ( "!=" | "==" ) comparison )*
+comparison → term ( ( ">" | ">=" | "<" | "<=" ) term )*
+term → factor ( ( "-" | "+" ) factor )*
+factor → unary ( ( "/" | "*" ) unary )*
+unary → ( "!" | "-" ) unary | primary
+primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER
+```
+
+# Version 0.7.0 (Chapter 9)
+```txt
+program → statement* EOF
+statement → block | exprStmt | ifStmt | printStmt | varDeclStmt
+block → "{" statement* "}"
+exprStmt → expression ";"
+ifStmt → "if" "(" expression ")" statement
+         ( "elif" "(" expression ")" statement )*
+         ( "else" statement )?
+printStmt → "print" expression ";"
+varDeclStmt → "let" IDENTIFIER ( "=" expression )? ";"
+expression → assignment
+assignment → IDENTIFIER "=" assignment | logic_or
+logic_or → logic_and ( "or" logic_and )*
+logic_and → equality ( "and" equality )*
 equality → comparison ( ( "!=" | "==" ) comparison )*
 comparison → term ( ( ">" | ">=" | "<" | "<=" ) term )*
 term → factor ( ( "-" | "+" ) factor )*
