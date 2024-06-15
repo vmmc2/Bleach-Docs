@@ -144,3 +144,28 @@ factor → unary ( ( "/" | "*" ) unary )*
 unary → ( "!" | "-" ) unary | primary
 primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER
 ```
+
+# Version 0.9.0 (Chapter 9)
+```txt
+program → statement* EOF
+statement → block | doWhileStmt | exprStmt | ifStmt | printStmt | varDeclStmt | whileStmt
+block → "{" statement* "}"
+doWhileStmt → "do" statement "while" "(" expression ")" ";"
+exprStmt → expression ";"
+ifStmt → "if" "(" expression ")" statement
+         ( "elif" "(" expression ")" statement )*
+         ( "else" statement )?
+printStmt → "print" expression ";"
+varDeclStmt → "let" IDENTIFIER ( "=" expression )? ";"
+whileStmt → "while" "(" expression ")" statement
+expression → assignment
+assignment → IDENTIFIER "=" assignment | logic_or
+logic_or → logic_and ( "or" logic_and )*
+logic_and → equality ( "and" equality )*
+equality → comparison ( ( "!=" | "==" ) comparison )*
+comparison → term ( ( ">" | ">=" | "<" | "<=" ) term )*
+term → factor ( ( "-" | "+" ) factor )*
+factor → unary ( ( "/" | "*" ) unary )*
+unary → ( "!" | "-" ) unary | primary
+primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER
+```
