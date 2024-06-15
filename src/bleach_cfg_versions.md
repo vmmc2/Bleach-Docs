@@ -42,7 +42,7 @@ unary → ( "!" | "-" ) unary | primary
 primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER
 ```
 
-# Version 0.4.0 (Chapter 8)
+## Version 0.4.0 (Chapter 8)
 ```txt
 program → statement* EOF
 statement → exprStmt | printStmt | varDeclStmt
@@ -98,7 +98,7 @@ unary → ( "!" | "-" ) unary | primary
 primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER
 ```
 
-# Version 0.7.0 (Chapter 9)
+## Version 0.7.0 (Chapter 9)
 ```txt
 program → statement* EOF
 statement → block | exprStmt | ifStmt | printStmt | varDeclStmt
@@ -121,7 +121,7 @@ unary → ( "!" | "-" ) unary | primary
 primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER
 ```
 
-# Version 0.8.0 (Chapter 9)
+## Version 0.8.0 (Chapter 9)
 ```txt
 program → statement* EOF
 statement → block | exprStmt | ifStmt | printStmt | varDeclStmt | whileStmt
@@ -145,13 +145,39 @@ unary → ( "!" | "-" ) unary | primary
 primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER
 ```
 
-# Version 0.9.0 (Chapter 9)
+## Version 0.9.0 (Chapter 9)
 ```txt
 program → statement* EOF
 statement → block | doWhileStmt | exprStmt | ifStmt | printStmt | varDeclStmt | whileStmt
 block → "{" statement* "}"
 doWhileStmt → "do" statement "while" "(" expression ")" ";"
 exprStmt → expression ";"
+ifStmt → "if" "(" expression ")" statement
+         ( "elif" "(" expression ")" statement )*
+         ( "else" statement )?
+printStmt → "print" expression ";"
+varDeclStmt → "let" IDENTIFIER ( "=" expression )? ";"
+whileStmt → "while" "(" expression ")" statement
+expression → assignment
+assignment → IDENTIFIER "=" assignment | logic_or
+logic_or → logic_and ( "or" logic_and )*
+logic_and → equality ( "and" equality )*
+equality → comparison ( ( "!=" | "==" ) comparison )*
+comparison → term ( ( ">" | ">=" | "<" | "<=" ) term )*
+term → factor ( ( "-" | "+" ) factor )*
+factor → unary ( ( "/" | "*" ) unary )*
+unary → ( "!" | "-" ) unary | primary
+primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER
+```
+
+## Version 0.10.0 (Chapter 9)
+```txt
+program → statement* EOF
+statement → block | doWhileStmt | exprStmt | forStmt | ifStmt | printStmt | varDeclStmt | whileStmt
+block → "{" statement* "}"
+doWhileStmt → "do" statement "while" "(" expression ")" ";"
+exprStmt → expression ";"
+forStmt → "for" "(" ( varDecl | exprStmt | ";" ) expression? ";" expression? ")" statement
 ifStmt → "if" "(" expression ")" statement
          ( "elif" "(" expression ")" statement )*
          ( "else" statement )?
