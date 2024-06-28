@@ -283,3 +283,36 @@ call → primary ( "(" arguments? ")" )*
 arguments → expression ( "," expression )*
 primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER
 ```
+
+## Version 0.14.0 (Chapter 10)
+```txt
+program → statement* EOF
+statement → block | doWhileStmt | exprStmt | forStmt | funcDeclStmt | ifStmt | printStmt | returnStmt | varDeclStmt | whileStmt
+block → "{" statement* "}"
+doWhileStmt → "do" statement "while" "(" expression ")" ";"
+exprStmt → expression ";"
+forStmt → "for" "(" ( varDecl | exprStmt | ";" ) expression? ";" expression? ")" statement
+funcDeclStmt → "function" function
+function → IDENTIFIER "(" parameters? ")" block
+parameters → IDENTIFIER ( "," IDENTIFIER )*
+ifStmt → "if" "(" expression ")" statement
+         ( "elif" "(" expression ")" statement )*
+         ( "else" statement )?
+printStmt → "print" expression ";"
+returnStmt → "return" expression? ";"
+varDeclStmt → "let" IDENTIFIER ( "=" expression )? ";"
+whileStmt → "while" "(" expression ")" statement
+expression → assignment
+assignment → IDENTIFIER "=" assignment | ternary
+ternary → logic_or ( "?" expression ":" expression )*
+logic_or → logic_and ( "or" logic_and )*
+logic_and → equality ( "and" equality )*
+equality → comparison ( ( "!=" | "==" ) comparison )*
+comparison → term ( ( ">" | ">=" | "<" | "<=" ) term )*
+term → factor ( ( "-" | "+" ) factor )*
+factor → unary ( ( "/" | "*" ) unary )*
+unary → ( "!" | "-" ) unary | call
+call → primary ( "(" arguments? ")" )*
+arguments → expression ( "," expression )*
+primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER
+```
