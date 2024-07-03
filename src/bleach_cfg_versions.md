@@ -350,3 +350,42 @@ arguments → expression ( "," expression )*
 primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | lambdaFunctionExpr | IDENTIFIER
 lambdaFunctionExpr → "lambda" "(" parameters? ")" block
 ```
+
+## Version 0.16.0 (Chapter 11)
+```txt
+program → statement* EOF
+statement → block | breakStmt | classDeclStmt | continueStmt | doWhileStmt | exprStmt | forStmt | funcDeclStmt | ifStmt | printStmt | returnStmt | varDeclStmt | whileStmt
+block → "{" statement* "}"
+break → "break" ";"
+classDeclStmt → "class" IDENTIFIER "{" methodDeclStmt* "}"
+methodDeclStmt → "method" method
+method → IDENTIFIER "(" parameters? ")" block
+continueStmt → "continue" ";"
+doWhileStmt → "do" statement "while" "(" expression ")" ";"
+exprStmt → expression ";"
+forStmt → "for" "(" ( varDecl | exprStmt | ";" ) expression? ";" expression? ")" statement
+funcDeclStmt → "function" function
+function → IDENTIFIER "(" parameters? ")" block
+parameters → IDENTIFIER ( "," IDENTIFIER )*
+ifStmt → "if" "(" expression ")" statement
+         ( "elif" "(" expression ")" statement )*
+         ( "else" statement )?
+printStmt → "print" expression ";"
+returnStmt → "return" expression? ";"
+varDeclStmt → "let" IDENTIFIER ( "=" expression )? ";"
+whileStmt → "while" "(" expression ")" statement
+expression → assignment
+assignment → IDENTIFIER "=" assignment | ternary
+ternary → logic_or ( "?" expression ":" expression )*
+logic_or → logic_and ( "or" logic_and )*
+logic_and → equality ( "and" equality )*
+equality → comparison ( ( "!=" | "==" ) comparison )*
+comparison → term ( ( ">" | ">=" | "<" | "<=" ) term )*
+term → factor ( ( "-" | "+" ) factor )*
+factor → unary ( ( "/" | "*" ) unary )*
+unary → ( "!" | "-" ) unary | call
+call → primary ( "(" arguments? ")" )*
+arguments → expression ( "," expression )*
+primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | lambdaFunctionExpr | IDENTIFIER
+lambdaFunctionExpr → "lambda" "(" parameters? ")" block
+```
