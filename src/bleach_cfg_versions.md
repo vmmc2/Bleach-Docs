@@ -1,4 +1,6 @@
 # Bleach Grammar Versions
+* This page shows the development of the Bleach language in terms of ripening of its Context-Free Grammar.
+* As you can see below, Bleach's CFG grew in an incremental manner, feature by feature.
 
 ## Version 0.1.0 (Chapter 6)
 ```txt
