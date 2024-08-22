@@ -1,0 +1,260 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Introduction and Inspirations - Bleach Language Specification and Interpreter Documentation</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Foreword</li><li class="chapter-item expanded "><a href="bleach_book_structure.html"><strong aria-hidden="true">1.</strong> Book Structure</a></li><li class="chapter-item expanded affix "><li class="part-title">Bleach Language Specification</li><li class="chapter-item expanded "><a href="bleach_lang_intro.html" class="active"><strong aria-hidden="true">2.</strong> Introduction and Inspirations</a></li><li class="chapter-item expanded "><a href="bleach_data_types.html"><strong aria-hidden="true">3.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="bleach_comments.html"><strong aria-hidden="true">4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="bleach_expressions.html"><strong aria-hidden="true">5.</strong> Expressions</a></li><li class="chapter-item expanded "><a href="bleach_statements.html"><strong aria-hidden="true">6.</strong> Statements</a></li><li class="chapter-item expanded "><a href="bleach_variables.html"><strong aria-hidden="true">7.</strong> Variables</a></li><li class="chapter-item expanded "><a href="bleach_control_flow.html"><strong aria-hidden="true">8.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="bleach_functions.html"><strong aria-hidden="true">9.</strong> Functions</a></li><li class="chapter-item expanded "><a href="bleach_oop_features.html"><strong aria-hidden="true">10.</strong> OOP Features</a></li><li class="chapter-item expanded "><a href="bleach_std_lib.html"><strong aria-hidden="true">11.</strong> Standard Library</a></li><li class="chapter-item expanded "><a href="bleach_cfg_versions.html"><strong aria-hidden="true">12.</strong> Bleach CFG Version</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Bleach Language Specification and Interpreter Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction-and-inspirations"><a class="header" href="#introduction-and-inspirations">Introduction and Inspirations</a></h1>
+<h2 id="what-is-bleach-and-why-it-was-created"><a class="header" href="#what-is-bleach-and-why-it-was-created">What is Bleach and why it was created?</a></h2>
+<p>Bleach is a programming language designed to give Computer Science students a more interesting and rewarding experience while taking their first "Introduction to Compilers" course.</p>
+<p>The language was implemented with this purpose due to the fact that, based on my personal experience and on certain studies (which I will cite at the end of the chapter), such courses tend to be too much focused on its theoretical aspects to the detriment of its practical ones.</p>
+<p>Therefore, it's common for students that are taking this course to sometimes find it boring or even uninteresting and demotivating.</p>
+<p>Based on this, the motivation to build Bleach was born. The cornerstone idea behind Bleach is: a language that can be used in a classroom environment to teach the most fundamental ideas and concepts of Programming Languages implementation in an incremental way, using well-known languagues and techniques as a basis to such objective.</p>
+<h2 id="a-glimpse-on-bleachs-features"><a class="header" href="#a-glimpse-on-bleachs-features">A glimpse on Bleach's features</a></h2>
+<h3 id="high-level"><a class="header" href="#high-level">High-Level</a></h3>
+<p>Since an introductory Compilers course generally lasts 1 semester in most CS programs, Bleach can't be a big or complex programming language like Java, Rust, C++. Instead, it must be compact while also having some core features that any minimally functional language has.</p>
+<p>Usually, when most people (myself included) think about a small but useful language, some options come to mind. To be more precise, two options come to mind: <strong>JavaScript</strong>, <strong>Lua</strong> and <strong>Scheme.</strong></p>
+<p>What all of these options have in common? <strong>All of them are considered to be "high-level" scripting programming languages.</strong> (I'll explain below why choose such type of language to implement).</p>
+<p>When it comes to syntax, Bleach looks most like JavaScript. This was an intentional choice. Since JavaScript has its syntax rooted in C, I thought it would a good idea to follow this approach because most CS students have already worked (at least a little) with these two languages. Thus, familiarity would kick in.</p>
+<p>However, you will notice, as you go through this book, that Bleach also has similarities with <strong>Java, Lox, Python, Ruby and Rust</strong> when it comes to syntax.</p>
+<h3 id="dynamically-typed"><a class="header" href="#dynamically-typed">Dynamically Typed</a></h3>
+<p>Here is the first reason to make Bleach a "high-level" scripting language. Our three inspirations that fit in this category are all dynamically typed languages.</p>
+<p>If you don't remember (or don't know) what a dynamically typed language is, don't get nervous. A dynamically typed language is simply a programming language where the variables don't store type information. Instead, the value stored inside a variable holds the type information. This essentialy implies two things:</p>
+<ul>
+<li>Variables are able to store a value of any type.</li>
+<li>Variables are able to store values of different types at different points in time.</li>
+</ul>
+<p>In contrast to dynamically typed programming languages, there are also statically typed ones. This begs the question:</p>
+<p><strong>Why not make Bleach a statically typed one?</strong></p>
+<p><strong>The answer is straightforward:</strong> If I decided to make it static, I would need to implement a static type system for it and this is simply too much work to learn and implement. Moreover, type systems are no joke. There is a reason this subject has its own course in master's or doctoral programs. This being said, I think it's obvious to conclude that such a thing could not be teached in a complete way in an undergraduate and introductory course. So... yeah, if I made this decision, I would be contradicting myself about Bleach's reason to exist, which is (in case you don't remember) teach the most fundamental ideas and concepts of Programming Languages implementation. Thus, I didn't follow design decisions that led to advanced ideas and concepts in the area of ​​compilers and programming languages</p>
+<h3 id="automatic-memory-management"><a class="header" href="#automatic-memory-management">Automatic Memory Management</a></h3>
+<p>One of the reasons that motivates the creation of "high-level" scripting languages is the need to free programmers from the burden of manually managing memory (Yes, I am looking at you: <code>malloc</code>, <code>calloc</code>, <code>realloc</code> and <code>free</code>).</p>
+<p>Since Bleach fits into the category of "high-level" scripting languages, it's not a language with manual memory management. Instead, it has an automatic one.</p>
+<p>Essentialy, this means that Bleach's runtime () will handle the allocation and deallocation of memory for us. Since this implementation of Bleach is a Tree-Walk Interpreter, things work in a different way than a Garbage Collector, for example. Yes, this implementation doesn't contain one written from scratch.</p>
+<p>Briefly explaining, in a Tree-Walk Interpreter an AST (Abstract Syntax Tree) will be generated by the parser. After some static analysis steps, the AST will be given to the interpreter, so it can execute the code represented by the AST.</p>
+<p>In such type of interpreter, the execution of code simply means that a traversal through the generated AST will be done. When doing such traversal, two things happen:</p>
+<ul>
+<li><strong>Dynamic Memory Allocation:</strong> When the interpreter creates objects (such as lists, dicts, instances of classes or other complex data structures), it allocates memory for these objects dynamically at runtime.</li>
+<li><strong>Garbage Collection:</strong> In most modern interpreter implementations, especially in high-level languages like those typically used for Lox (such as Java or Python), garbage collection is used to manage this dynamically allocated memory. Right now, you might be wondering "Hey, but this implementation uses C++ and such language is not garbage collected. So, how can Bleach be?". The answer is simple: We are using C++17 to implement such interpreter and this version of C++ has lots of different features that allows us to write code that don't require us to manually manage memory. Everything is done automatically. If you want to learn more about it, search for <strong>C++ smart pointers and automatic memory management features like: <code>std::shared_ptr</code>, <code>std::unique_ptr</code>, <code>std::weak_ptr</code>, <code>std::make_shared</code> and <code>std::enable_shared_from_this</code>.</strong></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="bleach_book_structure.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="bleach_data_types.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="bleach_book_structure.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="bleach_data_types.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
