@@ -17,7 +17,7 @@
 ## Scalar Types
 * A scalar type is a type that can only represent a single value. As seen above, Bleach has three primary scalar types: ```bool```, ```num``` and  ```nil```. You may recognize these from other programming languages. Let’s see how they work in Bleach:
 
-### (1) Type ```bool```
+### (1) Type: ```bool```
 * The Boolean type. Such type is used to perform logical operations and is vastly used in logic and Boolean algebra.
 * In Bleach, things are not different, we have two possible values for such type (and, obviously, a literal for each value):
 ```c++
@@ -25,9 +25,9 @@ true
 false
 ```
 
-### (2) Type ```num```
+### (2) Type: ```num```
 * For the sake of simplicity, Bleach has only one type to represent numbers: the ```num``` type.
-* Behind the scenes, such type is implemented using a double-precision floating point number (The C++ ````double``` type).
+* Behind the scenes, such type is implemented using a double-precision floating point number (The C++ ```double``` type).
 * I implemented it this way because double-precision floating point numbers can also represent a wide range of integers, covering a lot of territory, while maintaining the simplicity that I innitialy envisioned.
 * Usually, mature and popular programming languages have lots of syntax for numbers (binary, hexadecimal, octal, scientific notation, etc).
 * Since Bleach's purpose is to be a programming language , we'll settle for basic integer and decimal literals, like the ones shown below:
@@ -37,7 +37,7 @@ false
 23
 ```
 
-### (3) Type ```nil```
+### (3) Type: ```nil```
 * This is an old friend to many of us.
 * The nil type is a type that has only one value (```nil```). It conveys the idea of “no value” or "absence of a value".
 ```ruby
@@ -52,7 +52,7 @@ nil
 ## Compound Types
 * Compound types are basically types that can group multiple values into one. Bleach has two primitive compound types: ```str``` and ```list```. Let's take a look at them:
 
-### (4) Type ```str```
+### (4) Type: ```str```
 * Again, nothing new here. If you have some experience with programming you already recognize this type. In Bleach, the ```str``` type represents an indexed-sequence of characters (a string), typically used to store and manipulate text.
 
 * Some examples of literal values of this type:
@@ -75,7 +75,7 @@ nil
     * __```size```:__ Returns a ```num``` value that represents the number of characters in the ```str``` value.
     * __```substr```:__ Returns a value of type ```str``` which is the substring of another value of type ```str```. Such method expects two indexes (left, right), both of which are inclusive.
 
-### (5) Type ```list```
+### (5) Type: ```list```
 * If you are familiar with Python, then here it is an old friend of you. In Bleach, the ```list``` type represents an indexed-sequence of elements.
 
 * Some examples of literal values of this type:
