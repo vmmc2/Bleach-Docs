@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Comments - Bleach Language Specification and Interpreter Documentation</title>
+        <title>Comments - Bleach Language Documentation</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Foreword</li><li class="chapter-item expanded "><a href="bleach_book_structure.html"><strong aria-hidden="true">1.</strong> Book Structure</a></li><li class="chapter-item expanded affix "><li class="part-title">Bleach Language Specification</li><li class="chapter-item expanded "><a href="bleach_lang_intro.html"><strong aria-hidden="true">2.</strong> Introduction and Inspirations</a></li><li class="chapter-item expanded "><a href="bleach_data_types.html"><strong aria-hidden="true">3.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="bleach_comments.html" class="active"><strong aria-hidden="true">4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="bleach_expressions.html"><strong aria-hidden="true">5.</strong> Expressions</a></li><li class="chapter-item expanded "><a href="bleach_statements.html"><strong aria-hidden="true">6.</strong> Statements</a></li><li class="chapter-item expanded "><a href="bleach_variables.html"><strong aria-hidden="true">7.</strong> Variables</a></li><li class="chapter-item expanded "><a href="bleach_control_flow.html"><strong aria-hidden="true">8.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="bleach_functions.html"><strong aria-hidden="true">9.</strong> Functions</a></li><li class="chapter-item expanded "><a href="bleach_oop_features.html"><strong aria-hidden="true">10.</strong> OOP Features</a></li><li class="chapter-item expanded "><a href="bleach_std_lib.html"><strong aria-hidden="true">11.</strong> Standard Library</a></li><li class="chapter-item expanded "><a href="bleach_cfg_versions.html"><strong aria-hidden="true">12.</strong> Bleach CFG Version</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Foreword</li><li class="chapter-item expanded "><a href="bleach_book_structure.html"><strong aria-hidden="true">1.</strong> Book Structure</a></li><li class="chapter-item expanded affix "><li class="part-title">Bleach Language Specification</li><li class="chapter-item expanded "><a href="bleach_lang_intro.html"><strong aria-hidden="true">2.</strong> Introduction and Inspirations</a></li><li class="chapter-item expanded "><a href="bleach_data_types.html"><strong aria-hidden="true">3.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="bleach_comments.html" class="active"><strong aria-hidden="true">4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="bleach_variables.html"><strong aria-hidden="true">5.</strong> Variables</a></li><li class="chapter-item expanded "><a href="bleach_operators.html"><strong aria-hidden="true">6.</strong> Operators</a></li><li class="chapter-item expanded "><a href="bleach_control_flow.html"><strong aria-hidden="true">7.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="bleach_functions.html"><strong aria-hidden="true">8.</strong> Functions</a></li><li class="chapter-item expanded "><a href="bleach_oop_features.html"><strong aria-hidden="true">9.</strong> Object-Oriented Programming Features</a></li><li class="chapter-item expanded "><a href="bleach_std_lib.html"><strong aria-hidden="true">10.</strong> Standard Library</a></li><li class="chapter-item expanded "><a href="bleach_cfg_versions.html"><strong aria-hidden="true">11.</strong> Bleach CFG Versions</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -141,7 +141,7 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">Bleach Language Specification and Interpreter Documentation</h1>
+                    <h1 class="menu-title">Bleach Language Documentation</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
@@ -186,7 +186,7 @@
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="bleach_expressions.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="bleach_variables.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -200,13 +200,29 @@
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="bleach_expressions.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="bleach_variables.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 
