@@ -342,9 +342,44 @@ false
 </li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="comments"><a class="header" href="#comments">Comments</a></h1>
-<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+<h2 id="overview-1"><a class="header" href="#overview-1">Overview</a></h2>
+<p>Ideally, every programmer tries its best to make their code readable and understandable. However, there might be scenarios in which extra explanation is very welcomed.</p>
+<p>In such scenarios, programmers leave comments in their code that the compiler/interpreter will ignore but people reading the code may find useful.</p>
+<p>In Bleach, a programmer is allowed to write two different types of comments inside the code present in a Bleach file (<code>.bch</code>).</p>
 <h2 id="single-line-comments"><a class="header" href="#single-line-comments">Single-Line Comments</a></h2>
+<p>In Bleach, a single-line comment starts with two slashes (<code>//</code>), and the comment continues until the end of the line, just like the example below:</p>
+<pre><code class="language-c">// Here you can put some extra information that the person reading your code might find useful.
+</code></pre>
+<p>For comments that extend beyond a single line, you’ll need to include <code>//</code> on each line, like this:</p>
+<pre><code class="language-c">// This is the beginning of what it's going to be a very long comment.
+// Instead of making the user go all the way to the end of the line above
+// we can divide comments in different lines. However, always needing to use
+// // character seems to be very cumbersome.
+</code></pre>
+<p>Remember that comments can also be placed at the end of lines containing code:</p>
+<pre><code class="language-ts">let x = 123.45; // It's allowed to put a comment after a line of code.
+</code></pre>
+<p>However, Bleach, as Rust, recommends that the comment should appear on a separate line above the code it’s annotating:</p>
+<pre><code class="language-ts">// The variable below holds an approximate value of the constant Pi.
+let pi = 3.14159;
+</code></pre>
 <h2 id="multi-line-comments"><a class="header" href="#multi-line-comments">Multi-Line Comments</a></h2>
+<p>For the reason mentioned above, Bleach also has support for multi-line comments.</p>
+<p>In Bleach, a multi-line comment has a beginning and also and ending. The beginning is denoted by a <code>/*</code>, while the ending is denoted by a <code>*/</code>. Everything that is written between these characters is considered a comment and, therefore, will be ignored by the Bleach Interpreter during runtime.</p>
+<p>The example below shows how to use them properly:</p>
+<pre><code class="language-ts">/*
+This
+is
+a
+multi-line
+comment.
+
+Below, we are storing an
+approximation of Euler's
+constant inside the variable "e".
+*/
+let e = 2.71;
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="variables"><a class="header" href="#variables">Variables</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="expressions"><a class="header" href="#expressions">Expressions</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="control-flow"><a class="header" href="#control-flow">Control Flow</a></h1>
