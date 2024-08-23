@@ -8,7 +8,7 @@
     * ```num```
     * ```nil```
   * __Compound Types:__
-    * ```str```
+    * ```str``` (Work in progress)
     * ```list``` (Not implemented yet)
 
 * It's important to mention that such built-in types are divided into two groups: __scalar types__ and __compound types.__ I'll walkthrough each of such groups and their respective types, giving brief explanations and examples.
@@ -65,7 +65,7 @@ nil
 * There are some aspects of this type that might differ from what you have seen in the previous languages you have worked with. Thus, I think it's a good idea to explain such aspects in more details:
   * It's a sequence type. This means that value of the ```str``` type can be indexed. Indexing allows you to access individual characters from the value (which, in Bleach, are also values of type ```str```).
   * In Bleach, literals values of this type are __always__ enclosed by double quotes.
-  * Finally, this type has the following methods associated with it:
+  * Finally, this type has the following methods associated with it __(None of them have been implemented yet)__:
     * __```clear```:__ Returns ```nil```. This method cleans the contents from the value of ```str``` type. This change is made in-place.
     * __```empty```:__ Returns a ```bool``` value that signals whether the ```str``` value is empty or not.
     * __```find```:__ Returns a ```num``` value that identifies the index where there is the first occurrence of a provided substring (a value of type ```str```) inside another value of type ```str```. If the provided substring doesn't appear, the method returns ```-1```.
@@ -90,7 +90,7 @@ nil
 
 * There are some aspects of this type that might differ from what you have seen in the previous languages you have worked with. Thus, I think it's a good idea to explain such aspects in more details:
   * It's a sequence type. This means that lists can be indexed. Indexing allows you to access individual elements from the list.
-  * Finally, this type has the following methods associated with it:
+  * Finally, this type has the following methods associated with it __(None of them have been implemented yet)__:
     * __```back```:__ Returns the last element of a value of type ```list```. However, it does not make any changes to the value of type ```list```.
     * __```clear```:__ Returns ```nil```. This method cleans the content from the value of ```list``` type. This change is made in-place.
     * __```empty```:__ Returns a ```bool``` value that signals whether the ```list``` value is empty or not.
