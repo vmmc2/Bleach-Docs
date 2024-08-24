@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Data Types - Bleach Language Documentation</title>
+        <title>Data Types - The Bleach Programming Language</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Foreword</li><li class="chapter-item expanded "><a href="bleach_book_structure.html"><strong aria-hidden="true">1.</strong> Book Structure</a></li><li class="chapter-item expanded affix "><li class="part-title">Bleach Language Specification</li><li class="chapter-item expanded "><a href="bleach_lang_intro.html"><strong aria-hidden="true">2.</strong> Introduction and Inspirations</a></li><li class="chapter-item expanded "><a href="bleach_data_types.html" class="active"><strong aria-hidden="true">3.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="bleach_comments.html"><strong aria-hidden="true">4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="bleach_variables.html"><strong aria-hidden="true">5.</strong> Variables</a></li><li class="chapter-item expanded "><a href="bleach_operators.html"><strong aria-hidden="true">6.</strong> Operators</a></li><li class="chapter-item expanded "><a href="bleach_control_flow.html"><strong aria-hidden="true">7.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="bleach_functions.html"><strong aria-hidden="true">8.</strong> Functions</a></li><li class="chapter-item expanded "><a href="bleach_oop_features.html"><strong aria-hidden="true">9.</strong> Object-Oriented Programming Features</a></li><li class="chapter-item expanded "><a href="bleach_std_lib.html"><strong aria-hidden="true">10.</strong> Standard Library</a></li><li class="chapter-item expanded "><a href="bleach_cfg_versions.html"><strong aria-hidden="true">11.</strong> Bleach CFG Versions</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Foreword</li><li class="chapter-item expanded "><a href="bleach_book_structure.html"><strong aria-hidden="true">1.</strong> Book Structure</a></li><li class="chapter-item expanded affix "><li class="part-title">Bleach Language Documentation</li><li class="chapter-item expanded "><a href="bleach_lang_intro.html"><strong aria-hidden="true">2.</strong> Introduction and Inspirations</a></li><li class="chapter-item expanded "><a href="bleach_data_types.html" class="active"><strong aria-hidden="true">3.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="bleach_comments.html"><strong aria-hidden="true">4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="bleach_variables.html"><strong aria-hidden="true">5.</strong> Variables</a></li><li class="chapter-item expanded "><a href="bleach_operators.html"><strong aria-hidden="true">6.</strong> Operators</a></li><li class="chapter-item expanded "><a href="bleach_control_flow.html"><strong aria-hidden="true">7.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="bleach_functions.html"><strong aria-hidden="true">8.</strong> Functions</a></li><li class="chapter-item expanded "><a href="bleach_oop_features.html"><strong aria-hidden="true">9.</strong> Object-Oriented Programming Features</a></li><li class="chapter-item expanded "><a href="bleach_std_lib.html"><strong aria-hidden="true">10.</strong> Standard Library</a></li><li class="chapter-item expanded "><a href="bleach_cfg_versions.html"><strong aria-hidden="true">11.</strong> Bleach CFG Versions</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -141,7 +141,7 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">Bleach Language Documentation</h1>
+                    <h1 class="menu-title">The Bleach Programming Language</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
@@ -175,89 +175,59 @@
                     <main>
                         <h1 id="data-types"><a class="header" href="#data-types">Data Types</a></h1>
 <h2 id="overview"><a class="header" href="#overview">Overview</a></h2>
-<ul>
-<li>
 <p>In short, Bleach's built-in types are just the 5 listed below (4 built-in types have been implemented by now):</p>
-<ul>
-<li><strong>Scalar Types:</strong>
+<p><strong>Scalar Types:</strong></p>
 <ul>
 <li><code>bool</code></li>
 <li><code>num</code></li>
 <li><code>nil</code></li>
 </ul>
-</li>
-<li><strong>Compound Types:</strong>
+<p><strong>Compound Types:</strong></p>
 <ul>
 <li><code>str</code> (Work in progress)</li>
 <li><code>list</code> (Not implemented yet)</li>
 </ul>
-</li>
-</ul>
-</li>
-<li>
 <p>It's important to mention that such built-in types are divided into two groups: <strong>scalar types</strong> and <strong>compound types.</strong> I'll walkthrough each of such groups and their respective types, giving brief explanations and examples.</p>
-</li>
-</ul>
 <h2 id="scalar-types"><a class="header" href="#scalar-types">Scalar Types</a></h2>
-<ul>
-<li>A scalar type is a type that can only represent a single value. As seen above, Bleach has three primary scalar types: <code>bool</code>, <code>num</code> and  <code>nil</code>. You may recognize these from other programming languages. Let’s see how they work in Bleach:</li>
-</ul>
-<h3 id="1-type-bool"><a class="header" href="#1-type-bool">(1) Type: <code>bool</code></a></h3>
-<ul>
-<li>The Boolean type. Such type is used to perform logical operations and is vastly used in logic and Boolean algebra.</li>
-<li>In Bleach, things are not different, we have two possible values for such type (and, obviously, a literal for each value):</li>
-</ul>
+<p>A scalar type is a type that can only represent a single value. As seen above, Bleach has three primary scalar types: <code>bool</code>, <code>num</code> and  <code>nil</code>. You may recognize these from other programming languages. Let’s see how they work in Bleach:</p>
+<h3 id="type-bool"><a class="header" href="#type-bool">Type: <code>bool</code></a></h3>
+<p>The Boolean type. Such type is used to perform logical operations and is vastly used in logic and Boolean algebra.</p>
+<p>In Bleach, things are not different, we have two possible values for such type (and, obviously, a literal for each value):</p>
 <pre><code class="language-c++">true
 false
 </code></pre>
-<h3 id="2-type-num"><a class="header" href="#2-type-num">(2) Type: <code>num</code></a></h3>
-<ul>
-<li>For the sake of simplicity, Bleach has only one type to represent numbers: the <code>num</code> type.</li>
-<li>Behind the scenes, such type is implemented using a double-precision floating point number (The C++ <code>double</code> type).</li>
-<li>I implemented it this way because double-precision floating point numbers can also represent a wide range of integers, covering a lot of territory, while maintaining the simplicity that I innitialy envisioned.</li>
-<li>Usually, mature and popular programming languages have lots of syntax for numbers (binary, hexadecimal, octal, scientific notation, etc).</li>
-<li>Since Bleach's purpose is to be a programming language , we'll settle for basic integer and decimal literals, like the ones shown below:</li>
-</ul>
+<h3 id="type-num"><a class="header" href="#type-num">Type: <code>num</code></a></h3>
+<p>For the sake of simplicity, Bleach has only one type to represent numbers: the <code>num</code> type.</p>
+<p>Behind the scenes, such type is implemented using a double-precision floating point number (The C++ <code>double</code> type).</p>
+<p>I implemented it this way because double-precision floating point numbers can also represent a wide range of integers, covering a lot of territory, while maintaining the simplicity that I innitialy envisioned.</p>
+<p>Usually, mature and popular programming languages have lots of syntax for numbers (binary, hexadecimal, octal, scientific notation, etc).</p>
+<p>Since Bleach's purpose is to be a programming language , we'll settle for basic integer and decimal literals, like the ones shown below:</p>
 <pre><code class="language-c++">2.71828
 3.14159
 23
 </code></pre>
-<h3 id="3-type-nil"><a class="header" href="#3-type-nil">(3) Type: <code>nil</code></a></h3>
-<ul>
-<li>This is an old friend to many of us.</li>
-<li>The nil type is a type that has only one value (<code>nil</code>). It conveys the idea of “no value” or "absence of a value".</li>
-</ul>
+<h3 id="type-nil"><a class="header" href="#type-nil">Type: <code>nil</code></a></h3>
+<p>This is an old friend to many of us.</p>
+<p>The nil type is a type that has only one value (<code>nil</code>). It conveys the idea of “no value” or "absence of a value".</p>
 <pre><code class="language-ruby">nil
 </code></pre>
-<ul>
-<li>In other programming languages, such type is called <code>null</code>, <code>nil</code>, <code>NULL</code> or <code>nullptr</code>.</li>
-<li>Here, in Bleach, we are going to follow Ruby's influence and use <code>nil</code> to denote this idea. This will help us distinguish between Bleach's <code>nil</code> value and C++ <code>nullptr</code> value (which is the equivalent value in the underlying implementation language).</li>
-<li>I know what you might be thinking right now... There are lots of arguments for not having a null value in a language since null pointer errors have been causing a lot of headache since Tony Hoare introduced this idea back in the 60s.</li>
-<li>However, according to Robert Nystrom (author of the "Crafting Interpreters" book and creator of the Lox programming language, which are both the major references Bleach where got its inspiration), if you want to implement a statically-typed language, it would be worth trying to ban NULL values. However, in a dynamically-typed language (which is Bleach's case), eliminating it is often more annoying and troublesome than allowing it. So I opted to follow Nystrom's advice on this matter.</li>
-</ul>
+<p>In other programming languages, such type is called <code>null</code>, <code>nil</code>, <code>NULL</code> or <code>nullptr</code>.</p>
+<p>Here, in Bleach, we are going to follow Ruby's influence and use <code>nil</code> to denote this idea. This will help us distinguish between Bleach's <code>nil</code> value and C++ <code>nullptr</code> value (which is the equivalent value in the underlying implementation language).</p>
+<p>I know what you might be thinking right now... There are lots of arguments for not having a null value in a language since null pointer errors have been causing a lot of headache since Tony Hoare introduced this idea back in the 60s.</p>
+<p>However, according to Robert Nystrom (author of the "Crafting Interpreters" book and creator of the Lox programming language, which are both the major references Bleach where got its inspiration), if you want to implement a statically-typed language, it would be worth trying to ban NULL values. However, in a dynamically-typed language (which is Bleach's case), eliminating it is often more annoying and troublesome than allowing it. So I opted to follow Nystrom's advice on this matter.</p>
 <h2 id="compound-types"><a class="header" href="#compound-types">Compound Types</a></h2>
-<ul>
-<li>Compound types are basically types that can group multiple values into one. Bleach has two primitive compound types: <code>str</code> and <code>list</code>. Let's take a look at them:</li>
-</ul>
-<h3 id="4-type-str"><a class="header" href="#4-type-str">(4) Type: <code>str</code></a></h3>
-<ul>
-<li>
+<p>Compound types are basically types that can group multiple values into one. Bleach has two primitive compound types: <code>str</code> and <code>list</code>. Let's take a look at them:</p>
+<h3 id="type-str"><a class="header" href="#type-str">Type: <code>str</code></a></h3>
 <p>Again, nothing new here. If you have some experience with programming you already recognize this type. In Bleach, the <code>str</code> type represents an indexed-sequence of characters (a string), typically used to store and manipulate text.</p>
-</li>
-<li>
 <p>Some examples of literal values of this type:</p>
-</li>
-</ul>
 <pre><code class="language-c++">"I am a string";
 ""; // The empty string.
 "123"; // This is a string, not a value of type "num".
 </code></pre>
-<ul>
-<li>There are some aspects of this type that might differ from what you have seen in the previous languages you have worked with. Thus, I think it's a good idea to explain such aspects in more details:
-<ul>
-<li>It's a sequence type. This means that value of the <code>str</code> type can be indexed. Indexing allows you to access individual characters from the value (which, in Bleach, are also values of type <code>str</code>).</li>
-<li>In Bleach, literals values of this type are <strong>always</strong> enclosed by double quotes.</li>
-<li>Finally, this type has the following methods associated with it <strong>(None of them have been implemented yet)</strong>:
+<p>There are some aspects of this type that might differ from what you have seen in the previous languages you have worked with. Thus, I think it's a good idea to explain such aspects in more details:</p>
+<p>It's a sequence type. This means that value of the <code>str</code> type can be indexed. Indexing allows you to access individual characters from the value (which, in Bleach, are also values of type <code>str</code>).</p>
+<p>In Bleach, literals values of this type are <strong>always</strong> enclosed by double quotes.</p>
+<p>Finally, this type has the following methods associated with it <strong>(None of them have been implemented yet)</strong>:</p>
 <ul>
 <li><strong><code>clear</code>:</strong> Returns <code>nil</code>. This method cleans the contents from the value of <code>str</code> type. This change is made in-place.</li>
 <li><strong><code>empty</code>:</strong> Returns a <code>bool</code> value that signals whether the <code>str</code> value is empty or not.</li>
@@ -268,19 +238,9 @@ false
 <li><strong><code>size</code>:</strong> Returns a <code>num</code> value that represents the number of characters in the <code>str</code> value.</li>
 <li><strong><code>substr</code>:</strong> Returns a value of type <code>str</code> which is the substring of another value of type <code>str</code>. Such method expects two indexes (left, right), both of which are inclusive.</li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="5-type-list"><a class="header" href="#5-type-list">(5) Type: <code>list</code></a></h3>
-<ul>
-<li>
+<h3 id="type-list"><a class="header" href="#type-list">Type: <code>list</code></a></h3>
 <p>If you are familiar with Python, then here it is an old friend of you. In Bleach, the <code>list</code> type represents an indexed-sequence of elements.</p>
-</li>
-<li>
 <p>Some examples of literal values of this type:</p>
-</li>
-</ul>
 <pre><code class="language-c++">[0, 1, 2, 3, 2.71, 3.14159]; // A list where all elements are of type "num".
 ["hello", "there"]; // A list where all elements are of type "str".
 []; // An empty list.
@@ -288,11 +248,9 @@ false
 [nil, nil, nil]; // A list where all elements are of type "nil".
 [false, "Brazil", 9.98, true, nil]; // A list where elements are of different types. This is allowed in Bleach.
 </code></pre>
-<ul>
-<li>There are some aspects of this type that might differ from what you have seen in the previous languages you have worked with. Thus, I think it's a good idea to explain such aspects in more details:
-<ul>
-<li>It's a sequence type. This means that lists can be indexed. Indexing allows you to access individual elements from the list.</li>
-<li>Finally, this type has the following methods associated with it <strong>(None of them have been implemented yet)</strong>:
+<p>There are some aspects of this type that might differ from what you have seen in the previous languages you have worked with. Thus, I think it's a good idea to explain such aspects in more details:</p>
+<p>It's a sequence type. This means that lists can be indexed. Indexing allows you to access individual elements from the list.</p>
+<p>Finally, this type has the following methods associated with it <strong>(None of them have been implemented yet)</strong>:</p>
 <ul>
 <li><strong><code>back</code>:</strong> Returns the last element of a value of type <code>list</code>. However, it does not make any changes to the value of type <code>list</code>.</li>
 <li><strong><code>clear</code>:</strong> Returns <code>nil</code>. This method cleans the content from the value of <code>list</code> type. This change is made in-place.</li>
@@ -301,10 +259,6 @@ false
 <li><strong><code>pop_back</code>:</strong> Returns the last element of a value of type <code>list</code>. This method removes the last element from the <code>list</code> value.</li>
 <li><strong><code>push_back</code>:</strong> Returns <code>nil</code>. This method adds an element of any type (whether it's a built-in or user-defined one) at the end of the <code>list</code> value.</li>
 <li><strong><code>size</code>:</strong> Returns a <code>num</code> value that represents the number of elements in the <code>list</code> value.</li>
-</ul>
-</li>
-</ul>
-</li>
 </ul>
 
                     </main>
