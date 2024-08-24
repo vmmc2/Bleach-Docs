@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Foreword</li><li class="chapter-item expanded "><a href="bleach_book_structure.html"><strong aria-hidden="true">1.</strong> Book Structure</a></li><li class="chapter-item expanded affix "><li class="part-title">Bleach Language Documentation</li><li class="chapter-item expanded "><a href="bleach_lang_intro.html"><strong aria-hidden="true">2.</strong> Introduction and Inspirations</a></li><li class="chapter-item expanded "><a href="bleach_data_types.html"><strong aria-hidden="true">3.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="bleach_comments.html"><strong aria-hidden="true">4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="bleach_variables.html"><strong aria-hidden="true">5.</strong> Variables</a></li><li class="chapter-item expanded "><a href="bleach_operators.html" class="active"><strong aria-hidden="true">6.</strong> Operators</a></li><li class="chapter-item expanded "><a href="bleach_control_flow.html"><strong aria-hidden="true">7.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="bleach_functions.html"><strong aria-hidden="true">8.</strong> Functions</a></li><li class="chapter-item expanded "><a href="bleach_oop_features.html"><strong aria-hidden="true">9.</strong> Object-Oriented Programming Features</a></li><li class="chapter-item expanded "><a href="bleach_std_lib.html"><strong aria-hidden="true">10.</strong> Standard Library</a></li><li class="chapter-item expanded "><a href="bleach_cfg_versions.html"><strong aria-hidden="true">11.</strong> Bleach CFG Versions</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Bleach Language Documentation</li><li class="chapter-item expanded "><a href="bleach_lang_intro.html"><strong aria-hidden="true">1.</strong> Introduction and Inspirations</a></li><li class="chapter-item expanded "><a href="bleach_data_types.html"><strong aria-hidden="true">2.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="bleach_comments.html"><strong aria-hidden="true">3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="bleach_variables.html"><strong aria-hidden="true">4.</strong> Variables</a></li><li class="chapter-item expanded "><a href="bleach_operators.html" class="active"><strong aria-hidden="true">5.</strong> Operators</a></li><li class="chapter-item expanded "><a href="bleach_control_flow_structures.html"><strong aria-hidden="true">6.</strong> Control Flow Structures</a></li><li class="chapter-item expanded "><a href="bleach_functions.html"><strong aria-hidden="true">7.</strong> Functions</a></li><li class="chapter-item expanded "><a href="bleach_oop_features.html"><strong aria-hidden="true">8.</strong> Object-Oriented Programming Features</a></li><li class="chapter-item expanded "><a href="bleach_std_lib.html"><strong aria-hidden="true">9.</strong> Standard Library</a></li><li class="chapter-item expanded "><a href="bleach_cfg_versions.html"><strong aria-hidden="true">10.</strong> Bleach CFG Versions</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -175,16 +175,133 @@
                     <main>
                         <h1 id="operators"><a class="header" href="#operators">Operators</a></h1>
 <h2 id="overview"><a class="header" href="#overview">Overview</a></h2>
+<p>As you also already know, operators in a programming language are symbols that are responsible for executing an operation on one or more operands (values or variables) in order to produce a result.</p>
+<p>Operators are fundamental building blocks in a programming language, allowing the programmer to manipulate data, perform calculations, compare values, and much more.</p>
+<p>In this page, we'll see what operators Bleach provides to us and how each of them behave and, at the end, we'll also see what is the precedence of each of these operators.</p>
 <h2 id="unary-operators"><a class="header" href="#unary-operators">Unary Operators</a></h2>
+<p>An unary operator is, as its name suggests, an operator that expects just one operand. Bleach has two operators that fall in this category.</p>
 <h3 id="arithmetical"><a class="header" href="#arithmetical">Arithmetical</a></h3>
+<p><strong>Negation (<code>-</code>):</strong> Negates the value of an operand of type <code>num</code>.</p>
+<pre><code class="language-ts">let number = 5;
+print -number // -5;
+</code></pre>
 <h3 id="logical"><a class="header" href="#logical">Logical</a></h3>
+<p><strong>Not (<code>!</code>):</strong> Inverts the value of an operand of type <code>bool</code>.</p>
+<pre><code class="language-ts">let b = true;
+print !b; // false
+print !!b; // true
+</code></pre>
 <h2 id="binary-operators"><a class="header" href="#binary-operators">Binary Operators</a></h2>
+<p>A binary operator is, as its name suggests, an operator that expects just two operands. Bleach has 12 operators that fall in this category.</p>
 <h3 id="arithmetical-1"><a class="header" href="#arithmetical-1">Arithmetical</a></h3>
-<h3 id="comparison"><a class="header" href="#comparison">Comparison</a></h3>
+<p><strong>Addition (<code>+</code>):</strong> This operator expects two operands. However it behaves differently depending on the types of the two received operands.</p>
+<ul>
+<li>Left operand (<code>num</code>) and Right operand (<code>num</code>): Adds the second (right) operand operands to the first (left) operand.</li>
+</ul>
+<pre><code class="language-ts">print 2 + 3; // 5
+print 2.71 + 3.14159; // 5.85159
+</code></pre>
+<ul>
+<li>Left operand (<code>str</code>) and Right operand (<code>str</code>): Concatenates the second (right) operand to the first (left) operand.</li>
+</ul>
+<pre><code class="language-ts">print "hello," + " there!"; // "hello, there!"
+print "a" + "b"; // "ab"
+</code></pre>
+<ul>
+<li>Left operand (<code>num</code>) and Right operand (<code>str</code>): Converts the first (left) operand from the <code>num</code> type to the <code>str</code> type. Then, concatenates the second (right) operand to the first (left) operand, producing a new value of type <code>str</code>.</li>
+</ul>
+<pre><code class="language-ts">print 2 + "two"; // "2two"
+</code></pre>
+<ul>
+<li>Left operand (<code>str</code>) and Right operand (<code>num</code>): Converts the second (right) operand from the type <code>num</code> to the type <code>str</code>. Then, concatenates the second (right) operand to the first (left) operand, producing a new value of type <code>str</code>.</li>
+</ul>
+<pre><code class="language-ts">print "two" + 2; // "two2"
+</code></pre>
+<p><strong>Subtraction (<code>-</code>):</strong> This operator expects two operands of type <code>num</code>. It subtracts the second (right) operand from the first (left) operand.</p>
+<pre><code class="language-ts">print 5 - 3; // 2
+</code></pre>
+<p><strong>Multiplication (<code>*</code>):</strong> This operator expects two operands of type <code>num</code>. It multiplies the first (left) operand by the second (right) operand.</p>
+<pre><code class="language-ts">print 1.5 * 4; // 6
+</code></pre>
+<p><strong>Division (<code>/</code>):</strong> This operator expects two operands of type <code>num</code>. It divides the first (left) operand by the second (right) operand.</p>
+<pre><code class="language-ts">print 5 / 2; // 2
+print 1 / 3; // 0.333333333333333
+</code></pre>
+<h3 id="comparisonrelational"><a class="header" href="#comparisonrelational">Comparison/Relational</a></h3>
+<p><strong>Greater Than (<code>&gt;</code>):</strong> This operator expects two operands of type <code>num</code>. It checks whether or not the first (left) operand is greater than the second (right) operand.</p>
+<pre><code class="language-ts">print 5 &gt; 2; // true
+print 1 &gt; 3; // false
+</code></pre>
+<p><strong>Greater Than or Equal (<code>&gt;=</code>):</strong> This operator expects two operands of type <code>num</code>. It checks whether or not the first (left) operand is greater than or equal to the second (right) operand.</p>
+<pre><code class="language-ts">print 5 &gt;= 2; // true
+print -1 &gt;= -1 // true
+print 1 &gt;= 3; // false
+</code></pre>
+<p><strong>Lesser Than (<code>&lt;</code>):</strong> This operator expects two operands of type <code>num</code>. It checks whether or not the first (left) operand is lesser than the second (right) operand.</p>
+<pre><code class="language-ts">print 5 &lt; 2; // false
+print 1 &lt; 3; // true
+</code></pre>
+<p><strong>Lesser Than or Equal (<code>&lt;=</code>):</strong> This operator expects two operands of type <code>num</code>. It checks whether or not the first (left) operand is lesser than or equal to the second (right) operand.</p>
+<pre><code class="language-ts">print 5 &lt;= 2; // false
+print 0 &lt;= 0; // true
+print 1 &lt;= 3; // true
+</code></pre>
 <h3 id="equality"><a class="header" href="#equality">Equality</a></h3>
+<p><strong>Equal (<code>==</code>):</strong> This operator expects two operands of the following built-in types (<code>bool</code>, <code>nil</code>, <code>num</code>, <code>str</code>). It checks whether the values are of the same type and, if that's the case, checks whether such values are the same.</p>
+<pre><code class="language-ts">print 2 == 2; // true
+print 2 == (1 + 1) // true
+print 2 == 3; // false
+print "hello" == "hello"; // true
+print "hello" == "hell"; // false
+print 2 == nil; // false
+print nil == nil; // true
+print true == true; // true
+print true == false; // false
+print true == !!true; // true
+</code></pre>
+<p><strong>Not Equal (<code>!=</code>):</strong> This operator expects two operands of the following built-in types (<code>bool</code>, <code>nil</code>, <code>num</code>, <code>str</code>). It checks whether the values are of the same type (if they are not of the same type, such comparison returns <code>false</code>) and, if they are of the same type, it then checks whether such values are not the same.</p>
+<pre><code class="language-ts">print 2 != 2; // false
+print 2 != (1 + 1) // false
+print 2 != 3; // true
+print "hello" != "hello"; // false
+print "hello" != "hell"; // true
+print 2 != nil; // true
+print nil != nil; // false
+print true != true; // false
+print true != false; // true
+print true != !!true; // false
+</code></pre>
 <h3 id="logical-1"><a class="header" href="#logical-1">Logical</a></h3>
+<p><strong>And (<code>and</code>):</strong> This operator returns <code>true</code> if both of its operands are truthy values. Otherwise, it returns <code>false</code>. Remember that this operator performs short-circuiting when possible.</p>
+<pre><code class="language-ts">print 5 and 2; // true
+print 5 and false; // false
+print false and nil; // false
+</code></pre>
+<p><strong>Or (<code>or</code>):</strong> This operator returns <code>true</code> if one of its operands are truthy values. Otherwise, it returns <code>false</code>. Remember that this operator performs short-circuiting when possible.</p>
+<pre><code class="language-ts">print 5 or 2; // true
+print 5 or false; // true
+print false or nil; // false
+</code></pre>
 <h2 id="ternary-operator"><a class="header" href="#ternary-operator">Ternary Operator</a></h2>
-
+<p>An unary operator is, as its name suggests, an operator that expects just three operands. Bleach has just one operator that fall in this category.</p>
+<p><strong>Ternary (<code>? :</code>):</strong>  This operator is essentialy a concise way to perform conditional operations in a programming language. It is used to evaluate a condition and return one of two values based on whether the condition is true or false. As previously seen, the ternary operator is called "ternary" because it operates on three operands.</p>
+<pre><code class="language-ts">print 2 == 2 ? "2 is equal to 2" : "2 is not equal to two"; // "2 is equal to 2"
+</code></pre>
+<h2 id="operator-precedence"><a class="header" href="#operator-precedence">Operator Precedence</a></h2>
+<p>Below, there is a scheme that shows us the precedence of all of the presented operators when a expression in being evaluated in a Bleach program at runtime.</p>
+<p>In the list shown below, the smaller the index is, the higher the precedence of such operator is. Operators present in the same index have the same precedence and will be evaluated from left-to-right as they appear in an expression.</p>
+<div class="table-wrapper"><table><thead><tr><th>Precendence</th><th>Operator</th></tr></thead><tbody>
+<tr><td>1</td><td><code>!</code>, <code>-</code> (unary)</td></tr>
+<tr><td>2</td><td><code>*</code>, <code>/</code></td></tr>
+<tr><td>3</td><td><code>+</code>, <code>-</code> (binary)</td></tr>
+<tr><td>4</td><td><code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code></td></tr>
+<tr><td>5</td><td><code>==</code>, <code>!=</code></td></tr>
+<tr><td>6</td><td><code>and</code></td></tr>
+<tr><td>7</td><td><code>or</code></td></tr>
+<tr><td>8</td><td><code>? : </code> (ternary)</td></tr>
+<tr><td>9</td><td><code>=</code> (assignment)</td></tr>
+</tbody></table>
+</div>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
@@ -193,7 +310,7 @@
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="bleach_control_flow.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="bleach_control_flow_structures.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -207,7 +324,7 @@
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="bleach_control_flow.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="bleach_control_flow_structures.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Foreword</li><li class="chapter-item expanded "><a href="bleach_book_structure.html"><strong aria-hidden="true">1.</strong> Book Structure</a></li><li class="chapter-item expanded affix "><li class="part-title">Bleach Language Documentation</li><li class="chapter-item expanded "><a href="bleach_lang_intro.html"><strong aria-hidden="true">2.</strong> Introduction and Inspirations</a></li><li class="chapter-item expanded "><a href="bleach_data_types.html"><strong aria-hidden="true">3.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="bleach_comments.html"><strong aria-hidden="true">4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="bleach_variables.html"><strong aria-hidden="true">5.</strong> Variables</a></li><li class="chapter-item expanded "><a href="bleach_operators.html"><strong aria-hidden="true">6.</strong> Operators</a></li><li class="chapter-item expanded "><a href="bleach_control_flow.html"><strong aria-hidden="true">7.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="bleach_functions.html"><strong aria-hidden="true">8.</strong> Functions</a></li><li class="chapter-item expanded "><a href="bleach_oop_features.html"><strong aria-hidden="true">9.</strong> Object-Oriented Programming Features</a></li><li class="chapter-item expanded "><a href="bleach_std_lib.html"><strong aria-hidden="true">10.</strong> Standard Library</a></li><li class="chapter-item expanded "><a href="bleach_cfg_versions.html"><strong aria-hidden="true">11.</strong> Bleach CFG Versions</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Bleach Language Documentation</li><li class="chapter-item expanded "><a href="bleach_lang_intro.html"><strong aria-hidden="true">1.</strong> Introduction and Inspirations</a></li><li class="chapter-item expanded "><a href="bleach_data_types.html"><strong aria-hidden="true">2.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="bleach_comments.html"><strong aria-hidden="true">3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="bleach_variables.html"><strong aria-hidden="true">4.</strong> Variables</a></li><li class="chapter-item expanded "><a href="bleach_operators.html"><strong aria-hidden="true">5.</strong> Operators</a></li><li class="chapter-item expanded "><a href="bleach_control_flow_structures.html"><strong aria-hidden="true">6.</strong> Control Flow Structures</a></li><li class="chapter-item expanded "><a href="bleach_functions.html"><strong aria-hidden="true">7.</strong> Functions</a></li><li class="chapter-item expanded "><a href="bleach_oop_features.html"><strong aria-hidden="true">8.</strong> Object-Oriented Programming Features</a></li><li class="chapter-item expanded "><a href="bleach_std_lib.html"><strong aria-hidden="true">9.</strong> Standard Library</a></li><li class="chapter-item expanded "><a href="bleach_cfg_versions.html"><strong aria-hidden="true">10.</strong> Bleach CFG Versions</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -174,8 +174,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="book-structure"><a class="header" href="#book-structure">Book Structure</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="introduction-and-inspirations"><a class="header" href="#introduction-and-inspirations">Introduction and Inspirations</a></h1>
+                        <h1 id="introduction-and-inspirations"><a class="header" href="#introduction-and-inspirations">Introduction and Inspirations</a></h1>
 <h2 id="what-is-bleach-and-why-it-was-created"><a class="header" href="#what-is-bleach-and-why-it-was-created">What is Bleach and why it was created?</a></h2>
 <p>Bleach is a programming language designed to give Computer Science students a more interesting and rewarding experience while taking their first "Introduction to Compilers" course.</p>
 <p>The language was implemented with this purpose due to the fact that, based on my personal experience and on certain studies (which I will cite at the end of the chapter), such courses tend to be too much focused on its theoretical aspects to the detriment of its practical ones.</p>
@@ -231,6 +230,14 @@
 <pre><code class="language-c++">true
 false
 </code></pre>
+<h4 id="side-note-truthy-and-falsey-values"><a class="header" href="#side-note-truthy-and-falsey-values">Side Note: Truthy and Falsey values</a></h4>
+<p>Bleach, like Ruby and many other programming languages, has the concepts of <strong>truthy</strong> and <strong>falsey</strong> values to determine the truthiness or falseness of values when evaluating conditions, such as in <code>if</code> statements, <code>do-while</code> loops, <code>for</code> loops, <code>while</code> loops and ternary operators (<code>?</code>).</p>
+<p>Basically, this means that values of any type (built-in or user-defined) can be used where a value of <code>bool</code> type is expected.</p>
+<p>In short, Bleach follows this convention:</p>
+<ul>
+<li><strong>Falsey values:</strong> <code>false</code>, <code>nil</code>.</li>
+<li><strong>Truthy values:</strong> Any other value that is not <code>false</code> nor <code>nil</code>.</li>
+</ul>
 <h3 id="type-num"><a class="header" href="#type-num">Type: <code>num</code></a></h3>
 <p>For the sake of simplicity, Bleach has only one type to represent numbers: the <code>num</code> type.</p>
 <p>Behind the scenes, such type is implemented using a double-precision floating point number (The C++ <code>double</code> type).</p>
@@ -345,6 +352,10 @@ let e = 2.71;
 <p>The third point is that, in order to declare a new variable in Bleach, the programmer must use the <code>let</code> keyword:</p>
 <pre><code class="language-ts">let variable = "A str value";
 </code></pre>
+<p>The fourth one is that, if during the declaration of a variable, an initializer is not provided, then, by default, the variable will store the <code>nil</code> value inside itself:</p>
+<pre><code class="language-ts">let someVariable;
+print someVariable; // nil
+</code></pre>
 <p>The last point, and maybe the most important of them all, is that since Bleach is a dynamically-typed programming language, its variables don't have types associated with them. <strong>Instead, it's the values that have types.</strong> The most important implication of this is that a variable can hold a value of any type at different points in time.</p>
 <p>In practice, Bleach allows the code snippet below with no problems:</p>
 <pre><code class="language-ts">let a = "hello";
@@ -366,28 +377,217 @@ let pi = 9.51413;
 <p>Refreshing your mind: a local variable is a variable that is declared within a specific block of code, such as a function, method, an if statement or a loop statement. By the way, this is exactly how local variables work in Bleach.</p>
 <p>The scope of a local variable is limited to the block in which it is defined, meaning it can only be accessed and used within that block.</p>
 <p>Once the block of code finishes executing, the local variable is typically destroyed, and its memory is released.</p>
+<p>The code snippet below shows an example of a variable that been declared inside a function and, thus, is an example of a local variable:</p>
+<pre><code class="language-ts">function foo(){
+  let bar = "This is a local variable";
+  print bar;
+
+  return;
+}
+
+foo();
+</code></pre>
+<h2 id="variable-assignment"><a class="header" href="#variable-assignment">Variable Assignment</a></h2>
+<p>As shown above, a variable in Bleach can be declared through the use of the <code>let</code> keyword.</p>
+<p>Moreover, since there is no idea of immutability of variables in Bleach, it's allowed to assign different values of different types at different points in time to the declared variable. To do that, the programmer uses the assignment operator <code>=</code>.</p>
+<p>However, I would like to present some interesting semantics related to variable assignment in Bleach.</p>
+<p>The first one is that, in Bleach, an assignment is an expression. Not a statement. This has some interesting consequences.</p>
+<p>For example, since a variable assignment is an expression, it produces a value. Such value is the one that is being assigned to the variable:</p>
+<pre><code class="language-ts">let foo;
+print foo = 20; // 20
+</code></pre>
+<p>The second one is that it's completely possible to assign a value to more than one variable at once in the same assignment expression:</p>
+<pre><code class="language-ts">let x = 20;
+let y = 42;
+
+x = y = 13;
+
+print x; // 13;
+print y; // 13;
+</code></pre>
+<h2 id="variable-shadowing"><a class="header" href="#variable-shadowing">Variable Shadowing</a></h2>
+<p>In case you are not familiar (or don't remember), variable shadowing is a process that commonly happens in programming.</p>
+<p>It's an effect where a variable declared within a certain scope (typically a local scope) has the same name as a variable in an outer scope.</p>
+<p>Then, the inner variable "shadows" or "hides" the outer variable within the scope where it is declared, meaning that within that scope, the inner variable takes precedence, and the outer variable cannot be directly accessed.</p>
+<p>The shadowing effect occurs because, before the program actually starts its execution, usually compilers an interpreters (and this includes the Bleach interpreter) do a static-time pass through the source code called "resolving". In this pass, variables are resolved by searching through scopes, starting from the innermost scope and moving outward. If a variable is found in an inner scope with the same name as one in an outer scope, the inner variable is used, effectively "shadowing" the outer one.</p>
+<p>Pay attention to the fact that the shadowing effect is limited to the scope of the inner variable. Once the program exits that scope, the outer variable becomes "visible" to the program again.</p>
+<p>The example below shows a clear example of variable shadowing:</p>
+<pre><code class="language-ts">let a = 42;
+
+print a; // 42
+
+{
+  let a = "Hello, there!";
+  print a; // "Hello, there!" --&gt; In this scope, the variable a that holds the value "Hello, there!" hides the other one that has the same name but stores a different value: 42.
+}
+
+print a; // 42
+</code></pre>
+<p>Another example, now involving functions:</p>
+<pre><code class="language-ts">let foo = "hi";
+
+print foo; // "hi"
+
+function f(){
+  let foo = 42;
+  print foo; // 42;
+
+  return;
+}
+
+f();
+
+print foo; // "hi"
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="operators"><a class="header" href="#operators">Operators</a></h1>
 <h2 id="overview-3"><a class="header" href="#overview-3">Overview</a></h2>
+<p>As you also already know, operators in a programming language are symbols that are responsible for executing an operation on one or more operands (values or variables) in order to produce a result.</p>
+<p>Operators are fundamental building blocks in a programming language, allowing the programmer to manipulate data, perform calculations, compare values, and much more.</p>
+<p>In this page, we'll see what operators Bleach provides to us and how each of them behave and, at the end, we'll also see what is the precedence of each of these operators.</p>
 <h2 id="unary-operators"><a class="header" href="#unary-operators">Unary Operators</a></h2>
+<p>An unary operator is, as its name suggests, an operator that expects just one operand. Bleach has two operators that fall in this category.</p>
 <h3 id="arithmetical"><a class="header" href="#arithmetical">Arithmetical</a></h3>
+<p><strong>Negation (<code>-</code>):</strong> Negates the value of an operand of type <code>num</code>.</p>
+<pre><code class="language-ts">let number = 5;
+print -number // -5;
+</code></pre>
 <h3 id="logical"><a class="header" href="#logical">Logical</a></h3>
+<p><strong>Not (<code>!</code>):</strong> Inverts the value of an operand of type <code>bool</code>.</p>
+<pre><code class="language-ts">let b = true;
+print !b; // false
+print !!b; // true
+</code></pre>
 <h2 id="binary-operators"><a class="header" href="#binary-operators">Binary Operators</a></h2>
+<p>A binary operator is, as its name suggests, an operator that expects just two operands. Bleach has 12 operators that fall in this category.</p>
 <h3 id="arithmetical-1"><a class="header" href="#arithmetical-1">Arithmetical</a></h3>
-<h3 id="comparison"><a class="header" href="#comparison">Comparison</a></h3>
+<p><strong>Addition (<code>+</code>):</strong> This operator expects two operands. However it behaves differently depending on the types of the two received operands.</p>
+<ul>
+<li>Left operand (<code>num</code>) and Right operand (<code>num</code>): Adds the second (right) operand operands to the first (left) operand.</li>
+</ul>
+<pre><code class="language-ts">print 2 + 3; // 5
+print 2.71 + 3.14159; // 5.85159
+</code></pre>
+<ul>
+<li>Left operand (<code>str</code>) and Right operand (<code>str</code>): Concatenates the second (right) operand to the first (left) operand.</li>
+</ul>
+<pre><code class="language-ts">print "hello," + " there!"; // "hello, there!"
+print "a" + "b"; // "ab"
+</code></pre>
+<ul>
+<li>Left operand (<code>num</code>) and Right operand (<code>str</code>): Converts the first (left) operand from the <code>num</code> type to the <code>str</code> type. Then, concatenates the second (right) operand to the first (left) operand, producing a new value of type <code>str</code>.</li>
+</ul>
+<pre><code class="language-ts">print 2 + "two"; // "2two"
+</code></pre>
+<ul>
+<li>Left operand (<code>str</code>) and Right operand (<code>num</code>): Converts the second (right) operand from the type <code>num</code> to the type <code>str</code>. Then, concatenates the second (right) operand to the first (left) operand, producing a new value of type <code>str</code>.</li>
+</ul>
+<pre><code class="language-ts">print "two" + 2; // "two2"
+</code></pre>
+<p><strong>Subtraction (<code>-</code>):</strong> This operator expects two operands of type <code>num</code>. It subtracts the second (right) operand from the first (left) operand.</p>
+<pre><code class="language-ts">print 5 - 3; // 2
+</code></pre>
+<p><strong>Multiplication (<code>*</code>):</strong> This operator expects two operands of type <code>num</code>. It multiplies the first (left) operand by the second (right) operand.</p>
+<pre><code class="language-ts">print 1.5 * 4; // 6
+</code></pre>
+<p><strong>Division (<code>/</code>):</strong> This operator expects two operands of type <code>num</code>. It divides the first (left) operand by the second (right) operand.</p>
+<pre><code class="language-ts">print 5 / 2; // 2
+print 1 / 3; // 0.333333333333333
+</code></pre>
+<h3 id="comparisonrelational"><a class="header" href="#comparisonrelational">Comparison/Relational</a></h3>
+<p><strong>Greater Than (<code>&gt;</code>):</strong> This operator expects two operands of type <code>num</code>. It checks whether or not the first (left) operand is greater than the second (right) operand.</p>
+<pre><code class="language-ts">print 5 &gt; 2; // true
+print 1 &gt; 3; // false
+</code></pre>
+<p><strong>Greater Than or Equal (<code>&gt;=</code>):</strong> This operator expects two operands of type <code>num</code>. It checks whether or not the first (left) operand is greater than or equal to the second (right) operand.</p>
+<pre><code class="language-ts">print 5 &gt;= 2; // true
+print -1 &gt;= -1 // true
+print 1 &gt;= 3; // false
+</code></pre>
+<p><strong>Lesser Than (<code>&lt;</code>):</strong> This operator expects two operands of type <code>num</code>. It checks whether or not the first (left) operand is lesser than the second (right) operand.</p>
+<pre><code class="language-ts">print 5 &lt; 2; // false
+print 1 &lt; 3; // true
+</code></pre>
+<p><strong>Lesser Than or Equal (<code>&lt;=</code>):</strong> This operator expects two operands of type <code>num</code>. It checks whether or not the first (left) operand is lesser than or equal to the second (right) operand.</p>
+<pre><code class="language-ts">print 5 &lt;= 2; // false
+print 0 &lt;= 0; // true
+print 1 &lt;= 3; // true
+</code></pre>
 <h3 id="equality"><a class="header" href="#equality">Equality</a></h3>
+<p><strong>Equal (<code>==</code>):</strong> This operator expects two operands of the following built-in types (<code>bool</code>, <code>nil</code>, <code>num</code>, <code>str</code>). It checks whether the values are of the same type and, if that's the case, checks whether such values are the same.</p>
+<pre><code class="language-ts">print 2 == 2; // true
+print 2 == (1 + 1) // true
+print 2 == 3; // false
+print "hello" == "hello"; // true
+print "hello" == "hell"; // false
+print 2 == nil; // false
+print nil == nil; // true
+print true == true; // true
+print true == false; // false
+print true == !!true; // true
+</code></pre>
+<p><strong>Not Equal (<code>!=</code>):</strong> This operator expects two operands of the following built-in types (<code>bool</code>, <code>nil</code>, <code>num</code>, <code>str</code>). It checks whether the values are of the same type (if they are not of the same type, such comparison returns <code>false</code>) and, if they are of the same type, it then checks whether such values are not the same.</p>
+<pre><code class="language-ts">print 2 != 2; // false
+print 2 != (1 + 1) // false
+print 2 != 3; // true
+print "hello" != "hello"; // false
+print "hello" != "hell"; // true
+print 2 != nil; // true
+print nil != nil; // false
+print true != true; // false
+print true != false; // true
+print true != !!true; // false
+</code></pre>
 <h3 id="logical-1"><a class="header" href="#logical-1">Logical</a></h3>
+<p><strong>And (<code>and</code>):</strong> This operator returns <code>true</code> if both of its operands are truthy values. Otherwise, it returns <code>false</code>. Remember that this operator performs short-circuiting when possible.</p>
+<pre><code class="language-ts">print 5 and 2; // true
+print 5 and false; // false
+print false and nil; // false
+</code></pre>
+<p><strong>Or (<code>or</code>):</strong> This operator returns <code>true</code> if one of its operands are truthy values. Otherwise, it returns <code>false</code>. Remember that this operator performs short-circuiting when possible.</p>
+<pre><code class="language-ts">print 5 or 2; // true
+print 5 or false; // true
+print false or nil; // false
+</code></pre>
 <h2 id="ternary-operator"><a class="header" href="#ternary-operator">Ternary Operator</a></h2>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="control-flow"><a class="header" href="#control-flow">Control Flow</a></h1>
+<p>An unary operator is, as its name suggests, an operator that expects just three operands. Bleach has just one operator that fall in this category.</p>
+<p><strong>Ternary (<code>? :</code>):</strong>  This operator is essentialy a concise way to perform conditional operations in a programming language. It is used to evaluate a condition and return one of two values based on whether the condition is true or false. As previously seen, the ternary operator is called "ternary" because it operates on three operands.</p>
+<pre><code class="language-ts">print 2 == 2 ? "2 is equal to 2" : "2 is not equal to two"; // "2 is equal to 2"
+</code></pre>
+<h2 id="operator-precedence"><a class="header" href="#operator-precedence">Operator Precedence</a></h2>
+<p>Below, there is a scheme that shows us the precedence of all of the presented operators when a expression in being evaluated in a Bleach program at runtime.</p>
+<p>In the list shown below, the smaller the index is, the higher the precedence of such operator is. Operators present in the same index have the same precedence and will be evaluated from left-to-right as they appear in an expression.</p>
+<div class="table-wrapper"><table><thead><tr><th>Precendence</th><th>Operator</th></tr></thead><tbody>
+<tr><td>1</td><td><code>!</code>, <code>-</code> (unary)</td></tr>
+<tr><td>2</td><td><code>*</code>, <code>/</code></td></tr>
+<tr><td>3</td><td><code>+</code>, <code>-</code> (binary)</td></tr>
+<tr><td>4</td><td><code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code></td></tr>
+<tr><td>5</td><td><code>==</code>, <code>!=</code></td></tr>
+<tr><td>6</td><td><code>and</code></td></tr>
+<tr><td>7</td><td><code>or</code></td></tr>
+<tr><td>8</td><td><code>? : </code> (ternary)</td></tr>
+<tr><td>9</td><td><code>=</code> (assignment)</td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="control-flow-structures"><a class="header" href="#control-flow-structures">Control Flow Structures</a></h1>
 <h2 id="overview-4"><a class="header" href="#overview-4">Overview</a></h2>
-<h2 id="logical-control-flow-structures"><a class="header" href="#logical-control-flow-structures">Logical Control Flow Structures</a></h2>
+<p>Control Flow Structures are constructs that dictate the order in which statements are executed. They allow the program to make decisions, repeat operations, and manage the flow of execution based on certain conditions.</p>
+<h2 id="conditional-statements"><a class="header" href="#conditional-statements">Conditional Statements</a></h2>
+<p>Such statements allow the program to execute certain blocks of code based on whether a condition evaluates to <code>true</code> or <code>false</code>.</p>
 <h3 id="if-statement"><a class="header" href="#if-statement">If Statement</a></h3>
-<h2 id="loop-control-flow-structures"><a class="header" href="#loop-control-flow-structures">Loop Control Flow Structures</a></h2>
+<h2 id="loops"><a class="header" href="#loops">Loops</a></h2>
+<p>Loop statements are used to repeat a block of code multiple times, either a fixed number of times or until a certain condition is met.</p>
 <h3 id="while-loop"><a class="header" href="#while-loop">While Loop</a></h3>
 <h3 id="dowhile-loop"><a class="header" href="#dowhile-loop">DoWhile Loop</a></h3>
 <h3 id="for-loop"><a class="header" href="#for-loop">For Loop</a></h3>
+<h2 id="branching"><a class="header" href="#branching">Branching</a></h2>
+<p>Branching statements allow the program to jump to a different part of the code based on certain conditions during runtime.</p>
+<h2 id="function-calls"><a class="header" href="#function-calls">Function Calls</a></h2>
+<p>Even though the topic of functions and methods has not been addressed yet, such structures affect the control flow of a program during execution.</p>
+<p>Functions and methods are blocks of code that can be called from different regions of a program, allowing for code reuse and better organization.</p>
+<p>When it comes to the flow followed by the code during runtime, it enters the function when it is called, executes the function’s code, and then returns to the point after the function call.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="functions"><a class="header" href="#functions">Functions</a></h1>
 <h2 id="overview-5"><a class="header" href="#overview-5">Overview</a></h2>
 <h2 id="functions-1"><a class="header" href="#functions-1">Functions</a></h2>
+<h3 id="functions-are-first-class-citizens"><a class="header" href="#functions-are-first-class-citizens">Functions are first-class citizens</a></h3>
 <h2 id="anonymous-functions-lambda-functions"><a class="header" href="#anonymous-functions-lambda-functions">Anonymous Functions (Lambda Functions)</a></h2>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="object-oriented-programming-features"><a class="header" href="#object-oriented-programming-features">Object-Oriented Programming Features</a></h1>
 <h2 id="overview-6"><a class="header" href="#overview-6">Overview</a></h2>
@@ -401,9 +601,25 @@ let pi = 9.51413;
 <div style="break-before: page; page-break-before: always;"></div><h1 id="bleach-language-standard-library"><a class="header" href="#bleach-language-standard-library">Bleach Language Standard Library</a></h1>
 <h2 id="overview-7"><a class="header" href="#overview-7">Overview</a></h2>
 <h3 id="stdio"><a class="header" href="#stdio"><code>std::io</code></a></h3>
+<ul>
+<li><code>std::io::readLine</code>:</li>
+<li><code>std::io::print</code>:</li>
+</ul>
 <h3 id="stdchrono"><a class="header" href="#stdchrono"><code>std::chrono</code></a></h3>
+<ul>
+<li><code>std::chrono::clock</code>:</li>
+</ul>
 <h3 id="stdmath"><a class="header" href="#stdmath"><code>std::math</code></a></h3>
+<ul>
+<li><code>std::math::abs</code>:</li>
+<li><code>std::math::log</code>:</li>
+<li><code>std::math::pow</code>:</li>
+<li><code>std::math::sqrt</code>:</li>
+</ul>
 <h3 id="stdrandom"><a class="header" href="#stdrandom"><code>std::random</code></a></h3>
+<ul>
+<li><code>std::random::random</code>:</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="bleach-context-free-grammar-versions"><a class="header" href="#bleach-context-free-grammar-versions">Bleach Context-Free Grammar Versions</a></h1>
 <ul>
 <li>This page shows the development of the Bleach language in terms of ripening of its Context-Free Grammar.</li>
