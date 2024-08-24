@@ -6,7 +6,7 @@
 - [Comments](./bleach_comments.md)
 - [Variables](./bleach_variables.md)
 - [Operators](./bleach_operators.md)
-- [Control Flow](./bleach_control_flow.md)
+- [Control Flow Structures](./bleach_control_flow_structures.md)
 - [Functions](./bleach_functions.md)
 - [Object-Oriented Programming Features](./bleach_oop_features.md)
 - [Standard Library](./bleach_std_lib.md)
