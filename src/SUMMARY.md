@@ -1,8 +1,5 @@
 # Summary
 
-# Foreword
-- [Book Structure](./bleach_book_structure.md)
-
 # Bleach Language Documentation
 - [Introduction and Inspirations](./bleach_lang_intro.md)
 - [Data Types](./bleach_data_types.md)
