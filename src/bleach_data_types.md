@@ -27,6 +27,15 @@ true
 false
 ```
 
+#### Side Note: Truthy and Falsey values
+Bleach, like Ruby and many other programming languages, has the concepts of __truthy__ and __falsey__ values to determine the truthiness or falseness of values when evaluating conditions, such as in ```if``` statements, ```do-while``` loops, ```for``` loops, ```while``` loops and ternary operators (```?```).
+
+Basically, this means that values of any type (built-in or user-defined) can be used where a value of ```bool``` type is expected.
+
+In short, Bleach follows this convention:
+  * __Falsey values:__ ```false```, ```nil```.
+  * __Truthy values:__ Any other value that is not ```false``` nor ```nil```.
+
 ### Type: ```num```
 For the sake of simplicity, Bleach has only one type to represent numbers: the ```num``` type.
 
