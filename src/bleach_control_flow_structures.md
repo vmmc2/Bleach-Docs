@@ -128,7 +128,20 @@ Finally! Here is the last kind of control flow structure that fits into the loop
 
 Unlike the ```while``` and ```do-while``` loops, a ```for``` loop is particularly useful in scenarios where the developer knows in advance how many times he/she/they want such loop to iterate.
 
-In case you don't remember the structure of a ```for``` loop, let's do a simple refresh:
+In case you don't remember the structure of a ```for``` loop, let's do a simple refresh: A ```for``` loop has 4 components, which are:
+* __Initialization:__ This is where you declare and initialize a loop control variable. This happens only once, at the beginning of the loop. __In Bleach, the programmer is also allowed to put an expression statement in this place.__
+* __Condition:__ This is a logical expression that is evaluated before each iteration of the loop. If the condition evalutes to ```true```, the loop continues. Otherwise, if it evaluates to ```false```, the loop finishes its execution.
+* __Increment:__ This is an expression that updates the loop control variable after each iteration. It usually increments or decrements the loop variable. To be honest, this can be any kind of expression. Not necessarily an expression that updates the loop control variable of the ```for``` loop.
+* __Code Block:__ The block of code that will be executed each time the condition is true.
+
+__It's also important to mention that the first three components might be absent inside the structure of a ```for``` loop.__
+
+In short, this is the expected structure of a ```for``` loop in Bleach:
+```ts
+for(initialization; condition; increment){
+  // the code of the block goes here.
+}
+```
 
 
 __Last, but not least, as the ```while``` and ```do-while``` loops require, the ```for``` loops in Bleach need a block between the keywords after its ```)``` character. In practice, this means that the following code snippet will not even execute:__
@@ -147,3 +160,65 @@ for(let counter = 0; counter < 10; counter = counter + 1){
 
 ## Branching
 Branching statements allow the program to jump to a different part of the code based on certain conditions during runtime.
+
+__In Bleach, there are just two keywords that allow the user to execute such statements:__
+  * ```break```
+  * ```continue```
+
+The statements that use these keywords are used to control the flow of loops (```for```, ```while``` and ```do-while```) statements.
+
+They provide mechanisms that allow the programmer to modify the normal flow of loop execution based on particular conditions. This is useful when the developer wants to exit a loop early based on a dynamic condition instead of waiting for the loop to naturally complete all its iterations.
+
+### The ```break``` keyword/statement
+This statement is used to immediately exit a loop.
+
+When the ```break``` statement is encountered (```break;```), the program stops the execution of the innermost loop that contains such statement and goes on to the first line of code after such loop block.
+
+__Usage of the ```break``` statement inside a loop in Bleach:__
+```ts
+for(let counter = 0; counter < 10; counter = counter + 1){
+  if(counter == 9){
+    break;
+  }
+  print counter;
+}
+```
+
+__The output of the code snippet above will be:__
+```txt
+0
+1
+2
+3
+4
+5
+6
+7
+8
+```
+
+### The ```continue``` keyword/statement
+The statement is used to skip the remaining code in the current iteration of a loop and immediately proceed to the next iteration.
+
+It does not exit the loop. Instead it moves the control back to the top of the loop, where the next iteration begins.
+
+A ```continue``` statement is normally used when the programmer wants to skip certain iterations of a loop based on a condition, but still wants the loop to keep running for the other iterations.
+
+__Usage of the ```continue``` statement inside a loop in Bleach:__
+```ts
+for(let counter = 0; counter < 10; counter = counter + 1){
+  if(counter == 0 or counter == 2 or counter == 4 or counter == 6 or counter == 8){
+    continue;
+  }
+  print counter;
+}
+```
+
+__The output of the code snippet above will be:__
+```txt
+1
+3
+5
+7
+9
+```
