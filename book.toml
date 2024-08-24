@@ -3,4 +3,4 @@ authors = ["Victor Miguel de Morais Costa"]
 language = "en"
 multilingual = false
 src = "src"
-title = "Bleach Language Documentation"
+title = "The Bleach Programming Language"
