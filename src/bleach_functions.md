@@ -6,7 +6,10 @@
 ## Functions
 
 
-### Functions are first-class citizens
+## Function Calls
+
+
+## Functions are First-Class citizens
 
 
 ## Anonymous Functions (Lambda Functions)
