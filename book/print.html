@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Bleach Language Documentation</li><li class="chapter-item expanded "><a href="bleach_lang_intro.html"><strong aria-hidden="true">1.</strong> Introduction and Inspirations</a></li><li class="chapter-item expanded "><a href="bleach_data_types.html"><strong aria-hidden="true">2.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="bleach_comments.html"><strong aria-hidden="true">3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="bleach_variables.html"><strong aria-hidden="true">4.</strong> Variables</a></li><li class="chapter-item expanded "><a href="bleach_operators.html"><strong aria-hidden="true">5.</strong> Operators</a></li><li class="chapter-item expanded "><a href="bleach_control_flow_structures.html"><strong aria-hidden="true">6.</strong> Control Flow Structures</a></li><li class="chapter-item expanded "><a href="bleach_functions.html"><strong aria-hidden="true">7.</strong> Functions</a></li><li class="chapter-item expanded "><a href="bleach_oop_features.html"><strong aria-hidden="true">8.</strong> Object-Oriented Programming Features</a></li><li class="chapter-item expanded "><a href="bleach_std_lib.html"><strong aria-hidden="true">9.</strong> Standard Library</a></li><li class="chapter-item expanded "><a href="bleach_cfg_versions.html"><strong aria-hidden="true">10.</strong> Bleach CFG Versions</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Bleach Language Documentation</li><li class="chapter-item expanded "><a href="bleach_lang_intro.html"><strong aria-hidden="true">1.</strong> Introduction and Bleach Inspirations</a></li><li class="chapter-item expanded "><a href="bleach_data_types.html"><strong aria-hidden="true">2.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="bleach_comments.html"><strong aria-hidden="true">3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="bleach_variables.html"><strong aria-hidden="true">4.</strong> Variables</a></li><li class="chapter-item expanded "><a href="bleach_operators.html"><strong aria-hidden="true">5.</strong> Operators</a></li><li class="chapter-item expanded "><a href="bleach_control_flow_structures.html"><strong aria-hidden="true">6.</strong> Control Flow Structures</a></li><li class="chapter-item expanded "><a href="bleach_functions.html"><strong aria-hidden="true">7.</strong> Functions</a></li><li class="chapter-item expanded "><a href="bleach_oop_features.html"><strong aria-hidden="true">8.</strong> OOP Features in Bleach</a></li><li class="chapter-item expanded "><a href="bleach_native_functions.html"><strong aria-hidden="true">9.</strong> Bleach Native Functions</a></li><li class="chapter-item expanded "><a href="bleach_cfg_versions.html"><strong aria-hidden="true">10.</strong> Bleach CFG Versions</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -896,26 +896,103 @@ dog.speak(); // "Thor is a Rottweiller and barks."
 let cat = Cat("Felicia", "Siamese");
 cat.speak(); // "Felicia is a Siamese and meows."
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="bleach-language-standard-library"><a class="header" href="#bleach-language-standard-library">Bleach Language Standard Library</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="bleach-language-native-functions"><a class="header" href="#bleach-language-native-functions">Bleach Language Native Functions</a></h1>
 <h2 id="overview-7"><a class="header" href="#overview-7">Overview</a></h2>
-<h2 id="modules"><a class="header" href="#modules">Modules</a></h2>
-<h3 id="stdio"><a class="header" href="#stdio"><code>std::io</code></a></h3>
-<p><code>std::io::readLine</code>:</p>
-<p><code>std::io::print</code>:</p>
-<p><code>std::io::fileRead</code>: Not implemented yet.</p>
-<p><code>std::io::fileWrite</code>: Not implemented yet.</p>
-<h3 id="stdchrono"><a class="header" href="#stdchrono"><code>std::chrono</code></a></h3>
-<p><code>std::chrono::clock</code>:</p>
-<h3 id="stdmath"><a class="header" href="#stdmath"><code>std::math</code></a></h3>
-<p><code>std::math::abs</code>:</p>
-<p><code>std::math::ceil</code>: Not implemented yet.</p>
-<p><code>std::math::floor</code>: Not implemented yet.</p>
-<p><code>std::math::log</code>:</p>
-<p><code>std::math::pow</code>:</p>
-<p><code>std::math::setprecision</code>: Not implemented yet.</p>
-<p><code>std::math::sqrt</code>:</p>
-<h3 id="stdrandom"><a class="header" href="#stdrandom"><code>std::random</code></a></h3>
-<p><code>std::random::random</code>:</p>
+<p><strong>In case the reader is not familiar with this concept: Native functions (a.k.a built-in functions or intrinsic functions) are functions that are directly provided by the programming language or its runtime environment, typically written in a lower-level language (C++ in Bleach's case) and are part of the core language or runtime.</strong></p>
+<p><strong>These functions are "native" because they are implemented at the system or runtime level rather than being written in the higher-level language itself (i.e., written in Bleach).</strong></p>
+<h2 id="some-key-characteristics-of-native-functions"><a class="header" href="#some-key-characteristics-of-native-functions">Some Key Characteristics of Native Functions</a></h2>
+<ul>
+<li><strong>Performance:</strong> Native functions are usually optimized for performance since they are closely integrated with the language runtime (which was written in C++ in Bleach's case) or the underlying hardware.</li>
+<li><strong>Availability:</strong> Native Functions are readily available without needing to be explicitly imported or defined by the programmer.</li>
+<li><strong>Language-Specific:</strong> Native functions varies between languages and is closely tied to the language's runtime environment.</li>
+</ul>
+<h2 id="namespaces"><a class="header" href="#namespaces">Namespaces</a></h2>
+<p><strong>For clarity and organization purposes, Bleach's native functions are organized in namespaces.</strong></p>
+<p><strong>If you are not familiar with this concept, a namespace is a way to logically group functions, variables and other identifiers to prevent naming conflicts and to organize code more effectively (in Bleach's case I opted to use namespaces just to group native functions as I've mentioned above).</strong></p>
+<p><strong>By using namespaces, you can create multiple functions or variables with the same name, as long as they belong to different namespaces, thereby avoiding potential collisions in a large codebase.</strong></p>
+<h3 id="namespace-stdio"><a class="header" href="#namespace-stdio">Namespace: <code>std::io</code></a></h3>
+<p><strong>Contains the native functions related to input/output operations.</strong></p>
+<h4 id="function-stdioreadline"><a class="header" href="#function-stdioreadline">Function: <code>std::io::readLine</code></a></h4>
+<p>This native function is responsible for reading the content provided by the user inside the console/terminal until it reaches the end of line character (<code>\n</code>). It takes 0 arguments and its return value is a value of <code>str</code> type: The content provided by the user in the console/terminal.</p>
+<p>Usage:</p>
+<pre><code class="language-ts">let user_input = std::io::readLine(); // Say the user writes "hello" in console/terminal.
+
+// At this point, the value of the user_input variable is "hello";
+</code></pre>
+<h4 id="function-stdioprint"><a class="header" href="#function-stdioprint">Function: <code>std::io::print</code></a></h4>
+<p>This native function is responsible for printing content provided by the user to console/terminal. It can take any number arguments of any type, whether it's built-in or user-defined. Then it prints the string representation of such values to the console separating them by a <code> </code> character.</p>
+<p>Usage:</p>
+<pre><code class="language-ts">let n = 3.14;
+let name = "Ryan";
+let nothing = nil;
+let is_earth_flat = false;
+
+std::io::print(n, name, nothing, is_earth_flat); // 3.14 Ryan nil false
+</code></pre>
+<h4 id="function-stdiofileread"><a class="header" href="#function-stdiofileread">Function <code>std::io::fileRead</code></a></h4>
+<p>Not implemented yet.</p>
+<h4 id="function-stdiofilewrite"><a class="header" href="#function-stdiofilewrite">Function <code>std::io::fileWrite</code></a></h4>
+<p>Not implemented yet.</p>
+<h3 id="namespace-stdchrono"><a class="header" href="#namespace-stdchrono">Namespace: <code>std::chrono</code></a></h3>
+<p><strong>Contains native functions related to time and clock operations.</strong></p>
+<h4 id="function-stdchronoclock"><a class="header" href="#function-stdchronoclock">Function: <code>std::chrono::clock</code></a></h4>
+<p>This native function is responsible for calculating the amount of seconds that have been passed since "January 1, 1970, 00:00:00 UTC", which is a value of type <code>num</code>. It takes 0 arguments. Its return value is, as said above, the amount of seconds that have been passed since the date provided above, a value of type <code>num</code>.</p>
+<p>This native function is, as you might have already thought, very useful for benchmarking purposes.</p>
+<p>Usage:</p>
+<pre><code class="language-ts">let begin = std::chrono::clock();
+// Execution of some code that the user wants to evaluate the performance/speed.
+let end = std::chrono::clock();
+
+let duration_in_seconds = end - begin;
+
+std::io::print("The observed task took", duration_in_seconds, "seconds to be executed.");
+</code></pre>
+<h3 id="namespace-stdmath"><a class="header" href="#namespace-stdmath">Namespace: <code>std::math</code></a></h3>
+<p><strong>Contains native functions related to mathematical operations.</strong></p>
+<h4 id="function-stdmathabs"><a class="header" href="#function-stdmathabs">Function: <code>std::math::abs</code></a></h4>
+<p>This native function is responsible for calculating the absolute value of a provided value of type <code>num</code>. It can takes just one argument of such type. Its return value is the absolute value of the provided value of type <code>num</code>.</p>
+<p>Usage:</p>
+<pre><code class="language-ts">let n = -10;
+let absolute_number = std::math::abs(n); // 10
+</code></pre>
+<h4 id="function-stdmathceil"><a class="header" href="#function-stdmathceil">Function: <code>std::math::ceil</code></a></h4>
+<p>Not implemented yet.</p>
+<h4 id="function-stdmathfloor"><a class="header" href="#function-stdmathfloor">Function: <code>std::math::floor</code></a></h4>
+<p>Not implemented yet.</p>
+<h4 id="function-stdmathlog"><a class="header" href="#function-stdmathlog">Function: <code>std::math::log</code></a></h4>
+<p>This native function is responsible for calculating the logarithm of a value given the base to be used. It takes two arguments of type <code>num</code>. The first argument is base the and the second argument is the mantissa. Its return value is the computed logarithm, a value of type <code>num</code>, given the provided arguments.</p>
+<p><strong>Important: The first argument (the base of the logarithm) must not be equal to <code>1</code>. Also, the second argument (the argument) must be a number greater than <code>0</code>. If either of these conditions is not met, then such native function will throw a runtime error when called.</strong></p>
+<p>Usage:</p>
+<pre><code class="language-ts">let base = 2;
+let mantissa = 8;
+let logarithm = std::math::log(base, mantissa); // 3
+</code></pre>
+<h4 id="function-stdmathpow"><a class="header" href="#function-stdmathpow">Function: <code>std::math::pow</code></a></h4>
+<p>This native function is responsible for calculating the power of a value given its exponent. It takes two arguments of type <code>num</code>. The first argument is base the and the second argument is the exponent. Its return value is the value resulted from the computation of the exponentiation operation, a value of type <code>num</code>, given the provided arguments.</p>
+<p>Usage:</p>
+<pre><code class="language-ts">let base = 2;
+let exponent = 3;
+let exponentiation_result = std::math::pow(base, exponent); // 8
+</code></pre>
+<h4 id="function-stdmathsetprecision"><a class="header" href="#function-stdmathsetprecision">Function: <code>std::math::setprecision</code></a></h4>
+<p>Not implemented yet.</p>
+<h4 id="function-stdmathsqrt"><a class="header" href="#function-stdmathsqrt">Function: <code>std::math::sqrt</code></a></h4>
+<p>This native function is responsible for calculating the square root of a given value (the radicand). It takes just one argument of type <code>num</code>. Its return value is the square root of the provided radicand, a value of type <code>num</code>, given the provided argument.</p>
+<p><strong>Important: This native function is not able to deal with negative values. If the user provide such a value, a runtime error will be thrown.</strong></p>
+<p>Usage:</p>
+<pre><code class="language-ts">let n = 2;
+let square_root_of_two = std::math::sqrt(n); // 1.414213562373095
+</code></pre>
+<h3 id="namespace-stdrandom"><a class="header" href="#namespace-stdrandom">Namespace: <code>std::random</code></a></h3>
+<p><strong>Contains native functions related to random number generation.</strong></p>
+<h4 id="function-stdrandomrandom"><a class="header" href="#function-stdrandomrandom">Function: <code>std::random::random</code></a></h4>
+<p>This native function is responsible for generating a random number that is between an interval. It takes two arguments of type <code>num</code>. The first argument is the left boundary of the interval and the second argument is the right boundary of the interval. Its return value is the generated random number, a value of type <code>num</code>, given the provided arguments.</p>
+<p><strong>Important: If the first argument is greater than the second argument the native function will perform a swap between such arguments internally when called.</strong></p>
+<p>Usage:</p>
+<pre><code class="language-ts">let left = 3.5;
+let right = 3.7;
+std::io::print(std::random::random(left, right));
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="bleach-context-free-grammar-versions"><a class="header" href="#bleach-context-free-grammar-versions">Bleach Context-Free Grammar Versions</a></h1>
 <ul>
 <li>This page shows the development of the Bleach language in terms of ripening of its Context-Free Grammar.</li>
