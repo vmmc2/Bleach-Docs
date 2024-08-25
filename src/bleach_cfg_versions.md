@@ -2,7 +2,7 @@
 * This page shows the development of the Bleach language in terms of ripening of its Context-Free Grammar.
 * As you can see below, Bleach's CFG grew in an incremental manner, feature by feature.
 
-## Version 0.1.0 (Chapter 6)
+## Version 0.1.0
 ```txt
 expression → equality
 equality → comparison ( ( "!=" | "==" ) comparison )*
@@ -13,7 +13,7 @@ unary → ( "!" | "-" ) unary | primary
 primary → NUMBER | STRING | "true" | "false" | "nil" | "(" expression ")"
 ```
 
-## Version 0.2.0 (Chapter 8)
+## Version 0.2.0
 ```txt
 program → statement* EOF
 statement → exprStmt | printStmt
@@ -28,7 +28,7 @@ unary → ( "!" | "-" ) unary | primary
 primary → NUMBER | STRING | "true" | "false" | "nil" | "(" expression ")
 ```
 
-## Version 0.3.0 (Chapter 8)
+## Version 0.3.0
 ```txt
 program → statement* EOF
 statement → exprStmt | printStmt | varDeclStmt
@@ -44,7 +44,7 @@ unary → ( "!" | "-" ) unary | primary
 primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER
 ```
 
-## Version 0.4.0 (Chapter 8)
+## Version 0.4.0
 ```txt
 program → statement* EOF
 statement → exprStmt | printStmt | varDeclStmt
@@ -61,7 +61,7 @@ unary → ( "!" | "-" ) unary | primary
 primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER
 ```
 
-## Version 0.5.0 (Chapter 8)
+## Version 0.5.0
 ```txt
 program → statement* EOF
 statement → block | exprStmt | printStmt | varDeclStmt
@@ -79,7 +79,7 @@ unary → ( "!" | "-" ) unary | primary
 primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER
 ```
 
-## Version 0.6.0 (Chapter 9)
+## Version 0.6.0
 ```txt
 program → statement* EOF
 statement → block | exprStmt | ifStmt | printStmt | varDeclStmt
@@ -100,7 +100,7 @@ unary → ( "!" | "-" ) unary | primary
 primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER
 ```
 
-## Version 0.7.0 (Chapter 9)
+## Version 0.7.0
 ```txt
 program → statement* EOF
 statement → block | exprStmt | ifStmt | printStmt | varDeclStmt
@@ -123,7 +123,7 @@ unary → ( "!" | "-" ) unary | primary
 primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER
 ```
 
-## Version 0.8.0 (Chapter 9)
+## Version 0.8.0
 ```txt
 program → statement* EOF
 statement → block | exprStmt | ifStmt | printStmt | varDeclStmt | whileStmt
@@ -147,7 +147,7 @@ unary → ( "!" | "-" ) unary | primary
 primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER
 ```
 
-## Version 0.9.0 (Chapter 9)
+## Version 0.9.0
 ```txt
 program → statement* EOF
 statement → block | doWhileStmt | exprStmt | ifStmt | printStmt | varDeclStmt | whileStmt
@@ -172,7 +172,7 @@ unary → ( "!" | "-" ) unary | primary
 primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER
 ```
 
-## Version 0.10.0 (Chapter 9)
+## Version 0.10.0
 ```txt
 program → statement* EOF
 statement → block | doWhileStmt | exprStmt | forStmt | ifStmt | printStmt | varDeclStmt | whileStmt
@@ -198,7 +198,7 @@ unary → ( "!" | "-" ) unary | primary
 primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER
 ```
 
-## Version 0.11.0 (Chapter 9)
+## Version 0.11.0
 ```txt
 program → statement* EOF
 statement → block | doWhileStmt | exprStmt | forStmt | ifStmt | printStmt | varDeclStmt | whileStmt
@@ -225,7 +225,7 @@ unary → ( "!" | "-" ) unary | primary
 primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER
 ```
 
-## Version 0.12.0 (Chapter 10)
+## Version 0.12.0
 ```txt
 program → statement* EOF
 statement → block | doWhileStmt | exprStmt | forStmt | ifStmt | printStmt | varDeclStmt | whileStmt
@@ -254,7 +254,7 @@ arguments → expression ( "," expression )*
 primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER
 ```
 
-## Version 0.13.0 (Chapter 10)
+## Version 0.13.0
 ```txt
 program → statement* EOF
 statement → block | doWhileStmt | exprStmt | forStmt | funcDeclStmt | ifStmt | printStmt | varDeclStmt | whileStmt
@@ -286,7 +286,7 @@ arguments → expression ( "," expression )*
 primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER
 ```
 
-## Version 0.14.0 (Chapter 10)
+## Version 0.14.0
 ```txt
 program → statement* EOF
 statement → block | doWhileStmt | exprStmt | forStmt | funcDeclStmt | ifStmt | printStmt | returnStmt | varDeclStmt | whileStmt
@@ -319,7 +319,7 @@ arguments → expression ( "," expression )*
 primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER
 ```
 
-## Version 0.15.0 (Chapter 10)
+## Version 0.15.0
 ```txt
 program → statement* EOF
 statement → block | doWhileStmt | exprStmt | forStmt | funcDeclStmt | ifStmt | printStmt | returnStmt | varDeclStmt | whileStmt
@@ -353,7 +353,7 @@ primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | la
 lambdaFunctionExpr → "lambda" "(" parameters? ")" block
 ```
 
-## Version 0.16.0 (Chapter 11)
+## Version 0.16.0
 ```txt
 program → statement* EOF
 statement → block | breakStmt | classDeclStmt | continueStmt | doWhileStmt | exprStmt | forStmt | funcDeclStmt | ifStmt | printStmt | returnStmt | varDeclStmt | whileStmt
@@ -392,7 +392,7 @@ primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | la
 lambdaFunctionExpr → "lambda" "(" parameters? ")" block
 ```
 
-## Version 0.17.0 (Chapter 11)
+## Version 0.17.0
 * __Now loops (```for```, ```do-while```, ```while```) must be followed by a block.__
 ```txt
 program → statement* EOF
@@ -432,7 +432,7 @@ primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | la
 lambdaFunctionExpr → "lambda" "(" parameters? ")" block
 ```
 
-## Version 0.18.0 (Chapter 12)
+## Version 0.18.0
 * __Now loops (```for```, ```do-while```, ```while```) must be followed by a block.__
 ```txt
 program → statement* EOF
@@ -472,7 +472,7 @@ primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | la
 lambdaFunctionExpr → "lambda" "(" parameters? ")" block
 ```
 
-## Version 0.19.0 (Chapter 12)
+## Version 0.19.0
 * __Now loops (```for```, ```do-while```, ```while```) must be followed by a block.__
 ```txt
 program → statement* EOF
@@ -512,7 +512,7 @@ primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | la
 lambdaFunctionExpr → "lambda" "(" parameters? ")" block
 ```
 
-## Version 0.20.0 (Chapter 13)
+## Version 0.20.0
 * __Now loops (```for```, ```do-while```, ```while```) must be followed by a block.__
 ```txt
 program → statement* EOF
@@ -552,7 +552,7 @@ primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | la
 lambdaFunctionExpr → "lambda" "(" parameters? ")" block
 ```
 
-## Version 0.21.0 (Chapter 13)
+## Version 0.21.0
 * __Now loops (```for```, ```do-while```, ```while```) must be followed by a block.__
 ```txt
 program → statement* EOF
