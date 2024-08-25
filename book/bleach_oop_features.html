@@ -175,13 +175,118 @@
                     <main>
                         <h1 id="object-oriented-programming-features"><a class="header" href="#object-oriented-programming-features">Object-Oriented Programming Features</a></h1>
 <h2 id="overview"><a class="header" href="#overview">Overview</a></h2>
+<p>This means that Bleach not only supports, but also encourages programmers to use the key concepts behind object-oriented programming. Which makes Bleach a multi-paradigm language due to the fact it also follows concepts of procedural paradigm.</p>
+<p>In case you don't remember, OOP is a paradigm or style of programming that uses "objects" to represent data and methods to manipulate that data.</p>
+<p><strong>The key concepts of OOP include encapsulation, inheritance, polymorphism, and abstraction.</strong></p>
+<p><strong>The concepts that were mentioned above are what enable the creation of modular, reusable, and maintainable code by organizing software into objects, entities that are capable of representing both data and behavior.</strong></p>
 <h2 id="classes"><a class="header" href="#classes">Classes</a></h2>
+<p>A class is basically a blueprint for creating objects (instances).</p>
+<p>Usually, a class defines a set of attributes (variables) and methods (functions) that the created objects will have as its disposal.</p>
+<p>Classes are a fundamental part of object-oriented programming (OOP) due to the fact that such featus allows the programmer to define custom data types and their associated behaviors based on his/her/their needs.</p>
+<p><strong>When it comes down to the concept of classes, there are a couple of concepts that directly tied to it:</strong></p>
+<ol>
+<li><strong>Attributes/Fields</strong></li>
+<li><strong>Methods</strong></li>
+<li><strong>Instances</strong></li>
+<li><strong>Inheritance</strong></li>
+</ol>
+<p>For the rest of this page, I am going to explain how each of these concepts are handled in Bleach.</p>
+<p>In Bleach, a class declaration statement follows the syntax shown below:</p>
+<pre><code class="language-c++">class Person{
+  method init(name, age){
+    self.name = name;
+    self.age = age;
+  }
+
+  method greet(){
+    return "Hello there! " + "my name is " + self.name + " and I have " + self.age + " years.";
+  }
+}
+</code></pre>
+<h2 id="attributesfields"><a class="header" href="#attributesfields">Attributes/Fields</a></h2>
+<p>Usually, in statically-typed programming languages, attributes/fields are variables that belong to the class itself.</p>
+<p>Attributes are used to store data that is relevant to the objects that were created from the class.</p>
+<p>However, when dealing with dynamically-typed languages (such as JavaScript or Python), this concept is a little bit different.</p>
+<p><strong>In Bleach's case, attributes/fields are unique to each instance of a class. This means that there is no concept of class attributes/fields. In other words, there aren't attributes/fields that are shared across all instances of the class and, thus, be affected by a change in an instance.</strong></p>
+<p><strong>The Bleach code snippet below shows the flexibility of dealing with attributes/fields when it comes down to classes and instances. The programmer is free to add new attributes/fields after the creation of the instance from a class with no issues:</strong></p>
+<pre><code class="language-c++">class Square{
+  method init(length){
+    self.length = length;
+  }
+}
+
+let square = Square(5);
+
+square.area = square.length * square.length;
+print square.area; // 25
+
+square.perimeter = 4 * square.length;
+print square.perimeter; // 20
+
+function compute_square_diagonal(length){
+  return std::math::sqrt(2) * length;
+}
+
+square.compute_diagonal = compute_square_diagonal;
+print square.compute_diagonal(square.length); // 7.071067811865476
+</code></pre>
+<h2 id="methods"><a class="header" href="#methods">Methods</a></h2>
+<p>A method is just a function that belongs to a class and is responsible for defining actions and behaviors that objects created from the class can execute at runtime.</p>
+<p>Usually, methods typically operate on the data that is stored inside the attributes/fields of an instance and,thus, can modify the state of the instance.</p>
+<p>Making it very simple, a method is essentialy a function that is tied to a class definition.</p>
+<p><strong>As seen above, in a class declaration statement, if the programmer wants to declare a new method, then he/she/they just need to follow the same syntax of a function declaration statement, but instead of using the <code>function</code> keyword, change it by the <code>method</code> keyword.</strong></p>
+<p><strong>The <code>init</code> method:</strong> It's just a special method usually present in classes and known as the constructor of a class. It’s automatically called when a new instance of the class is created. This method is where the programmer typically sets up the initial state of an object by initializing instance attributes.</p>
 <h2 id="instances"><a class="header" href="#instances">Instances</a></h2>
-<h2 id="properties"><a class="header" href="#properties">Properties</a></h2>
-<h3 id="attributesfields"><a class="header" href="#attributesfields">Attributes/Fields</a></h3>
-<h3 id="methods"><a class="header" href="#methods">Methods</a></h3>
-<h3 id="self"><a class="header" href="#self">Self</a></h3>
+<p>Essentialy, an instance is an individual object created from a class.</p>
+<p>Remember that each instance has its own unique set of attributes/fields, but shares methods with other instances of the same class.</p>
+<p><strong>In short, you can think of an instance of just a bag of data that can change during runtime and that has methods associated with it that might operate on such data.</strong></p>
+<h2 id="self"><a class="header" href="#self">Self</a></h2>
+<p>The keyword <code>self</code> serves for a very specific purpose inside the methods of a class: It's a reference to the current instance of the class. It's used to refer to the current instance on which a method is being invoked.</p>
+<p>By using it, the progammer is able to access and modify the instance’s attributes and methods. Contrary to Python's approach, in Bleach the name <code>self</code> is mandatory if the programmer wants to refer to the current instance of the class.</p>
 <h2 id="inheritance"><a class="header" href="#inheritance">Inheritance</a></h2>
+<p><strong>As we all know, inheritance is a fundamental concept in object-oriented programming which allows a class to inherit attributes and methods from another class.</strong></p>
+<p><strong>The major purpose for the existence of inheritance is to promote code reuse and to establish a natural hierarchy between classes.</strong></p>
+<p><strong>In Bleach, as in other popular languages such as C++, C#, Java , JavaScript and Python, inheritance allows the programmer to create a new class based on an existing class, extending or modifying its functionality.</strong></p>
+<p>Going further, Bleach follows a very similar implementation of inheritance to that of Python with just one major difference: <strong>For simplicity purposes, Bleach only supports single inheritance whereas Python has support for multiple inheritance (Talking about this, such a thing can be easily added to the Bleach Interpreter and it's a good practice for students to deepen their knowledge).</strong></p>
+<p>As usual, the code snippet below shows how inheritance, method overriding and the <code>super</code> keyword work in practice:</p>
+<pre><code class="language-c++">class Animal{
+  method init(name){
+    self.name = name;
+  }
+
+  method speak(){
+    std::io::print(self.name, "makes a sound.");
+  }
+}
+
+class Dog inherits Animal{
+  method init(name, breed){
+    super.init(name);
+    self.breed = breed;
+  }
+
+  method speak(){
+    std::io::print(self.name, "is a ", self.breed, "and barks.");
+  }
+}
+
+class Cat inherits Animal{
+  method init(name, breed){
+    super.init(name);
+    self.breed = breed;
+  }
+
+  method speak(){
+    std::io::print(self.name, "is a ", self.breed, "and meows.");
+  }
+}
+
+let dog = Dog("Thor", "Rottweiller");
+dog.speak(); // "Thor is a Rottweiller and barks."
+
+let cat = Cat("Felicia", "Siamese");
+cat.speak(); // "Felicia is a Siamese and meows."
+</code></pre>
 
                     </main>
 
@@ -212,6 +317,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

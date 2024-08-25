@@ -179,14 +179,17 @@
 <h3 id="stdio"><a class="header" href="#stdio"><code>std::io</code></a></h3>
 <p><code>std::io::readLine</code>:</p>
 <p><code>std::io::print</code>:</p>
-<p><code>std::io::fileRead</code>: Work in progress.</p>
-<p><code>std::io::fileWrite</code>: Work in progress.</p>
+<p><code>std::io::fileRead</code>: Not implemented yet.</p>
+<p><code>std::io::fileWrite</code>: Not implemented yet.</p>
 <h3 id="stdchrono"><a class="header" href="#stdchrono"><code>std::chrono</code></a></h3>
 <p><code>std::chrono::clock</code>:</p>
 <h3 id="stdmath"><a class="header" href="#stdmath"><code>std::math</code></a></h3>
 <p><code>std::math::abs</code>:</p>
+<p><code>std::math::ceil</code>: Not implemented yet.</p>
+<p><code>std::math::floor</code>: Not implemented yet.</p>
 <p><code>std::math::log</code>:</p>
 <p><code>std::math::pow</code>:</p>
+<p><code>std::math::setprecision</code>: Not implemented yet.</p>
 <p><code>std::math::sqrt</code>:</p>
 <h3 id="stdrandom"><a class="header" href="#stdrandom"><code>std::random</code></a></h3>
 <p><code>std::random::random</code>:</p>
@@ -220,6 +223,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 
