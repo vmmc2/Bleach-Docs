@@ -1,0 +1,322 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Data Types - The Bleach Programming Language</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Bleach Language Documentation</li><li class="chapter-item expanded "><a href="bleach_lang_intro.html"><strong aria-hidden="true">1.</strong> Introduction and Bleach Inspirations</a></li><li class="chapter-item expanded "><a href="bleach_data_types.html" class="active"><strong aria-hidden="true">2.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="bleach_comments.html"><strong aria-hidden="true">3.</strong> Comments</a></li><li class="chapter-item expanded "><a href="bleach_variables.html"><strong aria-hidden="true">4.</strong> Variables</a></li><li class="chapter-item expanded "><a href="bleach_operators.html"><strong aria-hidden="true">5.</strong> Operators</a></li><li class="chapter-item expanded "><a href="bleach_control_flow_structures.html"><strong aria-hidden="true">6.</strong> Control Flow Structures</a></li><li class="chapter-item expanded "><a href="bleach_functions.html"><strong aria-hidden="true">7.</strong> Functions</a></li><li class="chapter-item expanded "><a href="bleach_oop_features.html"><strong aria-hidden="true">8.</strong> OOP Features in Bleach</a></li><li class="chapter-item expanded "><a href="bleach_native_functions.html"><strong aria-hidden="true">9.</strong> Bleach Native Functions</a></li><li class="chapter-item expanded "><a href="bleach_cfg_versions.html"><strong aria-hidden="true">10.</strong> Bleach CFG Versions</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Bleach Programming Language</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="data-types"><a class="header" href="#data-types">Data Types</a></h1>
+<h2 id="overview"><a class="header" href="#overview">Overview</a></h2>
+<p>In short, Bleach's built-in types are just the 5 listed below (4 built-in types have been implemented by now):</p>
+<p><strong>Scalar Types:</strong></p>
+<ul>
+<li><code>bool</code></li>
+<li><code>num</code></li>
+<li><code>nil</code></li>
+</ul>
+<p><strong>Compound Types:</strong></p>
+<ul>
+<li><code>str</code> (Work in progress)</li>
+<li><code>list</code> (Not implemented yet)</li>
+</ul>
+<p>It's important to mention that such built-in types are divided into two groups: <strong>scalar types</strong> and <strong>compound types.</strong> I'll walkthrough each of such groups and their respective types, giving brief explanations and examples.</p>
+<h2 id="scalar-types"><a class="header" href="#scalar-types">Scalar Types</a></h2>
+<p>A scalar type is a type that can only represent a single value. As seen above, Bleach has three primary scalar types: <code>bool</code>, <code>num</code> and  <code>nil</code>. You may recognize these from other programming languages. Let’s see how they work in Bleach:</p>
+<h3 id="type-bool"><a class="header" href="#type-bool">Type: <code>bool</code></a></h3>
+<p>The Boolean type. Such type is used to perform logical operations and is vastly used in logic and Boolean algebra.</p>
+<p>In Bleach, things are not different, we have two possible values for such type (and, obviously, a literal for each value):</p>
+<pre><code class="language-c++">true
+false
+</code></pre>
+<h4 id="side-note-truthy-and-falsey-values"><a class="header" href="#side-note-truthy-and-falsey-values">Side Note: Truthy and Falsey values</a></h4>
+<p>Bleach, like Ruby and many other programming languages, has the concepts of <strong>truthy</strong> and <strong>falsey</strong> values to determine the truthiness or falseness of values when evaluating conditions, such as in <code>if</code> statements, <code>do-while</code> loops, <code>for</code> loops, <code>while</code> loops and ternary operators (<code>?</code>).</p>
+<p>Basically, this means that values of any type (built-in or user-defined) can be used where a value of <code>bool</code> type is expected.</p>
+<p>In short, Bleach follows this convention:</p>
+<ul>
+<li><strong>Falsey values:</strong> <code>false</code>, <code>nil</code>.</li>
+<li><strong>Truthy values:</strong> Any other value that is not <code>false</code> nor <code>nil</code>.</li>
+</ul>
+<h3 id="type-num"><a class="header" href="#type-num">Type: <code>num</code></a></h3>
+<p>For the sake of simplicity, Bleach has only one type to represent numbers: the <code>num</code> type.</p>
+<p>Behind the scenes, such type is implemented using a double-precision floating point number (The C++ <code>double</code> type).</p>
+<p>I implemented it this way because double-precision floating point numbers can also represent a wide range of integers, covering a lot of territory, while maintaining the simplicity that I innitialy envisioned.</p>
+<p>Usually, mature and popular programming languages have lots of syntax for numbers (binary, hexadecimal, octal, scientific notation, etc).</p>
+<p>Since Bleach's purpose is to be a programming language , we'll settle for basic integer and decimal literals, like the ones shown below:</p>
+<pre><code class="language-c++">2.71828
+3.14159
+23
+</code></pre>
+<h3 id="type-nil"><a class="header" href="#type-nil">Type: <code>nil</code></a></h3>
+<p>This is an old friend to many of us.</p>
+<p>The nil type is a type that has only one value (<code>nil</code>). It conveys the idea of “no value” or "absence of a value".</p>
+<pre><code class="language-ruby">nil
+</code></pre>
+<p>In other programming languages, such type is called <code>null</code>, <code>nil</code>, <code>NULL</code> or <code>nullptr</code>.</p>
+<p>Here, in Bleach, we are going to follow Ruby's influence and use <code>nil</code> to denote this idea. This will help us distinguish between Bleach's <code>nil</code> value and C++ <code>nullptr</code> value (which is the equivalent value in the underlying implementation language).</p>
+<p>I know what you might be thinking right now... There are lots of arguments for not having a null value in a language since null pointer errors have been causing a lot of headache since Tony Hoare introduced this idea back in the 60s.</p>
+<p>However, according to Robert Nystrom (author of the "Crafting Interpreters" book and creator of the Lox programming language, which are both the major references Bleach where got its inspiration), if you want to implement a statically-typed language, it would be worth trying to ban NULL values. However, in a dynamically-typed language (which is Bleach's case), eliminating it is often more annoying and troublesome than allowing it. So I opted to follow Nystrom's advice on this matter.</p>
+<h2 id="compound-types"><a class="header" href="#compound-types">Compound Types</a></h2>
+<p>Compound types are basically types that can group multiple values into one. Bleach has two primitive compound types: <code>str</code> and <code>list</code>. Let's take a look at them:</p>
+<h3 id="type-str"><a class="header" href="#type-str">Type: <code>str</code></a></h3>
+<p>Again, nothing new here. If you have some experience with programming you already recognize this type. In Bleach, the <code>str</code> type represents an indexed-sequence of characters (a string), typically used to store and manipulate text.</p>
+<p>Some examples of literal values of this type:</p>
+<pre><code class="language-c++">"I am a string";
+""; // The empty string.
+"123"; // This is a string, not a value of type "num".
+</code></pre>
+<p>There are some aspects of this type that might differ from what you have seen in the previous languages you have worked with. Thus, I think it's a good idea to explain such aspects in more details:</p>
+<p>It's a sequence type. This means that value of the <code>str</code> type can be indexed. Indexing allows you to access individual characters from the value (which, in Bleach, are also values of type <code>str</code>).</p>
+<p>In Bleach, literals values of this type are <strong>always</strong> enclosed by double quotes.</p>
+<p>Finally, this type has the following methods associated with it <strong>(None of them have been implemented yet)</strong>:</p>
+<ul>
+<li><strong><code>clear</code>:</strong> Returns <code>nil</code>. This method cleans the contents from the value of <code>str</code> type. This change is made in-place.</li>
+<li><strong><code>empty</code>:</strong> Returns a <code>bool</code> value that signals whether the <code>str</code> value is empty or not.</li>
+<li><strong><code>find</code>:</strong> Returns a <code>num</code> value that identifies the index where there is the first occurrence of a provided substring (a value of type <code>str</code>) inside another value of type <code>str</code>. If the provided substring doesn't appear, the method returns <code>-1</code>.</li>
+<li><strong><code>length</code>:</strong> Returns a <code>num</code> value that represents the number of characters in the <code>str</code> value.</li>
+<li><strong><code>pop_back</code>:</strong> Returns a <code>str</code> value. This method removes the last character from the <code>str</code> value.</li>
+<li><strong><code>push_back</code>:</strong> Returns <code>nil</code>. This method adds another value of type <code>str</code> at the end of the <code>str</code> value.</li>
+<li><strong><code>size</code>:</strong> Returns a <code>num</code> value that represents the number of characters in the <code>str</code> value.</li>
+<li><strong><code>substr</code>:</strong> Returns a value of type <code>str</code> which is the substring of another value of type <code>str</code>. Such method expects two indexes (left, right), both of which are inclusive.</li>
+</ul>
+<h3 id="type-list"><a class="header" href="#type-list">Type: <code>list</code></a></h3>
+<p>If you are familiar with Python, then here it is an old friend of you. In Bleach, the <code>list</code> type represents an indexed-sequence of elements.</p>
+<p>Some examples of literal values of this type:</p>
+<pre><code class="language-c++">[0, 1, 2, 3, 2.71, 3.14159]; // A list where all elements are of type "num".
+["hello", "there"]; // A list where all elements are of type "str".
+[]; // An empty list.
+[false, true]; // A list where all elements are of type "bool".
+[nil, nil, nil]; // A list where all elements are of type "nil".
+[false, "Brazil", 9.98, true, nil]; // A list where elements are of different types. This is allowed in Bleach.
+</code></pre>
+<p>There are some aspects of this type that might differ from what you have seen in the previous languages you have worked with. Thus, I think it's a good idea to explain such aspects in more details:</p>
+<p>It's a sequence type. This means that lists can be indexed. Indexing allows you to access individual elements from the list.</p>
+<p>Finally, this type has the following methods associated with it <strong>(None of them have been implemented yet)</strong>:</p>
+<ul>
+<li><strong><code>back</code>:</strong> Returns the last element of a value of type <code>list</code>. However, it does not make any changes to the value of type <code>list</code>.</li>
+<li><strong><code>clear</code>:</strong> Returns <code>nil</code>. This method cleans the content from the value of <code>list</code> type. This change is made in-place.</li>
+<li><strong><code>empty</code>:</strong> Returns a <code>bool</code> value that signals whether the <code>list</code> value is empty or not.</li>
+<li><strong><code>front</code>:</strong> Returns the first element of a value of type <code>list</code>. However, it does not make any changes to the value of type <code>list</code>.</li>
+<li><strong><code>pop_back</code>:</strong> Returns the last element of a value of type <code>list</code>. This method removes the last element from the <code>list</code> value.</li>
+<li><strong><code>push_back</code>:</strong> Returns <code>nil</code>. This method adds an element of any type (whether it's a built-in or user-defined one) at the end of the <code>list</code> value.</li>
+<li><strong><code>size</code>:</strong> Returns a <code>num</code> value that represents the number of elements in the <code>list</code> value.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="bleach_lang_intro.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="bleach_comments.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="bleach_lang_intro.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="bleach_comments.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
