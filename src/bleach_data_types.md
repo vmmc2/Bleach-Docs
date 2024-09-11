@@ -9,8 +9,8 @@ __Scalar Types:__
   * ```nil```
 
 __Compound Types:__
-  * ```str``` (Work in progress)
-  * ```list``` (Not implemented yet)
+  * ```str``` 
+  * ```list``` (WIP)
 
 It's important to mention that such built-in types are divided into two groups: __scalar types__ and __compound types.__ I'll walkthrough each of such groups and their respective types, giving brief explanations and examples.
 
@@ -89,13 +89,9 @@ It's a sequence type. This means that value of the ```str``` type can be indexed
 In Bleach, literals values of this type are __always__ enclosed by double quotes.
 
 Finally, this type has the following methods associated with it __(None of them have been implemented yet)__:
-  * __```clear```:__ Returns ```nil```. This method cleans the contents from the value of ```str``` type. This change is made in-place.
   * __```empty```:__ Returns a ```bool``` value that signals whether the ```str``` value is empty or not.
   * __```find```:__ Returns a ```num``` value that identifies the index where there is the first occurrence of a provided substring (a value of type ```str```) inside another value of type ```str```. If the provided substring doesn't appear, the method returns ```-1```.
   * __```length```:__ Returns a ```num``` value that represents the number of characters in the ```str``` value.
-  * __```pop_back```:__ Returns a ```str``` value. This method removes the last character from the ```str``` value.
-  * __```push_back```:__ Returns ```nil```. This method adds another value of type ```str``` at the end of the ```str``` value.
-  * __```size```:__ Returns a ```num``` value that represents the number of characters in the ```str``` value.
   * __```substr```:__ Returns a value of type ```str``` which is the substring of another value of type ```str```. Such method expects two indexes (left, right), both of which are inclusive.
 
 ### Type: ```list```
