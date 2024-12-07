@@ -156,9 +156,9 @@
 <h2 id="overview"><a class="header" href="#overview">Overview</a></h2>
 <p>As you also already know, operators in a programming language are symbols that are responsible for executing an operation on one or more operands (values or variables) in order to produce a result.</p>
 <p>Operators are fundamental building blocks in a programming language, allowing the programmer to manipulate data, perform calculations, compare values, and much more.</p>
-<p>In this page, we'll see what operators Bleach provides to us and how each of them behave and, at the end, we'll also see what is the precedence of each of these operators.</p>
+<p>In this page, the operators provided by Bleach are going to be presented to us. Also, there will be explanations about how each of them behave in different scenarios and, at the end, the precedence table of Bleach's is presented for consulting purposes.</p>
 <h2 id="unary-operators"><a class="header" href="#unary-operators">Unary Operators</a></h2>
-<p>An unary operator is, as its name suggests, an operator that expects just one operand. Bleach has two operators that fall in this category.</p>
+<p>These operators expects just 1 operand. Bleach has 2 operators that fall in this class.</p>
 <h3 id="arithmetical"><a class="header" href="#arithmetical">Arithmetical</a></h3>
 <p><strong>Negation (<code>-</code>):</strong> Negates the value of an operand of type <code>num</code>.</p>
 <pre><code class="language-ts">let number = 5;
@@ -171,62 +171,76 @@ print !b; // false
 print !!b; // true
 </code></pre>
 <h2 id="binary-operators"><a class="header" href="#binary-operators">Binary Operators</a></h2>
-<p>A binary operator is, as its name suggests, an operator that expects just two operands. Bleach has 12 operators that fall in this category.</p>
+<p>These operators expects just 2 operands. Bleach has 13 operators that fall in this class.</p>
 <h3 id="arithmetical-1"><a class="header" href="#arithmetical-1">Arithmetical</a></h3>
-<p><strong>Addition (<code>+</code>):</strong> This operator expects two operands. However it behaves differently depending on the types of the two received operands.</p>
-<ul>
-<li>Left operand (<code>num</code>) and Right operand (<code>num</code>): Adds the second (right) operand operands to the first (left) operand.</li>
-</ul>
+<h4 id="addition--this-operator-expects-2-operands-however-it-behaves-differently-depending-on-the-types-of-the-two-received-operands"><a class="header" href="#addition--this-operator-expects-2-operands-however-it-behaves-differently-depending-on-the-types-of-the-two-received-operands"><strong>Addition (<code>+</code>):</strong> This operator expects 2 operands. However it behaves differently depending on the types of the two received operands.</a></h4>
+<p><strong>Left operand (<code>num</code>) and Right operand (<code>num</code>):</strong> Adds the second (right) operand to the first (left) operand, producing a new value of type <code>num</code>.</p>
 <pre><code class="language-ts">print 2 + 3; // 5
 print 2.71 + 3.14159; // 5.85159
 </code></pre>
-<ul>
-<li>Left operand (<code>str</code>) and Right operand (<code>str</code>): Concatenates the second (right) operand to the first (left) operand.</li>
-</ul>
+<p><strong>Left operand (<code>str</code>) and Right operand (<code>str</code>):</strong> Concatenates the second (right) operand to the first (left) operand, producing a new value of type <code>str</code>.</p>
 <pre><code class="language-ts">print "hello," + " there!"; // "hello, there!"
 print "a" + "b"; // "ab"
 </code></pre>
-<ul>
-<li>Left operand (<code>num</code>) and Right operand (<code>str</code>): Converts the first (left) operand from the <code>num</code> type to the <code>str</code> type. Then, concatenates the second (right) operand to the first (left) operand, producing a new value of type <code>str</code>.</li>
-</ul>
+<p><strong>Left operand (<code>num</code>) and Right operand (<code>str</code>):</strong> Converts the first (left) operand from the <code>num</code> type to the <code>str</code> type. Then, concatenates the second (right) operand to the first (left) operand, producing a new value of type <code>str</code>.</p>
 <pre><code class="language-ts">print 2 + "two"; // "2two"
 </code></pre>
-<ul>
-<li>Left operand (<code>str</code>) and Right operand (<code>num</code>): Converts the second (right) operand from the type <code>num</code> to the type <code>str</code>. Then, concatenates the second (right) operand to the first (left) operand, producing a new value of type <code>str</code>.</li>
-</ul>
+<p><strong>Left operand (<code>str</code>) and Right operand (<code>num</code>):</strong> Converts the second (right) operand from the type <code>num</code> to the type <code>str</code>. Then, concatenates the second (right) operand to the first (left) operand, producing a new value of type <code>str</code>.</p>
 <pre><code class="language-ts">print "two" + 2; // "two2"
 </code></pre>
-<p><strong>Subtraction (<code>-</code>):</strong> This operator expects two operands of type <code>num</code>. It subtracts the second (right) operand from the first (left) operand.</p>
+<p><strong>Left operand (<code>list</code>) and Right operand (<code>list</code>):</strong> Concatenates the second (right) operand to the first (left) operand, producing a new value of type <code>list</code>.</p>
+<pre><code class="language-ts">print [1, 2, 3] + [4, 5, 6] // [1, 2, 3, 4, 5, 6]
+</code></pre>
+<p><strong>Left operand (<code>str</code>) and Right operand (<code>BleachInstance</code>):</strong> Calls the <code>"str"</code> method of the second (right) operand, which is an instance of an user-defined type (this is a default method that returns the string representation of an instance of an user-defined type). Then, concatenates the second (right) operand to the first (left) operand, producing a new value of type <code>str</code>.</p>
+<p><strong>Left operand (<code>BleachInstance</code>) and Right operand (<code>str</code>):</strong> Concatenates the second (right) operand to the string representation of the first (left) operand, which is an instance of an user-defined type. This happens because the <code>"str"</code> method of the first (left) operand is called, which also returns a value of type <code>str</code>. This produces a new value of type <code>str</code>.</p>
+<h4 id="subtraction---this-operator-expects-2-operands-of-type-num-it-subtracts-the-second-right-operand-from-the-first-left-operand"><a class="header" href="#subtraction---this-operator-expects-2-operands-of-type-num-it-subtracts-the-second-right-operand-from-the-first-left-operand"><strong>Subtraction (<code>-</code>):</strong> This operator expects 2 operands of type <code>num</code>. It subtracts the second (right) operand from the first (left) operand.</a></h4>
 <pre><code class="language-ts">print 5 - 3; // 2
 </code></pre>
-<p><strong>Multiplication (<code>*</code>):</strong> This operator expects two operands of type <code>num</code>. It multiplies the first (left) operand by the second (right) operand.</p>
+<h4 id="multiplication--this-operator-expects-2-operands-of-type-num-it-multiplies-the-first-left-operand-by-the-second-right-operand"><a class="header" href="#multiplication--this-operator-expects-2-operands-of-type-num-it-multiplies-the-first-left-operand-by-the-second-right-operand"><strong>Multiplication (<code>*</code>):</strong> This operator expects 2 operands of type <code>num</code>. It multiplies the first (left) operand by the second (right) operand.</a></h4>
 <pre><code class="language-ts">print 1.5 * 4; // 6
 </code></pre>
-<p><strong>Division (<code>/</code>):</strong> This operator expects two operands of type <code>num</code>. It divides the first (left) operand by the second (right) operand.</p>
+<h4 id="division--this-operator-expects-2-operands-of-type-num-it-divides-the-first-left-operand-by-the-second-right-operand"><a class="header" href="#division--this-operator-expects-2-operands-of-type-num-it-divides-the-first-left-operand-by-the-second-right-operand"><strong>Division (<code>/</code>):</strong> This operator expects 2 operands of type <code>num</code>. It divides the first (left) operand by the second (right) operand.</a></h4>
 <pre><code class="language-ts">print 5 / 2; // 2
 print 1 / 3; // 0.333333333333333
 </code></pre>
+<h4 id="remainder-this-operator-expects-2-operands-of-type-num-it-divides-the-first-left-operand-also-called-dividend-by-the-second-right-operand-also-called-divisor-and-returns-the-remainder-of-this-division-a-value-of-type-num-it-is-worth-mentioning-that-if-the-value-of-the-divisor-is-0-then-a-runtime-error-will-be-thrown"><a class="header" href="#remainder-this-operator-expects-2-operands-of-type-num-it-divides-the-first-left-operand-also-called-dividend-by-the-second-right-operand-also-called-divisor-and-returns-the-remainder-of-this-division-a-value-of-type-num-it-is-worth-mentioning-that-if-the-value-of-the-divisor-is-0-then-a-runtime-error-will-be-thrown"><strong>Remainder(<code>%</code>):</strong> This operator expects 2 operands of type <code>num</code>. It divides the first (left) operand, also called dividend, by the second (right) operand, also called divisor, and returns the remainder of this division (a value of type <code>num</code>). It is worth mentioning that if the value of the divisor is 0, then a runtime error will be thrown.</a></h4>
+<pre><code class="language-ts">print 5 % 2; // 1
+print 1 % 3; // 1
+print -10 % 4; // -2
+</code></pre>
 <h3 id="comparisonrelational"><a class="header" href="#comparisonrelational">Comparison/Relational</a></h3>
-<p><strong>Greater Than (<code>&gt;</code>):</strong> This operator expects two operands of type <code>num</code>. It checks whether or not the first (left) operand is greater than the second (right) operand.</p>
+<h4 id="greater-than--this-operator-expects-2-operands-of-type-num-or-2-operands-of-type-str-it-checks-whether-or-not-the-first-left-operand-is-greater-than-the-second-right-operand"><a class="header" href="#greater-than--this-operator-expects-2-operands-of-type-num-or-2-operands-of-type-str-it-checks-whether-or-not-the-first-left-operand-is-greater-than-the-second-right-operand"><strong>Greater Than (<code>&gt;</code>):</strong> This operator expects 2 operands of type <code>num</code> or 2 operands of type <code>str</code>. It checks whether or not the first (left) operand is greater than the second (right) operand.</a></h4>
 <pre><code class="language-ts">print 5 &gt; 2; // true
 print 1 &gt; 3; // false
 </code></pre>
-<p><strong>Greater Than or Equal (<code>&gt;=</code>):</strong> This operator expects two operands of type <code>num</code>. It checks whether or not the first (left) operand is greater than or equal to the second (right) operand.</p>
+<pre><code class="language-ts">print "z" &gt; "a"; // true
+print "a" &gt; "z"; // false
+</code></pre>
+<h4 id="greater-than-or-equal--this-operator-expects-two-operands-of-type-num-or-2-operands-of-type-str-it-checks-whether-or-not-the-first-left-operand-is-greater-than-or-equal-to-the-second-right-operand"><a class="header" href="#greater-than-or-equal--this-operator-expects-two-operands-of-type-num-or-2-operands-of-type-str-it-checks-whether-or-not-the-first-left-operand-is-greater-than-or-equal-to-the-second-right-operand"><strong>Greater Than or Equal (<code>&gt;=</code>):</strong> This operator expects two operands of type <code>num</code> or 2 operands of type <code>str</code>. It checks whether or not the first (left) operand is greater than or equal to the second (right) operand.</a></h4>
 <pre><code class="language-ts">print 5 &gt;= 2; // true
 print -1 &gt;= -1 // true
 print 1 &gt;= 3; // false
 </code></pre>
-<p><strong>Lesser Than (<code>&lt;</code>):</strong> This operator expects two operands of type <code>num</code>. It checks whether or not the first (left) operand is lesser than the second (right) operand.</p>
+<pre><code class="language-ts">print "aa" &gt;= "aa"; // true
+print "za" &gt;= "zz"; // false
+</code></pre>
+<h4 id="lesser-than--this-operator-expects-two-operands-of-type-num-or-2-operands-of-type-str-it-checks-whether-or-not-the-first-left-operand-is-lesser-than-the-second-right-operand"><a class="header" href="#lesser-than--this-operator-expects-two-operands-of-type-num-or-2-operands-of-type-str-it-checks-whether-or-not-the-first-left-operand-is-lesser-than-the-second-right-operand"><strong>Lesser Than (<code>&lt;</code>):</strong> This operator expects two operands of type <code>num</code> or 2 operands of type <code>str</code>. It checks whether or not the first (left) operand is lesser than the second (right) operand.</a></h4>
 <pre><code class="language-ts">print 5 &lt; 2; // false
 print 1 &lt; 3; // true
 </code></pre>
-<p><strong>Lesser Than or Equal (<code>&lt;=</code>):</strong> This operator expects two operands of type <code>num</code>. It checks whether or not the first (left) operand is lesser than or equal to the second (right) operand.</p>
+<pre><code class="language-ts">print "a" &lt; "z"; // true
+print "z" &lt; "a"; // false
+</code></pre>
+<h4 id="lesser-than-or-equal--this-operator-expects-two-operands-of-type-num-or-2-operands-of-type-str-it-checks-whether-or-not-the-first-left-operand-is-lesser-than-or-equal-to-the-second-right-operand"><a class="header" href="#lesser-than-or-equal--this-operator-expects-two-operands-of-type-num-or-2-operands-of-type-str-it-checks-whether-or-not-the-first-left-operand-is-lesser-than-or-equal-to-the-second-right-operand"><strong>Lesser Than or Equal (<code>&lt;=</code>):</strong> This operator expects two operands of type <code>num</code> or 2 operands of type <code>str</code>. It checks whether or not the first (left) operand is lesser than or equal to the second (right) operand.</a></h4>
 <pre><code class="language-ts">print 5 &lt;= 2; // false
 print 0 &lt;= 0; // true
 print 1 &lt;= 3; // true
 </code></pre>
+<pre><code class="language-ts">print "z" &lt;= "z"; // true
+print "zz" &lt;= "az"; // false
+</code></pre>
 <h3 id="equality"><a class="header" href="#equality">Equality</a></h3>
-<p><strong>Equal (<code>==</code>):</strong> This operator expects two operands of the following built-in types (<code>bool</code>, <code>nil</code>, <code>num</code>, <code>str</code>). It checks whether the values are of the same type and, if that's the case, checks whether such values are the same.</p>
+<h4 id="equal--this-operator-expects-two-operands-of-the-following-built-in-types-bool-nil-num-str-it-checks-whether-the-values-are-of-the-same-type-and-if-thats-the-case-checks-whether-such-values-are-the-same-returns-true-if-both-conditions-are-true-otherwise-returns-false"><a class="header" href="#equal--this-operator-expects-two-operands-of-the-following-built-in-types-bool-nil-num-str-it-checks-whether-the-values-are-of-the-same-type-and-if-thats-the-case-checks-whether-such-values-are-the-same-returns-true-if-both-conditions-are-true-otherwise-returns-false"><strong>Equal (<code>==</code>):</strong> This operator expects two operands of the following built-in types (<code>bool</code>, <code>nil</code>, <code>num</code>, <code>str</code>). It checks whether the values are of the same type and, if that's the case, checks whether such values are the same. Returns <code>true</code> if both conditions are true. Otherwise, returns <code>false</code>.</a></h4>
 <pre><code class="language-ts">print 2 == 2; // true
 print 2 == (1 + 1) // true
 print 2 == 3; // false
@@ -238,7 +252,7 @@ print true == true; // true
 print true == false; // false
 print true == !!true; // true
 </code></pre>
-<p><strong>Not Equal (<code>!=</code>):</strong> This operator expects two operands of the following built-in types (<code>bool</code>, <code>nil</code>, <code>num</code>, <code>str</code>). It checks whether the values are of the same type (if they are not of the same type, such comparison returns <code>false</code>) and, if they are of the same type, it then checks whether such values are not the same.</p>
+<h4 id="not-equal--this-operator-expects-two-operands-of-the-following-built-in-types-bool-nil-num-str-it-checks-whether-the-values-are-of-the-same-type-if-they-are-not-of-the-same-type-such-comparison-returns-false-and-if-they-are-of-the-same-type-it-then-checks-whether-such-values-are-not-the-same-returns-true-if-one-or-both-conditions-mentioned-above-are-not-satisfied-otherwise-returns-false"><a class="header" href="#not-equal--this-operator-expects-two-operands-of-the-following-built-in-types-bool-nil-num-str-it-checks-whether-the-values-are-of-the-same-type-if-they-are-not-of-the-same-type-such-comparison-returns-false-and-if-they-are-of-the-same-type-it-then-checks-whether-such-values-are-not-the-same-returns-true-if-one-or-both-conditions-mentioned-above-are-not-satisfied-otherwise-returns-false"><strong>Not Equal (<code>!=</code>):</strong> This operator expects two operands of the following built-in types (<code>bool</code>, <code>nil</code>, <code>num</code>, <code>str</code>). It checks whether the values are of the same type (if they are not of the same type, such comparison returns <code>false</code>) and, if they are of the same type, it then checks whether such values are not the same. Returns <code>true</code> if one (or both) conditions mentioned above are not satisfied. Otherwise, returns <code>false</code>.</a></h4>
 <pre><code class="language-ts">print 2 != 2; // false
 print 2 != (1 + 1) // false
 print 2 != 3; // true
@@ -251,19 +265,18 @@ print true != false; // true
 print true != !!true; // false
 </code></pre>
 <h3 id="logical-1"><a class="header" href="#logical-1">Logical</a></h3>
-<p><strong>And (<code>and</code>):</strong> This operator returns <code>true</code> if both of its operands are truthy values. Otherwise, it returns <code>false</code>. Remember that this operator performs short-circuiting when possible.</p>
+<h4 id="and-and-this-operator-returns-true-if-both-of-its-operands-are-truthy-values-otherwise-it-returns-false-remember-that-this-operator-performs-short-circuiting-when-possible"><a class="header" href="#and-and-this-operator-returns-true-if-both-of-its-operands-are-truthy-values-otherwise-it-returns-false-remember-that-this-operator-performs-short-circuiting-when-possible"><strong>And (<code>and</code>):</strong> This operator returns <code>true</code> if both of its operands are truthy values. Otherwise, it returns <code>false</code>. Remember that this operator performs short-circuiting when possible.</a></h4>
 <pre><code class="language-ts">print 5 and 2; // true
 print 5 and false; // false
 print false and nil; // false
 </code></pre>
-<p><strong>Or (<code>or</code>):</strong> This operator returns <code>true</code> if one of its operands are truthy values. Otherwise, it returns <code>false</code>. Remember that this operator performs short-circuiting when possible.</p>
+<h4 id="or-or-this-operator-returns-true-if-one-of-its-operands-are-truthy-values-otherwise-it-returns-false-remember-that-this-operator-performs-short-circuiting-when-possible"><a class="header" href="#or-or-this-operator-returns-true-if-one-of-its-operands-are-truthy-values-otherwise-it-returns-false-remember-that-this-operator-performs-short-circuiting-when-possible"><strong>Or (<code>or</code>):</strong> This operator returns <code>true</code> if one of its operands are truthy values. Otherwise, it returns <code>false</code>. Remember that this operator performs short-circuiting when possible.</a></h4>
 <pre><code class="language-ts">print 5 or 2; // true
 print 5 or false; // true
 print false or nil; // false
 </code></pre>
-<h2 id="ternary-operator"><a class="header" href="#ternary-operator">Ternary Operator</a></h2>
-<p>An unary operator is, as its name suggests, an operator that expects just three operands. Bleach has just one operator that fall in this category.</p>
-<p><strong>Ternary (<code>? :</code>):</strong>  This operator is essentialy a concise way to perform conditional operations in a programming language. It is used to evaluate a condition and return one of two values based on whether the condition is true or false. As previously seen, the ternary operator is called "ternary" because it operates on three operands.</p>
+<h3 id="ternary-operator"><a class="header" href="#ternary-operator">Ternary Operator</a></h3>
+<h4 id="ternary-condition--expression_1--expression_2--a-ternary-operator-is-as-its-name-suggests-an-operator-that-expects-3-operands-the-reader-might-be-familiar-with-this-operator-since-it-is-widely-used-in-both-c-and-c-this-operator-provides-another-way-of-executing-conditional-operations-it-is-used-to-evaluate-a-condition-and-return-one-of-two-values-based-on-whether-the-condition-evaluates-to-true-or-false-the-three-operands-expected-by-the-ternary-operator-can-be-of-any-type-built-in-or-user-defined-the-first-one-is-evaluated-by-the-ternary-operator-with-respect-to-its-truthiness-of-falseness-if-the-value-is-truthy-then-the-operator-returns-the-second-operand-otherwise-it-returns-the-third-operand-the-example-below-shows-how-to-properly-use-such-operator"><a class="header" href="#ternary-condition--expression_1--expression_2--a-ternary-operator-is-as-its-name-suggests-an-operator-that-expects-3-operands-the-reader-might-be-familiar-with-this-operator-since-it-is-widely-used-in-both-c-and-c-this-operator-provides-another-way-of-executing-conditional-operations-it-is-used-to-evaluate-a-condition-and-return-one-of-two-values-based-on-whether-the-condition-evaluates-to-true-or-false-the-three-operands-expected-by-the-ternary-operator-can-be-of-any-type-built-in-or-user-defined-the-first-one-is-evaluated-by-the-ternary-operator-with-respect-to-its-truthiness-of-falseness-if-the-value-is-truthy-then-the-operator-returns-the-second-operand-otherwise-it-returns-the-third-operand-the-example-below-shows-how-to-properly-use-such-operator"><strong>Ternary (<code>condition ? expression_1 : expression_2</code>):</strong>  A ternary operator is, as its name suggests, an operator that expects 3 operands. The reader might be familiar with this operator since it is widely used in both C and C++. This operator provides another way of executing conditional operations. It is used to evaluate a condition and return one of two values based on whether the condition evaluates to <code>true</code> or <code>false</code>. The three operands expected by the ternary operator can be of any type (built-in or user-defined). The first one is evaluated by the ternary operator with respect to its truthiness of falseness. If the value is "truthy", then the operator returns the second operand. Otherwise, it returns the third operand. The example below shows how to properly use such operator.</a></h4>
 <pre><code class="language-ts">print 2 == 2 ? "2 is equal to 2" : "2 is not equal to two"; // "2 is equal to 2"
 </code></pre>
 <h2 id="operator-precedence"><a class="header" href="#operator-precedence">Operator Precedence</a></h2>
@@ -271,13 +284,13 @@ print false or nil; // false
 <p>In the list shown below, the smaller the index is, the higher the precedence of such operator is. Operators present in the same index have the same precedence and will be evaluated from left-to-right as they appear in an expression.</p>
 <div class="table-wrapper"><table><thead><tr><th>Precendence</th><th>Operator</th></tr></thead><tbody>
 <tr><td>1</td><td><code>!</code>, <code>-</code> (unary)</td></tr>
-<tr><td>2</td><td><code>*</code>, <code>/</code></td></tr>
+<tr><td>2</td><td><code>*</code>, <code>/</code>, <code>%</code></td></tr>
 <tr><td>3</td><td><code>+</code>, <code>-</code> (binary)</td></tr>
 <tr><td>4</td><td><code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code></td></tr>
 <tr><td>5</td><td><code>==</code>, <code>!=</code></td></tr>
 <tr><td>6</td><td><code>and</code></td></tr>
 <tr><td>7</td><td><code>or</code></td></tr>
-<tr><td>8</td><td><code>? : </code> (ternary)</td></tr>
+<tr><td>8</td><td><code>condition ? expr_1 : expr_2</code> (ternary)</td></tr>
 <tr><td>9</td><td><code>=</code> (assignment)</td></tr>
 </tbody></table>
 </div>
