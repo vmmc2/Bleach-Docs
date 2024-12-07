@@ -1,103 +1,68 @@
 # Data Types
 
 ## Overview
-In short, Bleach's built-in types are just the 5 listed below (4 built-in types have been implemented by now):
+In short, Bleach's built-in types are just the 5 listed below. These data types are divided into 2 categories (Scalar Types and Compound Types):
 
-__Scalar Types:__
+* __Scalar Types:__
   * ```bool```
-  * ```num```
   * ```nil```
+  * ```num```
 
-__Compound Types:__
-  * ```str``` 
-  * ```list``` (WIP)
-
-It's important to mention that such built-in types are divided into two groups: __scalar types__ and __compound types.__ I'll walkthrough each of such groups and their respective types, giving brief explanations and examples.
+* __Compound Types:__
+  * ```list``` 
+  * ```str```
 
 
 ## Scalar Types
-A scalar type is a type that can only represent a single value. As seen above, Bleach has three primary scalar types: ```bool```, ```num``` and  ```nil```. You may recognize these from other programming languages. Let’s see how they work in Bleach:
+A scalar type is a type that can only represent a single value. As seen above, Bleach has three primary scalar types: ```bool```, ```nil``` and  ```num```. You may recognize these from other programming languages. Let’s see how they work in Bleach:
 
 ### Type: ```bool```
-The Boolean type. Such type is used to perform logical operations and is vastly used in logic and Boolean algebra.
-
-In Bleach, things are not different, we have two possible values for such type (and, obviously, a literal for each value):
+This data type is used to represent one of two possible values: true or false. Such values are used to express logical conditions and to control the execution of certain parts of a program’s source code. As in other languages, the only two possible values for this specific data type are:
 ```c++
 true
 false
 ```
 
-#### Side Note: Truthy and Falsey values
-Bleach, like Ruby and many other programming languages, has the concepts of __truthy__ and __falsey__ values to determine the truthiness or falseness of values when evaluating conditions, such as in ```if``` statements, ```do-while``` loops, ```for``` loops, ```while``` loops and ternary operators (```?```).
+In this context, it is important to mention that Bleach takes inspiration from Ruby and other modern programming languages and implement the concept of "truthy" and "falsey" values in order to evaluate the truthiness or the falseness of values when they are being evaluated inside ```if``` statements, loops (```while```, ```do-while```, ```for```) and ternary operators (```condition ? expression_1 : expression_2```).
 
-Basically, this means that values of any type (built-in or user-defined) can be used where a value of ```bool``` type is expected.
-
-In short, Bleach follows this convention:
+Essentially, this means that, in Bleach, values of any type (built-in or user-defined) can be used in places where a value of type ```bool``` is expected. Moreover, Bleach opted to follow the same convention of Ruby in this matter:
   * __Falsey values:__ ```false```, ```nil```.
   * __Truthy values:__ Any other value that is not ```false``` nor ```nil```.
 
-### Type: ```num```
-For the sake of simplicity, Bleach has only one type to represent numbers: the ```num``` type.
-
-Behind the scenes, such type is implemented using a double-precision floating point number (The C++ ```double``` type).
-
-I implemented it this way because double-precision floating point numbers can also represent a wide range of integers, covering a lot of territory, while maintaining the simplicity that I innitialy envisioned.
-
-Usually, mature and popular programming languages have lots of syntax for numbers (binary, hexadecimal, octal, scientific notation, etc).
-
-Since Bleach's purpose is to be a programming language , we'll settle for basic integer and decimal literals, like the ones shown below:
-```c++
-2.71828
-3.14159
-23
-```
-
 ### Type: ```nil```
-This is an old friend to many of us.
-
-The nil type is a type that has only one value (```nil```). It conveys the idea of “no value” or "absence of a value".
+This type is an old acquaintance for most programmers. The nil type has just one possible value, the ```nil``` value. In short this value conveys the idea of "no value" or the "absence of a value".
 ```ruby
 nil
 ```
 
-In other programming languages, such type is called ```null```, ```nil```, ```NULL``` or ```nullptr```.
+In other programming languages, such type might be called ```null```, ```nil```, ```NULL``` or ```nullptr```. Here, in Bleach, we are going to follow Ruby's influence and use ```nil``` to denote this idea. 
 
-Here, in Bleach, we are going to follow Ruby's influence and use ```nil``` to denote this idea. This will help us distinguish between Bleach's ```nil``` value and C++ ```nullptr``` value (which is the equivalent value in the underlying implementation language).
+It is common knowledge that there are lots of arguments for not having such type in a language since null pointer errors have been causing a lot of headache since Tony Hoare introduced this idea back in the 60s.
 
-I know what you might be thinking right now... There are lots of arguments for not having a null value in a language since null pointer errors have been causing a lot of headache since Tony Hoare introduced this idea back in the 60s.
+However, according to Robert Nystrom (author of the "Crafting Interpreters" book and creator of the Lox programming language, which are both the major references Bleach where got its inspiration), if you want to implement a statically-typed language, it would be worth trying to ban this type. However, in a dynamically-typed language (which is Bleach's case), eliminating it is often more annoying and troublesome than allowing it. Thus, Nystrom's advice was followed on this matter.
 
-However, according to Robert Nystrom (author of the "Crafting Interpreters" book and creator of the Lox programming language, which are both the major references Bleach where got its inspiration), if you want to implement a statically-typed language, it would be worth trying to ban NULL values. However, in a dynamically-typed language (which is Bleach's case), eliminating it is often more annoying and troublesome than allowing it. So I opted to follow Nystrom's advice on this matter.
+### Type: ```num```
+In favor of simplicity, Bleach has only one type to represent numbers: the ```num``` type. This type can be used to represent both integers and floating-point numbers.
+
+Behind the scenes, this type is implemented with a double-precision floating-point type, which allows Bleach to cover a lot of territory when it comes to numerical values while still keeping the simplicity initially envisioned for the language.
+
+Usually, mature and popular programming languages have lots of syntax for numbers (binary, hexadecimal, octal, scientific notation, etc).
+
+Since Bleach's purpose is to be an educational programming language, it has support for just basic integer and decimal literals, like the ones shown below:
+```c++
+2.71828
+3.14159
+23
+-16
+-9.9845
+```
 
 
 ## Compound Types
-Compound types are basically types that can group multiple values into one. Bleach has two primitive compound types: ```str``` and ```list```. Let's take a look at them:
-
-### Type: ```str```
-Again, nothing new here. If you have some experience with programming you already recognize this type. In Bleach, the ```str``` type represents an indexed-sequence of characters (a string), typically used to store and manipulate text.
-
-Some examples of literal values of this type:
-```c++
-"I am a string";
-""; // The empty string.
-"123"; // This is a string, not a value of type "num".
-```
-
-There are some aspects of this type that might differ from what you have seen in the previous languages you have worked with. Thus, I think it's a good idea to explain such aspects in more details:
-
-It's a sequence type. This means that value of the ```str``` type can be indexed. Indexing allows you to access individual characters from the value (which, in Bleach, are also values of type ```str```).
-
-In Bleach, literals values of this type are __always__ enclosed by double quotes.
-
-Finally, this type has the following methods associated with it __(None of them have been implemented yet)__:
-  * __```empty```:__ Returns a ```bool``` value that signals whether the ```str``` value is empty or not.
-  * __```find```:__ Returns a ```num``` value that identifies the index where there is the first occurrence of a provided substring (a value of type ```str```) inside another value of type ```str```. If the provided substring doesn't appear, the method returns ```-1```.
-  * __```length```:__ Returns a ```num``` value that represents the number of characters in the ```str``` value.
-  * __```substr```:__ Returns a value of type ```str``` which is the substring of another value of type ```str```. Such method expects two indexes (left, right), both of which are inclusive.
+Compound types are basically types that can group multiple values into one. Bleach has two primitive compound types: ```list``` and ```str```. Let's take a look at them:
 
 ### Type: ```list```
-If you are familiar with Python, then here it is an old friend of you. In Bleach, the ```list``` type represents an indexed-sequence of elements.
-
-Some examples of literal values of this type:
+Taking inspiration from Python, Bleach has this type. Here, the ```list``` type represents a linear-sequence of elements. As previously stated, Bleach is a dynamically-typed language, just like Python. Thus, the ```list``` type can store values of different typeswith no issues. Moreover, Bleach has support for list literals, just as the ones shown below:
 ```c++
 [0, 1, 2, 3, 2.71, 3.14159]; // A list where all elements are of type "num".
 ["hello", "there"]; // A list where all elements are of type "str".
@@ -107,15 +72,64 @@ Some examples of literal values of this type:
 [false, "Brazil", 9.98, true, nil]; // A list where elements are of different types. This is allowed in Bleach.
 ```
 
-There are some aspects of this type that might differ from what you have seen in the previous languages you have worked with. Thus, I think it's a good idea to explain such aspects in more details:
+There are some aspects of this type that might differ from what you have seen in the previous languages you have worked with. The ```list``` type in Bleach has the following useful methods that makes the student’s life easier when working with this type.
 
-It's a sequence type. This means that lists can be indexed. Indexing allows you to access individual elements from the list.
+Finally, this type has the following methods associated with it:
+  * __```append```:__ Responsible for adding one value of any type to the end of the list value it was called on. Returns ```nil```.
+  * __```clear```:__ Method responsible for deleting every element that is currently stored inside
+the list value it was called on. Returns ```nil```.
+  * __```empty```:__ Responsible for checking whether the list value it was called on currently
+has values stored inside it or not. Returns a ```bool``` value.
+  * __```fill```:__ Responsible for resizing the list value it was called on to a provided size and
+also filling all of its indexes with a provided value of any type. Returns ```nil```.
+  * __```getAt```:__ Responsible for returning the value present at the provided index. Returns
+a value of any type.
+  * __```pop```:__ Responsible for deleting and returning the last element present inside a list
+value, if any. Returns a value of any type.
+  * __```setAt```:__ Responsible for setting the value stored at the provided index to the value
+that was provided. Returns ```nil```.
+  * __```size```:__ Responsible for checking and returning the current amount of elements that
+the list value it was on called on currently has. Returns a ```num``` value.
 
-Finally, this type has the following methods associated with it __(None of them have been implemented yet)__:
-  * __```back```:__ Returns the last element of a value of type ```list```. However, it does not make any changes to the value of type ```list```.
-  * __```clear```:__ Returns ```nil```. This method cleans the content from the value of ```list``` type. This change is made in-place.
-  * __```empty```:__ Returns a ```bool``` value that signals whether the ```list``` value is empty or not.
-  * __```front```:__ Returns the first element of a value of type ```list```. However, it does not make any changes to the value of type ```list```.
-  * __```pop_back```:__ Returns the last element of a value of type ```list```. This method removes the last element from the ```list``` value.
-  * __```push_back```:__ Returns ```nil```. This method adds an element of any type (whether it's a built-in or user-defined one) at the end of the ```list``` value.
-  * __```size```:__ Returns a ```num``` value that represents the number of elements in the ```list``` value.
+__Side Note #1: The ```list``` type does not have support for indexing using square brackets (```[]```). However, by using the methods ```getAt``` and ```setAt``` one can obtain the same behavior.__
+
+__Side Note #2: It is important to highlight that any misuse of the methods presented above will result in a runtime error during the program’s execution.__
+
+### Type: ```str```
+Also taking inspiration from Python, Bleach has this type. The str type represents an indexed-sequence of characters (a string), typically used to store and manipulate text. Just as the ```list``` type, Bleach also has support for literal values of this type, as shown below:
+
+```c++
+"I am a string";
+""; // The empty string.
+"123"; // This is a string, not a value of type "num".
+```
+
+There are other aspects about the str type that must be mentioned.
+
+First of all, it is important to recall that it is a sequence type. In short, it means that values of this  type can be indexed. In a string, indexing usually allows the programmer to access individual characters from the value, which, in the Bleach programming language, are also values of the ```str``` type.
+
+Also, in Bleach, literals values of this type are always enclosed by double quotes (```""```).
+
+Finally, as in Python, this type has the some methods available:
+  * __```empty```:__ Responsible for checking whether the str value it was called is equal to ""
+or not. Returns a bool value.
+  * __```find```:__ Responsible for trying to figure out if the provided sub-string (a str value)
+exists within the str value the method was called on. Returns a num value which
+denotes the index at which the sub-string appears, otherwise returns -1.
+  * __```getAt```:__ Responsible for returning the str value of length 1 present at the provided
+index. Returns a str value.
+  * __```length```:__ Responsible for checking and returning the current amount of characters
+(which are also values of type str) that the str value it was on called on currently
+has. Returns a num value.
+  * __```split```:__ Responsible for generating a list where each value is of str type. This
+method receives as its unique argument a value of str type that works as the sepa-
+rator. Returns a list value.
+  * __```setAt```:__ Responsible for setting the value stored at the provided index to the value
+that was provided (which must be a str value of length 1). Returns nil.
+  * __```substr```:__ Responsible for retrieving a sub-string from the str value it was called on.
+The method receives two arguments of num type that work as the start and end
+delimiters. Returns a str value.
+
+__Side Note #1: The ```str``` type does not have support for indexing using square brackets (```[]```). However, by using the methods ```getAt``` and ```setAt``` one can obtain the same behavior.__
+
+__Side Note #2: It is important to highlight that any misuse of the methods presented above will result in a runtime error during the program’s execution.__
