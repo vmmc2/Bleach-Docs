@@ -5,7 +5,7 @@ Ideally, every programmer tries its best to make their code readable and underst
 
 In such scenarios, programmers leave comments in their code that the compiler/interpreter will ignore but people reading the code may find useful.
 
-In Bleach, a programmer is allowed to write two different types of comments inside the code present in a Bleach file (```.bch```).
+By taking inspiration from C, in Bleach, a programmer is allowed to write two different types of comments inside the code present in a Bleach file (```.bch```).
 
 
 ## Single-Line Comments
@@ -24,17 +24,12 @@ Remember that comments can also be placed at the end of lines containing code:
 ```ts
 let x = 123.45; // It's allowed to put a comment after a line of code.
 ```
-However, Bleach, as Rust, recommends that the comment should appear on a separate line above the code it’s annotating:
-```ts
-// The variable below holds an approximate value of the constant Pi.
-let pi = 3.14159;
-```
 
 
 ## Multi-Line Comments
-For the reason mentioned above, Bleach also has support for multi-line comments.
+Also like C, Bleach has support for multi-line comments.
 
-In Bleach, a multi-line comment has a beginning and also and ending. The beginning is denoted by a ```/*```, while the ending is denoted by a ```*/```. Everything that is written between these characters is considered a comment and, therefore, will be ignored by the Bleach Interpreter during runtime.
+In Bleach, a multi-line comment has a beginning and also an ending. The beginning is denoted by a ```/*```, while the ending is denoted by a ```*/```. Everything that is written between these characters is considered a comment and, therefore, will be ignored by the Bleach Interpreter during runtime.
 
 The example below shows how to use them properly:
 ```ts
