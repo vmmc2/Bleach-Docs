@@ -19,7 +19,7 @@ function funtionName(parameter1, parameter2, parameter3){
 }
 ```
 
-__It's important to mention that if the programmer ommits the ```return``` statement from the function declaration statement, then when such function is called, it will, by default, return the ```nil``` value.__
+__It is important to mention that if the programmer ommits the ```return``` statement from the function declaration statement, then when such function is called, it will, by default, return the ```nil``` value.__
 
 
 ## Function Calls

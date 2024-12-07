@@ -15,14 +15,14 @@ In Bleach, a single-line comment starts with two slashes (```//```), and the com
 ```
 For comments that extend beyond a single line, you’ll need to include ```//``` on each line, like this:
 ```c
-// This is the beginning of what it's going to be a very long comment.
+// This is the beginning of what it is going to be a very long comment.
 // Instead of making the user go all the way to the end of the line above
 // we can divide comments in different lines. However, always needing to use
 // // character seems to be very cumbersome.
 ```
 Remember that comments can also be placed at the end of lines containing code:
 ```ts
-let x = 123.45; // It's allowed to put a comment after a line of code.
+let x = 123.45; // It is allowed to put a comment after a line of code.
 ```
 
 

@@ -5,7 +5,7 @@ Bleach is a programming language designed to give Computer Science students a mo
 
 The language was implemented with this purpose due to the fact that, based on my personal experience and on certain studies (which I will cite at the end of the chapter), such courses tend to be too much focused on its theoretical aspects to the detriment of its practical ones.
 
-Therefore, it's common for students that are taking this course to sometimes find it boring or even uninteresting and demotivating.
+Therefore, it is common for students that are taking this course to sometimes find it boring or even uninteresting and demotivating.
 
 Based on this, the motivation to build Bleach was born. The cornerstone idea behind Bleach is: a language that can be used in a classroom environment to teach the most fundamental ideas and concepts of Programming Languages implementation in an incremental way, using well-known languagues and techniques as a basis to such objective.
 
@@ -33,12 +33,12 @@ In contrast to dynamically typed programming languages, there are also staticall
 
 __Why not make Bleach a statically typed one?__
 
-__The answer is straightforward:__ If I decided to make it static, I would need to implement a static type system for it and this is simply too much work to learn and implement. Moreover, type systems are no joke. There is a reason this subject has its own course in master's or doctoral programs. This being said, I think it's obvious to conclude that such a thing could not be teached in a complete way in an undergraduate and introductory course. So... yeah, if I made this decision, I would be contradicting myself about Bleach's reason to exist, which is (in case you don't remember) teach the most fundamental ideas and concepts of Programming Languages implementation. Thus, I didn't follow design decisions that led to advanced ideas and concepts in the area of ​​compilers and programming languages 
+__The answer is straightforward:__ If I decided to make it static, I would need to implement a static type system for it and this is simply too much work to learn and implement. Moreover, type systems are no joke. There is a reason this subject has its own course in master's or doctoral programs. This being said, I think it is obvious to conclude that such a thing could not be teached in a complete way in an undergraduate and introductory course. So... yeah, if I made this decision, I would be contradicting myself about Bleach's reason to exist, which is (in case you don't remember) teach the most fundamental ideas and concepts of Programming Languages implementation. Thus, I didn't follow design decisions that led to advanced ideas and concepts in the area of ​​compilers and programming languages 
 
 ### Automatic Memory Management
 One of the reasons that motivates the creation of "high-level" scripting languages is the need to free programmers from the burden of manually managing memory (Yes, I am looking at you: ```malloc```, ```calloc```, ```realloc``` and ```free```).
 
-Since Bleach fits into the category of "high-level" scripting languages, it's not a language with manual memory management. Instead, it has an automatic one.
+Since Bleach fits into the category of "high-level" scripting languages, it is not a language with manual memory management. Instead, it has an automatic one.
 
 Essentialy, this means that Bleach's runtime () will handle the allocation and deallocation of memory for us. Since this implementation of Bleach is a Tree-Walk Interpreter, things work in a different way than a Garbage Collector, for example. Yes, this implementation doesn't contain one written from scratch.
 

@@ -31,7 +31,7 @@ let user_input = std::io::readLine(); // Say the user writes "hello" in console/
 ```
 
 #### Function: ```std::io::print```
-This native function is responsible for printing content provided by the user to console/terminal. It can take any number arguments of any type, whether it's built-in or user-defined. Then it prints the string representation of such values to the console separating them by a ``` ``` character.
+This native function is responsible for printing content provided by the user to console/terminal. It can take any number arguments of any type, whether it is built-in or user-defined. Then it prints the string representation of such values to the console separating them by a ``` ``` character.
 
 Usage:
 ```ts

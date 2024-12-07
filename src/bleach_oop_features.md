@@ -80,7 +80,7 @@ Making it very simple, a method is essentialy a function that is tied to a class
 
 __As seen above, in a class declaration statement, if the programmer wants to declare a new method, then he/she/they just need to follow the same syntax of a function declaration statement, but instead of using the ```function``` keyword, change it by the ```method``` keyword.__
 
-__The ```init``` method:__ It's just a special method usually present in classes and known as the constructor of a class. It’s automatically called when a new instance of the class is created. This method is where the programmer typically sets up the initial state of an object by initializing instance attributes.
+__The ```init``` method:__ It is just a special method usually present in classes and known as the constructor of a class. It’s automatically called when a new instance of the class is created. This method is where the programmer typically sets up the initial state of an object by initializing instance attributes.
 
 ## Instances
 Essentialy, an instance is an individual object created from a class.
@@ -90,7 +90,7 @@ Remember that each instance has its own unique set of attributes/fields, but sha
 __In short, you can think of an instance of just a bag of data that can change during runtime and that has methods associated with it that might operate on such data.__
 
 ## Self
-The keyword ```self``` serves for a very specific purpose inside the methods of a class: It's a reference to the current instance of the class. It's used to refer to the current instance on which a method is being invoked.
+The keyword ```self``` serves for a very specific purpose inside the methods of a class: It is a reference to the current instance of the class. It is used to refer to the current instance on which a method is being invoked.
 
 By using it, the progammer is able to access and modify the instance’s attributes and methods. Contrary to Python's approach, in Bleach the name ```self``` is mandatory if the programmer wants to refer to the current instance of the class. 
 
@@ -101,7 +101,7 @@ __The major purpose for the existence of inheritance is to promote code reuse an
 
 __In Bleach, as in other popular languages such as C++, C#, Java , JavaScript and Python, inheritance allows the programmer to create a new class based on an existing class, extending or modifying its functionality.__
 
-Going further, Bleach follows a very similar implementation of inheritance to that of Python with just one major difference: __For simplicity purposes, Bleach only supports single inheritance whereas Python has support for multiple inheritance (Talking about this, such a thing can be easily added to the Bleach Interpreter and it's a good practice for students to deepen their knowledge).__
+Going further, Bleach follows a very similar implementation of inheritance to that of Python with just one major difference: __For simplicity purposes, Bleach only supports single inheritance whereas Python has support for multiple inheritance (Talking about this, such a thing can be easily added to the Bleach Interpreter and it is a good practice for students to deepen their knowledge).__
 
 As usual, the code snippet below shows how inheritance, method overriding and the ```super``` keyword work in practice:
 ```c++

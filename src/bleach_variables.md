@@ -66,7 +66,7 @@ foo();
 ## Variable Assignment
 As shown above, a variable in Bleach can be declared through the use of the ```let``` keyword.
 
-Moreover, since there is no idea of immutability of variables in Bleach, it's allowed to assign different values of different types at different points in time to the declared variable. To do that, the programmer uses the assignment operator ```=```.
+Moreover, since there is no idea of immutability of variables in Bleach, it is allowed to assign different values of different types at different points in time to the declared variable. To do that, the programmer uses the assignment operator ```=```.
 
 Before moving forward, it is important to explain 2 semantic details of variable assignment in Bleach:
   * The first one is that, in Bleach, an assignment is an expression. Not a statement. This has some interesting consequences. For example, since a variable assignment is an expression, it produces a value. Such value is the one that is being assigned to the variable:

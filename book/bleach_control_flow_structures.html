@@ -154,25 +154,18 @@
                     <main>
                         <h1 id="control-flow-structures"><a class="header" href="#control-flow-structures">Control Flow Structures</a></h1>
 <h2 id="overview"><a class="header" href="#overview">Overview</a></h2>
-<p>Control Flow Structures are constructs that dictate the order in which statements are executed. They allow the program to make decisions, repeat operations, and manage the flow of execution based on certain conditions.</p>
+<p>Control Flow Structures are constructs that allow the programmers to dictate in what order and by how many times instructions or code blocks are executed.</p>
+<p>These entities are responsible for allowing branching mechanisms, decision-making and repetition in a program. The main consequence of this is that a program can have a more dynamic and sophisticated behavior.</p>
+<p>In Bleach, there are 3 classes of control-flow structures:</p>
 <h2 id="conditional-statements"><a class="header" href="#conditional-statements">Conditional Statements</a></h2>
 <p>Such statements allow the program to execute certain blocks of code based on whether a condition evaluates to <code>true</code> or <code>false</code>.</p>
-<h3 id="if-statement"><a class="header" href="#if-statement"><code>if</code> Statement</a></h3>
+<h3 id="if-elif-else-statement"><a class="header" href="#if-elif-else-statement"><code>if-elif-else</code> Statement</a></h3>
 <p>The <code>if</code> statement is one of the fundamental control flow structures in programming.</p>
 <p>It allows the program to execute a block of code only if a specified condition is true.</p>
 <p>If the condition is false, then the code block associated to the <code>if</code> is not executed, and alternative blocks of code can be executed by using <code>elif</code> clauses or an <code>else</code> clause.</p>
-<p>Remember that, during runtime, the clauses of an <code>if</code> statement are evaluated from top to bottom. Also, once the condition of a clause is met, its associated block will be executed and then the rest of clauses won't even be looked at by the interpreter. Instead, it goes straight forward to the next statement. Bleach is no exception in this matter.</p>
+<p>Remember that, during runtime, the clauses of an <code>if</code> statement are evaluated from top to bottom. Also, once the condition of a clause is met, its associated block will be executed and then the rest of clauses will not even be "looked at" by the interpreter. Instead, it goes straight forward to the next statement. Bleach is no exception in this matter.</p>
 <p>Also remember that is completely possible to nest an infinite amount of <code>if</code> statements in a program. Bleach can handle such scenarios with no issues.</p>
-<p>It's important to mention that one does not need to add a block after an <code>if</code>, <code>elif</code> or <code>else</code> clause. This means that the code snippet below executes without any problems:</p>
-<pre><code class="language-ts">let foo = "hi";
-
-if(foo == "hi")
-  print "Found a 'hi' string!";
-elif(foo == "oi")
-  print "Fount an 'oi' string!";
-else
-  print "Found something else inside the 'foo' variable";
-</code></pre>
+<p><strong>It is important to mention that one needs to add a block after an <code>if</code>, <code>elif</code> or <code>else</code> clause. Otherwise, a syntax error will be thrown by the interpreter. This happens because such statements create a new local scope.</strong></p>
 <p><strong>Last but not least, Bleach, different from some other programming languages, allows the programmers to declare variables inside the code blocks associated to the clauses of an <code>if</code> statement. If you do this, you must keep in mind that the scope of such variable will be restricted to the block associated to the specific clause.</strong></p>
 <p>Simple example of a code snippet that uses an <code>if</code> statement:</p>
 <pre><code class="language-ts">let number = 2;
@@ -200,15 +193,17 @@ if(n == 42){
 }
 </code></pre>
 <h2 id="loops"><a class="header" href="#loops">Loops</a></h2>
-<p>Loop statements are used to repeat a block of code multiple times, either a fixed number of times or until a certain condition is met.</p>
+<p>Loop statements are used to repeat a block of code multiple times, either a fixed number of times or until a certain condition is not met anymore.</p>
+<p>Bleach has support for 3 different types of loop statements: <code>while</code>, <code>do-while</code> and <code>for</code>.</p>
 <p>One important thing to mention is that, for all types of loop structures, there is support for early exiting (with the <code>break</code> keyword) and iteration skipping (with the <code>continue</code> keyword).</p>
+<p>Last but not least, just as in conditional statements, Bleach also allows the nesting of loop statements.</p>
 <h3 id="while"><a class="header" href="#while">While</a></h3>
-<p>This one is a control flow structure present in almost every programming language that allows the programmer to repeatedly execute a block of code as long as a specified condition remains true.</p>
+<p>This control flow structure present in almost every programming language that allows the programmer to repeatedly execute a block of code as long as a specified condition remains true.</p>
 <p>It is typically used when the number of iterations is not known beforehand and the loop should continue while a certain condition is met. When such condition is not met anymmore, then the execution of the loop terminates.</p>
 <p>Also remember that the condition of a <code>while</code> loop is evaluated before each iteration of the loop. Which means that, in some cases, the <code>while</code> loop might not even execute.</p>
 <p>Another thing that is important to mention is that the programmer can use a variable of any type as the condition of a <code>while</code> loop.</p>
-<p><strong>As we've seen, each value, no matter its type is considered either "truthy" or "falsey". In practice, this means that you don't need to necessarily only use values of type <code>bool</code> or expressions that evaluate to such type.</strong></p>
-<p><strong>One important peculiarity of <code>while</code> loops in Bleach is that they need a block after the condition. In practice, this means that the following code snippet will not even execute:</strong></p>
+<p><strong>As we have seen, each value, no matter its type, is considered either "truthy" or "falsey". In practice, this means that you don't need to necessarily only use values of type <code>bool</code> or expressions that evaluate to such type.</strong></p>
+<p><strong>One important peculiarity of <code>while</code> loops in Bleach is that they need a block after the condition. This happens because they create a local scope. In practice, this means that the following code snippet will not even execute:</strong></p>
 <pre><code class="language-ts">let counter = 0;
 
 while(counter &lt; 10) // No block present.
@@ -224,9 +219,9 @@ while(counter &lt; 10){ // A block is present.
 <h3 id="do-while-loop"><a class="header" href="#do-while-loop">Do-While Loop</a></h3>
 <p>This is another a type of control flow structure very similar to the <code>while</code> loop present above and that is ubiquitous in programming languages.</p>
 <p>A <code>do-while</code> executes a block of code at least once before checking its condition.</p>
-<p>That is key difference between a <code>do-while</code> loop and a regular <code>while</code> loop: the condition in a <code>do-while</code> loop is checked after the loop’s code has executed, not before. This guarantees that the loop’s code will always run at least once, even if the condition evaluates to the <code>false</code> value. This might sound problematic, but there are some niche scenarios where this behavior comes in handy.</p>
-<p>Another thing that is important to mention is that, as the programmer could use a variable of any type as the condition of a <code>while</code> loop, he/she/they can do the same thing in a <code>do-while</code> loop.</p>
-<p>As we've seen, each value, no matter its type is considered either "truthy" or "falsey". In practice, this means that you don't need to necessarily only use values of type <code>bool</code> or expressions that evaluate to such type.</p>
+<p>That is key difference between a <code>do-while</code> loop and a regular <code>while</code> loop: the condition in a <code>do-while</code> loop is checked after the loop’s code has executed, not before. This guarantees that the loop’s code will always run at least once, even if the condition evaluates to the <code>false</code> value in its first iteration. This might sound problematic, but there are some niche scenarios where this behavior comes in handy.</p>
+<p>Another thing that is important to mention is that, as the programmer could use a variable of any type as the condition of a <code>while</code> loop, the same thing can be done in a <code>do-while</code> loop.</p>
+<p>As we have seen, each value, no matter its type is considered either "truthy" or "falsey". In practice, this means that you do not need to necessarily only use values of type <code>bool</code> or expressions that evaluate to such type.</p>
 <p><strong>Last, but not least, as the <code>while</code> loops require, the <code>do-while</code> loops in Bleach need a block between the keywords <code>do</code> and <code>while</code>. In practice, this means that the following code snippet will not even execute:</strong></p>
 <pre><code class="language-ts">let counter = 0;
 
@@ -242,22 +237,22 @@ do{
 }while(counter &lt; 10);
 </code></pre>
 <h3 id="for-loop"><a class="header" href="#for-loop">For Loop</a></h3>
-<p>Finally! Here is the last kind of control flow structure that fits into the loops category. The <code>for</code> statement is a control flow structure that allows the programmer to repeatedly execute a block of code not only by a specific number of times but also until some condition evaluates to <code>true</code>.</p>
-<p>Unlike the <code>while</code> and <code>do-while</code> loops, a <code>for</code> loop is particularly useful in scenarios where the developer knows in advance how many times he/she/they want such loop to iterate.</p>
-<p>In case you don't remember the structure of a <code>for</code> loop, let's do a simple refresh: A <code>for</code> loop has 4 components, which are:</p>
+<p>Here is the last kind of control flow structure that fits into the loops category. The <code>for</code> statement is a control flow structure that allows the programmer to repeatedly execute a block of code not only by a specific number of times but also while some condition keeps evaluating to <code>true</code>.</p>
+<p>Unlike the <code>while</code> and <code>do-while</code> loops, a <code>for</code> loop is particularly useful in scenarios where the developer knows in advance how many times a loop is supposed to iterate.</p>
+<p>In case you don't remember the structure of a <code>for</code> loop, here comes a simple refresh. A <code>for</code> loop has 4 components, which are:</p>
 <ul>
 <li><strong>Initialization:</strong> This is where you declare and initialize a loop control variable. This happens only once, at the beginning of the loop. <strong>In Bleach, the programmer is also allowed to put an expression statement in this place.</strong></li>
 <li><strong>Condition:</strong> This is a logical expression that is evaluated before each iteration of the loop. If the condition evalutes to <code>true</code>, the loop continues. Otherwise, if it evaluates to <code>false</code>, the loop finishes its execution.</li>
-<li><strong>Increment:</strong> This is an expression that updates the loop control variable after each iteration. It usually increments or decrements the loop variable. To be honest, this can be any kind of expression. Not necessarily an expression that updates the loop control variable of the <code>for</code> loop.</li>
-<li><strong>Code Block:</strong> The block of code that will be executed each time the condition is true.</li>
+<li><strong>Increment:</strong> This is an expression that updates the loop control variable after each iteration. It usually increments or decrements the loop variable. This can be any kind of expression. Not necessarily an expression that updates the loop control variable of the <code>for</code> loop.</li>
+<li><strong>Code Block:</strong> The block of code that will be executed each time the condition is evaluated to <code>true</code>.</li>
 </ul>
-<p><strong>It's also important to mention that the first three components might be absent inside the structure of a <code>for</code> loop.</strong></p>
+<p><strong>It is also important to mention that the first 3 components might be absent inside the structure of a <code>for</code> loop.</strong></p>
 <p>In short, this is the expected structure of a <code>for</code> loop in Bleach:</p>
 <pre><code class="language-ts">for(initialization; condition; increment){
   // the code of the block goes here.
 }
 </code></pre>
-<p><strong>Last, but not least, as the <code>while</code> and <code>do-while</code> loops require, the <code>for</code> loops in Bleach need a block between the keywords after its <code>)</code> character. In practice, this means that the following code snippet will not even execute:</strong></p>
+<p><strong>Last, but not least, as the <code>while</code> and <code>do-while</code> loops require, the <code>for</code> loops in Bleach need a block between the keywords after its <code>)</code> character. Such kind of loop also creates a new scope. In practice, this means that the following code snippet will not even execute:</strong></p>
 <pre><code class="language-ts">for(let counter = 0; counter &lt; 10; counter = counter + 1)
   print counter;
 </code></pre>
@@ -274,6 +269,7 @@ do{
 <li><code>continue</code></li>
 </ul>
 <p>The statements that use these keywords are used to control the flow of loops (<code>for</code>, <code>while</code> and <code>do-while</code>) statements.</p>
+<p>If any of these keywords are used out of a loop, then an error will be thrown.</p>
 <p>They provide mechanisms that allow the programmer to modify the normal flow of loop execution based on particular conditions. This is useful when the developer wants to exit a loop early based on a dynamic condition instead of waiting for the loop to naturally complete all its iterations.</p>
 <h3 id="the-break-keywordstatement"><a class="header" href="#the-break-keywordstatement">The <code>break</code> keyword/statement</a></h3>
 <p>This statement is used to immediately exit a loop.</p>

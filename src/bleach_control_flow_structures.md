@@ -1,33 +1,27 @@
 # Control Flow Structures
 
 ## Overview
-Control Flow Structures are constructs that dictate the order in which statements are executed. They allow the program to make decisions, repeat operations, and manage the flow of execution based on certain conditions.
+Control Flow Structures are constructs that allow the programmers to dictate in what order and by how many times instructions or code blocks are executed.
+
+These entities are responsible for allowing branching mechanisms, decision-making and repetition in a program. The main consequence of this is that a program can have a more dynamic and sophisticated behavior.
+
+In Bleach, there are 3 classes of control-flow structures:
 
 ## Conditional Statements
 Such statements allow the program to execute certain blocks of code based on whether a condition evaluates to ```true``` or ```false```.
 
-### ```if``` Statement
+### ```if-elif-else``` Statement
 The ```if``` statement is one of the fundamental control flow structures in programming.
 
 It allows the program to execute a block of code only if a specified condition is true.
 
 If the condition is false, then the code block associated to the ```if``` is not executed, and alternative blocks of code can be executed by using ```elif``` clauses or an ```else``` clause.
 
-Remember that, during runtime, the clauses of an ```if``` statement are evaluated from top to bottom. Also, once the condition of a clause is met, its associated block will be executed and then the rest of clauses won't even be looked at by the interpreter. Instead, it goes straight forward to the next statement. Bleach is no exception in this matter.
+Remember that, during runtime, the clauses of an ```if``` statement are evaluated from top to bottom. Also, once the condition of a clause is met, its associated block will be executed and then the rest of clauses will not even be "looked at" by the interpreter. Instead, it goes straight forward to the next statement. Bleach is no exception in this matter.
 
 Also remember that is completely possible to nest an infinite amount of ```if``` statements in a program. Bleach can handle such scenarios with no issues.
 
-It's important to mention that one does not need to add a block after an ```if```, ```elif``` or ```else``` clause. This means that the code snippet below executes without any problems:
-```ts
-let foo = "hi";
-
-if(foo == "hi")
-  print "Found a 'hi' string!";
-elif(foo == "oi")
-  print "Fount an 'oi' string!";
-else
-  print "Found something else inside the 'foo' variable";
-```
+__It is important to mention that one needs to add a block after an ```if```, ```elif``` or ```else``` clause. Otherwise, a syntax error will be thrown by the interpreter. This happens because such statements create a new local scope.__
 
 __Last but not least, Bleach, different from some other programming languages, allows the programmers to declare variables inside the code blocks associated to the clauses of an ```if``` statement. If you do this, you must keep in mind that the scope of such variable will be restricted to the block associated to the specific clause.__
 
@@ -62,12 +56,16 @@ if(n == 42){
 
 
 ## Loops
-Loop statements are used to repeat a block of code multiple times, either a fixed number of times or until a certain condition is met.
+Loop statements are used to repeat a block of code multiple times, either a fixed number of times or until a certain condition is not met anymore.
+
+Bleach has support for 3 different types of loop statements: ```while```, ```do-while``` and ```for```.
 
 One important thing to mention is that, for all types of loop structures, there is support for early exiting (with the ```break``` keyword) and iteration skipping (with the ```continue``` keyword).
 
+Last but not least, just as in conditional statements, Bleach also allows the nesting of loop statements.
+
 ### While
-This one is a control flow structure present in almost every programming language that allows the programmer to repeatedly execute a block of code as long as a specified condition remains true.
+This control flow structure present in almost every programming language that allows the programmer to repeatedly execute a block of code as long as a specified condition remains true.
 
 It is typically used when the number of iterations is not known beforehand and the loop should continue while a certain condition is met. When such condition is not met anymmore, then the execution of the loop terminates.
 
@@ -75,9 +73,9 @@ Also remember that the condition of a ```while``` loop is evaluated before each 
 
 Another thing that is important to mention is that the programmer can use a variable of any type as the condition of a ```while``` loop.
 
-__As we've seen, each value, no matter its type is considered either "truthy" or "falsey". In practice, this means that you don't need to necessarily only use values of type ```bool``` or expressions that evaluate to such type.__
+__As we have seen, each value, no matter its type, is considered either "truthy" or "falsey". In practice, this means that you don't need to necessarily only use values of type ```bool``` or expressions that evaluate to such type.__
 
-__One important peculiarity of ```while``` loops in Bleach is that they need a block after the condition. In practice, this means that the following code snippet will not even execute:__
+__One important peculiarity of ```while``` loops in Bleach is that they need a block after the condition. This happens because they create a local scope. In practice, this means that the following code snippet will not even execute:__
 ```ts
 let counter = 0;
 
@@ -99,11 +97,11 @@ This is another a type of control flow structure very similar to the ```while```
 
 A ```do-while``` executes a block of code at least once before checking its condition.
 
-That is key difference between a ```do-while``` loop and a regular ```while``` loop: the condition in a ```do-while``` loop is checked after the loop’s code has executed, not before. This guarantees that the loop’s code will always run at least once, even if the condition evaluates to the ```false``` value. This might sound problematic, but there are some niche scenarios where this behavior comes in handy.
+That is key difference between a ```do-while``` loop and a regular ```while``` loop: the condition in a ```do-while``` loop is checked after the loop’s code has executed, not before. This guarantees that the loop’s code will always run at least once, even if the condition evaluates to the ```false``` value in its first iteration. This might sound problematic, but there are some niche scenarios where this behavior comes in handy.
 
-Another thing that is important to mention is that, as the programmer could use a variable of any type as the condition of a ```while``` loop, he/she/they can do the same thing in a ```do-while``` loop.
+Another thing that is important to mention is that, as the programmer could use a variable of any type as the condition of a ```while``` loop, the same thing can be done in a ```do-while``` loop.
 
-As we've seen, each value, no matter its type is considered either "truthy" or "falsey". In practice, this means that you don't need to necessarily only use values of type ```bool``` or expressions that evaluate to such type.
+As we have seen, each value, no matter its type is considered either "truthy" or "falsey". In practice, this means that you do not need to necessarily only use values of type ```bool``` or expressions that evaluate to such type.
 
 __Last, but not least, as the ```while``` loops require, the ```do-while``` loops in Bleach need a block between the keywords ```do``` and ```while```. In practice, this means that the following code snippet will not even execute:__
 ```ts
@@ -124,17 +122,17 @@ do{
 ```
 
 ### For Loop
-Finally! Here is the last kind of control flow structure that fits into the loops category. The ```for``` statement is a control flow structure that allows the programmer to repeatedly execute a block of code not only by a specific number of times but also until some condition evaluates to ```true```.
+Here is the last kind of control flow structure that fits into the loops category. The ```for``` statement is a control flow structure that allows the programmer to repeatedly execute a block of code not only by a specific number of times but also while some condition keeps evaluating to ```true```.
 
-Unlike the ```while``` and ```do-while``` loops, a ```for``` loop is particularly useful in scenarios where the developer knows in advance how many times he/she/they want such loop to iterate.
+Unlike the ```while``` and ```do-while``` loops, a ```for``` loop is particularly useful in scenarios where the developer knows in advance how many times a loop is supposed to iterate.
 
-In case you don't remember the structure of a ```for``` loop, let's do a simple refresh: A ```for``` loop has 4 components, which are:
+In case you don't remember the structure of a ```for``` loop, here comes a simple refresh. A ```for``` loop has 4 components, which are:
 * __Initialization:__ This is where you declare and initialize a loop control variable. This happens only once, at the beginning of the loop. __In Bleach, the programmer is also allowed to put an expression statement in this place.__
 * __Condition:__ This is a logical expression that is evaluated before each iteration of the loop. If the condition evalutes to ```true```, the loop continues. Otherwise, if it evaluates to ```false```, the loop finishes its execution.
-* __Increment:__ This is an expression that updates the loop control variable after each iteration. It usually increments or decrements the loop variable. To be honest, this can be any kind of expression. Not necessarily an expression that updates the loop control variable of the ```for``` loop.
-* __Code Block:__ The block of code that will be executed each time the condition is true.
+* __Increment:__ This is an expression that updates the loop control variable after each iteration. It usually increments or decrements the loop variable. This can be any kind of expression. Not necessarily an expression that updates the loop control variable of the ```for``` loop.
+* __Code Block:__ The block of code that will be executed each time the condition is evaluated to ```true```.
 
-__It's also important to mention that the first three components might be absent inside the structure of a ```for``` loop.__
+__It is also important to mention that the first 3 components might be absent inside the structure of a ```for``` loop.__
 
 In short, this is the expected structure of a ```for``` loop in Bleach:
 ```ts
@@ -143,8 +141,7 @@ for(initialization; condition; increment){
 }
 ```
 
-
-__Last, but not least, as the ```while``` and ```do-while``` loops require, the ```for``` loops in Bleach need a block between the keywords after its ```)``` character. In practice, this means that the following code snippet will not even execute:__
+__Last, but not least, as the ```while``` and ```do-while``` loops require, the ```for``` loops in Bleach need a block between the keywords after its ```)``` character. Such kind of loop also creates a new scope. In practice, this means that the following code snippet will not even execute:__
 ```ts
 for(let counter = 0; counter < 10; counter = counter + 1)
   print counter;
@@ -166,6 +163,8 @@ __In Bleach, there are just two keywords that allow the user to execute such sta
   * ```continue```
 
 The statements that use these keywords are used to control the flow of loops (```for```, ```while``` and ```do-while```) statements.
+
+If any of these keywords are used out of a loop, then an error will be thrown.
 
 They provide mechanisms that allow the programmer to modify the normal flow of loop execution based on particular conditions. This is useful when the developer wants to exit a loop early based on a dynamic condition instead of waiting for the loop to naturally complete all its iterations.
 
