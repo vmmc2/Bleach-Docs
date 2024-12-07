@@ -16,13 +16,11 @@ Usually, a class defines a set of attributes (variables) and methods (functions)
 
 Classes are a fundamental part of object-oriented programming (OOP) due to the fact that such featus allows the programmer to define custom data types and their associated behaviors based on his/her/their needs.
 
-__When it comes down to the concept of classes, there are a couple of concepts that directly tied to it:__
+__When it comes down to the concept of classes, there are a couple of concepts that are directly tied to it:__
 1. __Attributes/Fields__
 2. __Methods__
 3. __Instances__
 4. __Inheritance__
-
-For the rest of this page, I am going to explain how each of these concepts are handled in Bleach.
 
 In Bleach, a class declaration statement follows the syntax shown below:
 ```c++
@@ -80,10 +78,12 @@ Making it very simple, a method is essentialy a function that is tied to a class
 
 __As seen above, in a class declaration statement, if the programmer wants to declare a new method, then he/she/they just need to follow the same syntax of a function declaration statement, but instead of using the ```function``` keyword, change it by the ```method``` keyword.__
 
-__The ```init``` method:__ It is just a special method usually present in classes and known as the constructor of a class. It’s automatically called when a new instance of the class is created. This method is where the programmer typically sets up the initial state of an object by initializing instance attributes.
+__Side Note #1: Bleach has 2 special methods by default in every class. Such methods are presented below:__
+  * __The ```init``` method:__ It is just a special method usually present in classes and known as the constructor of a class. It is automatically called when a new instance of the class is created. This method is where the programmer typically sets up the initial state of an object by initializing instance attributes. This method can be changed by the programmer to change the functionality of the constructor of a desired class. Last but not least, this method is supposed to always return the created instance. There is no need to use write a ```return``` statement inside it. Moreover, if one does it and tries to return a value of another type, then a runtime error will be thrown.
+  * __The ```str``` method:__ It is just a special method usually present in classes and known as the string representation of a class. It is automatically called when the programmer uses the ```print``` statement, or the ```std::io::print``` native function, or concatenates an instance of a class with a value of type ```str```. Last but not least, this method can also be changed by the programmer in order to return a string that better reflects the identity of an instance created from a class.
 
 ## Instances
-Essentialy, an instance is an individual object created from a class.
+Essentially, an instance is an individual object created from a class.
 
 Remember that each instance has its own unique set of attributes/fields, but shares methods with other instances of the same class.
 
@@ -95,7 +95,7 @@ The keyword ```self``` serves for a very specific purpose inside the methods of 
 By using it, the progammer is able to access and modify the instance’s attributes and methods. Contrary to Python's approach, in Bleach the name ```self``` is mandatory if the programmer wants to refer to the current instance of the class. 
 
 ## Inheritance
-__As we all know, inheritance is a fundamental concept in object-oriented programming which allows a class to inherit attributes and methods from another class.__
+__As is widely known, inheritance is a fundamental concept in object-oriented programming which allows a class to inherit attributes and methods from another class.__
 
 __The major purpose for the existence of inheritance is to promote code reuse and to establish a natural hierarchy between classes.__
 
