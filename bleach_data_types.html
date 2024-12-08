@@ -154,80 +154,59 @@
                     <main>
                         <h1 id="data-types"><a class="header" href="#data-types">Data Types</a></h1>
 <h2 id="overview"><a class="header" href="#overview">Overview</a></h2>
-<p>In short, Bleach's built-in types are just the 5 listed below (4 built-in types have been implemented by now):</p>
+<p>In short, Bleach's built-in types are just the 5 listed below. These data types are divided into 2 categories (Scalar Types and Compound Types):</p>
+<ul>
+<li>
 <p><strong>Scalar Types:</strong></p>
 <ul>
 <li><code>bool</code></li>
-<li><code>num</code></li>
 <li><code>nil</code></li>
+<li><code>num</code></li>
 </ul>
+</li>
+<li>
 <p><strong>Compound Types:</strong></p>
 <ul>
-<li><code>str</code> (Work in progress)</li>
-<li><code>list</code> (Not implemented yet)</li>
+<li><code>list</code></li>
+<li><code>str</code></li>
 </ul>
-<p>It's important to mention that such built-in types are divided into two groups: <strong>scalar types</strong> and <strong>compound types.</strong> I'll walkthrough each of such groups and their respective types, giving brief explanations and examples.</p>
+</li>
+</ul>
 <h2 id="scalar-types"><a class="header" href="#scalar-types">Scalar Types</a></h2>
-<p>A scalar type is a type that can only represent a single value. As seen above, Bleach has three primary scalar types: <code>bool</code>, <code>num</code> and  <code>nil</code>. You may recognize these from other programming languages. Let’s see how they work in Bleach:</p>
+<p>A scalar type is a type that can only represent a single value. As seen above, Bleach has three primary scalar types: <code>bool</code>, <code>nil</code> and  <code>num</code>. You may recognize these from other programming languages. Let’s see how they work in Bleach:</p>
 <h3 id="type-bool"><a class="header" href="#type-bool">Type: <code>bool</code></a></h3>
-<p>The Boolean type. Such type is used to perform logical operations and is vastly used in logic and Boolean algebra.</p>
-<p>In Bleach, things are not different, we have two possible values for such type (and, obviously, a literal for each value):</p>
+<p>This data type is used to represent one of two possible values: true or false. Such values are used to express logical conditions and to control the execution of certain parts of a program’s source code. As in other languages, the only two possible values for this specific data type are:</p>
 <pre><code class="language-c++">true
 false
 </code></pre>
-<h4 id="side-note-truthy-and-falsey-values"><a class="header" href="#side-note-truthy-and-falsey-values">Side Note: Truthy and Falsey values</a></h4>
-<p>Bleach, like Ruby and many other programming languages, has the concepts of <strong>truthy</strong> and <strong>falsey</strong> values to determine the truthiness or falseness of values when evaluating conditions, such as in <code>if</code> statements, <code>do-while</code> loops, <code>for</code> loops, <code>while</code> loops and ternary operators (<code>?</code>).</p>
-<p>Basically, this means that values of any type (built-in or user-defined) can be used where a value of <code>bool</code> type is expected.</p>
-<p>In short, Bleach follows this convention:</p>
+<p>In this context, it is important to mention that Bleach takes inspiration from Ruby and other modern programming languages and implement the concept of "truthy" and "falsey" values in order to evaluate the truthiness or the falseness of values when they are being evaluated inside <code>if</code> statements, loops (<code>while</code>, <code>do-while</code>, <code>for</code>) and ternary operators (<code>condition ? expression_1 : expression_2</code>).</p>
+<p>Essentially, this means that, in Bleach, values of any type (built-in or user-defined) can be used in places where a value of type <code>bool</code> is expected. Moreover, Bleach opted to follow the same convention of Ruby in this matter:</p>
 <ul>
 <li><strong>Falsey values:</strong> <code>false</code>, <code>nil</code>.</li>
 <li><strong>Truthy values:</strong> Any other value that is not <code>false</code> nor <code>nil</code>.</li>
 </ul>
+<h3 id="type-nil"><a class="header" href="#type-nil">Type: <code>nil</code></a></h3>
+<p>This type is an old acquaintance for most programmers. The nil type has just one possible value, the <code>nil</code> value. In short this value conveys the idea of "no value" or the "absence of a value".</p>
+<pre><code class="language-ruby">nil
+</code></pre>
+<p>In other programming languages, such type might be called <code>null</code>, <code>nil</code>, <code>NULL</code> or <code>nullptr</code>. Here, in Bleach, we are going to follow Ruby's influence and use <code>nil</code> to denote this idea.</p>
+<p>It is common knowledge that there are lots of arguments for not having such type in a language since null pointer errors have been causing a lot of headache since Tony Hoare introduced this idea back in the 60s.</p>
+<p>However, according to Robert Nystrom (author of the "Crafting Interpreters" book and creator of the Lox programming language, which are both the major references Bleach where got its inspiration), if you want to implement a statically-typed language, it would be worth trying to ban this type. However, in a dynamically-typed language (which is Bleach's case), eliminating it is often more annoying and troublesome than allowing it. Thus, Nystrom's advice was followed on this matter.</p>
 <h3 id="type-num"><a class="header" href="#type-num">Type: <code>num</code></a></h3>
-<p>For the sake of simplicity, Bleach has only one type to represent numbers: the <code>num</code> type.</p>
-<p>Behind the scenes, such type is implemented using a double-precision floating point number (The C++ <code>double</code> type).</p>
-<p>I implemented it this way because double-precision floating point numbers can also represent a wide range of integers, covering a lot of territory, while maintaining the simplicity that I innitialy envisioned.</p>
+<p>In favor of simplicity, Bleach has only one type to represent numbers: the <code>num</code> type. This type can be used to represent both integers and floating-point numbers.</p>
+<p>Behind the scenes, this type is implemented with a double-precision floating-point type, which allows Bleach to cover a lot of territory when it comes to numerical values while still keeping the simplicity initially envisioned for the language.</p>
 <p>Usually, mature and popular programming languages have lots of syntax for numbers (binary, hexadecimal, octal, scientific notation, etc).</p>
-<p>Since Bleach's purpose is to be a programming language , we'll settle for basic integer and decimal literals, like the ones shown below:</p>
+<p>Since Bleach's purpose is to be an educational programming language, it has support for just basic integer and decimal literals, like the ones shown below:</p>
 <pre><code class="language-c++">2.71828
 3.14159
 23
+-16
+-9.9845
 </code></pre>
-<h3 id="type-nil"><a class="header" href="#type-nil">Type: <code>nil</code></a></h3>
-<p>This is an old friend to many of us.</p>
-<p>The nil type is a type that has only one value (<code>nil</code>). It conveys the idea of “no value” or "absence of a value".</p>
-<pre><code class="language-ruby">nil
-</code></pre>
-<p>In other programming languages, such type is called <code>null</code>, <code>nil</code>, <code>NULL</code> or <code>nullptr</code>.</p>
-<p>Here, in Bleach, we are going to follow Ruby's influence and use <code>nil</code> to denote this idea. This will help us distinguish between Bleach's <code>nil</code> value and C++ <code>nullptr</code> value (which is the equivalent value in the underlying implementation language).</p>
-<p>I know what you might be thinking right now... There are lots of arguments for not having a null value in a language since null pointer errors have been causing a lot of headache since Tony Hoare introduced this idea back in the 60s.</p>
-<p>However, according to Robert Nystrom (author of the "Crafting Interpreters" book and creator of the Lox programming language, which are both the major references Bleach where got its inspiration), if you want to implement a statically-typed language, it would be worth trying to ban NULL values. However, in a dynamically-typed language (which is Bleach's case), eliminating it is often more annoying and troublesome than allowing it. So I opted to follow Nystrom's advice on this matter.</p>
 <h2 id="compound-types"><a class="header" href="#compound-types">Compound Types</a></h2>
-<p>Compound types are basically types that can group multiple values into one. Bleach has two primitive compound types: <code>str</code> and <code>list</code>. Let's take a look at them:</p>
-<h3 id="type-str"><a class="header" href="#type-str">Type: <code>str</code></a></h3>
-<p>Again, nothing new here. If you have some experience with programming you already recognize this type. In Bleach, the <code>str</code> type represents an indexed-sequence of characters (a string), typically used to store and manipulate text.</p>
-<p>Some examples of literal values of this type:</p>
-<pre><code class="language-c++">"I am a string";
-""; // The empty string.
-"123"; // This is a string, not a value of type "num".
-</code></pre>
-<p>There are some aspects of this type that might differ from what you have seen in the previous languages you have worked with. Thus, I think it's a good idea to explain such aspects in more details:</p>
-<p>It's a sequence type. This means that value of the <code>str</code> type can be indexed. Indexing allows you to access individual characters from the value (which, in Bleach, are also values of type <code>str</code>).</p>
-<p>In Bleach, literals values of this type are <strong>always</strong> enclosed by double quotes.</p>
-<p>Finally, this type has the following methods associated with it <strong>(None of them have been implemented yet)</strong>:</p>
-<ul>
-<li><strong><code>clear</code>:</strong> Returns <code>nil</code>. This method cleans the contents from the value of <code>str</code> type. This change is made in-place.</li>
-<li><strong><code>empty</code>:</strong> Returns a <code>bool</code> value that signals whether the <code>str</code> value is empty or not.</li>
-<li><strong><code>find</code>:</strong> Returns a <code>num</code> value that identifies the index where there is the first occurrence of a provided substring (a value of type <code>str</code>) inside another value of type <code>str</code>. If the provided substring doesn't appear, the method returns <code>-1</code>.</li>
-<li><strong><code>length</code>:</strong> Returns a <code>num</code> value that represents the number of characters in the <code>str</code> value.</li>
-<li><strong><code>pop_back</code>:</strong> Returns a <code>str</code> value. This method removes the last character from the <code>str</code> value.</li>
-<li><strong><code>push_back</code>:</strong> Returns <code>nil</code>. This method adds another value of type <code>str</code> at the end of the <code>str</code> value.</li>
-<li><strong><code>size</code>:</strong> Returns a <code>num</code> value that represents the number of characters in the <code>str</code> value.</li>
-<li><strong><code>substr</code>:</strong> Returns a value of type <code>str</code> which is the substring of another value of type <code>str</code>. Such method expects two indexes (left, right), both of which are inclusive.</li>
-</ul>
+<p>Compound types are basically types that can group multiple values into one. Bleach has two primitive compound types: <code>list</code> and <code>str</code>. Let's take a look at them:</p>
 <h3 id="type-list"><a class="header" href="#type-list">Type: <code>list</code></a></h3>
-<p>If you are familiar with Python, then here it is an old friend of you. In Bleach, the <code>list</code> type represents an indexed-sequence of elements.</p>
-<p>Some examples of literal values of this type:</p>
+<p>Taking inspiration from Python, Bleach has this type. Here, the <code>list</code> type represents a linear-sequence of elements. As previously stated, Bleach is a dynamically-typed language, just like Python. Thus, the <code>list</code> type can store values of different typeswith no issues. Moreover, Bleach has support for list literals, just as the ones shown below:</p>
 <pre><code class="language-c++">[0, 1, 2, 3, 2.71, 3.14159]; // A list where all elements are of type "num".
 ["hello", "there"]; // A list where all elements are of type "str".
 []; // An empty list.
@@ -235,18 +214,143 @@ false
 [nil, nil, nil]; // A list where all elements are of type "nil".
 [false, "Brazil", 9.98, true, nil]; // A list where elements are of different types. This is allowed in Bleach.
 </code></pre>
-<p>There are some aspects of this type that might differ from what you have seen in the previous languages you have worked with. Thus, I think it's a good idea to explain such aspects in more details:</p>
-<p>It's a sequence type. This means that lists can be indexed. Indexing allows you to access individual elements from the list.</p>
-<p>Finally, this type has the following methods associated with it <strong>(None of them have been implemented yet)</strong>:</p>
+<p>There are some aspects of this type that might differ from what you have seen in the previous languages you have worked with. The <code>list</code> type in Bleach has the following useful methods that makes the student’s life easier when working with this type.</p>
+<p>Finally, this type has the following methods associated with it:</p>
 <ul>
-<li><strong><code>back</code>:</strong> Returns the last element of a value of type <code>list</code>. However, it does not make any changes to the value of type <code>list</code>.</li>
-<li><strong><code>clear</code>:</strong> Returns <code>nil</code>. This method cleans the content from the value of <code>list</code> type. This change is made in-place.</li>
-<li><strong><code>empty</code>:</strong> Returns a <code>bool</code> value that signals whether the <code>list</code> value is empty or not.</li>
-<li><strong><code>front</code>:</strong> Returns the first element of a value of type <code>list</code>. However, it does not make any changes to the value of type <code>list</code>.</li>
-<li><strong><code>pop_back</code>:</strong> Returns the last element of a value of type <code>list</code>. This method removes the last element from the <code>list</code> value.</li>
-<li><strong><code>push_back</code>:</strong> Returns <code>nil</code>. This method adds an element of any type (whether it's a built-in or user-defined one) at the end of the <code>list</code> value.</li>
-<li><strong><code>size</code>:</strong> Returns a <code>num</code> value that represents the number of elements in the <code>list</code> value.</li>
+<li><strong><code>append</code>:</strong> Responsible for adding one value of any type to the end of the list value it was called on. Returns <code>nil</code>.</li>
 </ul>
+<pre><code class="language-ts">let l = [];
+l.append(1);
+
+print l; // [1]
+</code></pre>
+<ul>
+<li><strong><code>clear</code>:</strong> Method responsible for deleting every element that is currently stored inside the list value it was called on. Returns <code>nil</code>.</li>
+</ul>
+<pre><code class="language-ts">let l = [1, 2, 3, 4, nil, "hello"];
+l.clear();
+
+print l; // []
+</code></pre>
+<ul>
+<li><strong><code>empty</code>:</strong> Responsible for checking whether the list value it was called on currently has values stored inside it or not. Returns a <code>bool</code> value.</li>
+</ul>
+<pre><code class="language-ts">let l = [1, 2, 3];
+let isEmpty = l.empty();
+
+print isEmpty; // false
+</code></pre>
+<ul>
+<li><strong><code>fill</code>:</strong> Responsible for resizing the list value it was called on to a provided size and also filling all of its indexes with a provided value of any type. Returns <code>nil</code>.</li>
+</ul>
+<pre><code class="language-ts">let l = [];
+l.fill("hello", 3);
+
+print l; // ["hello", "hello", "hello"]
+</code></pre>
+<ul>
+<li><strong><code>getAt</code>:</strong> Responsible for returning the value present at the provided index, which must be an integer number (represented by a <code>num</code> value). Returns a value of any type. Trying to get a value from an index that does not exist in the <code>list</code> value will result in a runtime error being thrown.</li>
+</ul>
+<pre><code class="language-ts">let l = [1, 2, 3];
+let v = l.getAt(0);
+
+print v; // 1
+</code></pre>
+<ul>
+<li><strong><code>pop</code>:</strong> Responsible for deleting and returning the last element present inside a <code>list</code> value, if any. Returns a value of any type. In case the <code>list</code> value is already empty, calling this method will result in a runtime error being thrown.</li>
+</ul>
+<pre><code class="language-ts">let l = [42, 54, 23, 6];
+let lastValue = l.pop();
+
+print lastValue; // 6
+</code></pre>
+<ul>
+<li><strong><code>setAt</code>:</strong> Responsible for setting a value stored at the provided index, which must be an integer number (represented by a <code>num</code> value) to the value that was provided. Returns <code>nil</code>. Trying to set a value to an index that does not exist in the <code>list</code> value will result in a runtime error being thrown.</li>
+</ul>
+<pre><code class="language-ts">let l = [1, 2, 3];
+l.setAt(0, 3.14159);
+
+print l; // [3.14159, 2, 3]
+</code></pre>
+<ul>
+<li><strong><code>size</code>:</strong> Responsible for checking and returning the current amount of elements that the list value it was on called on currently has. Returns a <code>num</code> value.</li>
+</ul>
+<pre><code class="language-ts">let l = [2.71, 3.14, 9.98];
+let lSize = l.size();
+
+print lSize; // 3
+</code></pre>
+<p><strong>Side Note #1: The <code>list</code> type does not have support for indexing using square brackets (<code>[]</code>). However, by using the methods <code>getAt</code> and <code>setAt</code> one can obtain the same behavior.</strong></p>
+<p><strong>Side Note #2: It is important to highlight that any misuse of the methods presented above will result in a runtime error during the program’s execution.</strong></p>
+<h3 id="type-str"><a class="header" href="#type-str">Type: <code>str</code></a></h3>
+<p>Also taking inspiration from Python, Bleach has this type. The str type represents an indexed-sequence of characters (a string), typically used to store and manipulate text. Just as the <code>list</code> type, Bleach also has support for literal values of this type, as shown below:</p>
+<pre><code class="language-c++">"I am a string";
+""; // The empty string.
+"123"; // This is a string, not a value of type "num".
+</code></pre>
+<p>There are other aspects about the str type that must be mentioned.</p>
+<p>First of all, it is important to recall that it is a sequence type. In short, it means that values of this  type can be indexed. In a string, indexing usually allows the programmer to access individual characters from the value, which, in the Bleach programming language, are also values of the <code>str</code> type.</p>
+<p>Also, in Bleach, literals values of this type are always enclosed by double quotes (<code>""</code>).</p>
+<p>Finally, as in Python, this type has the some methods available:</p>
+<ul>
+<li><strong><code>empty</code>:</strong> Responsible for checking whether the <code>str</code> value it was called is equal to <code>""</code> or not. Returns a <code>bool</code> value.</li>
+</ul>
+<pre><code class="language-ts">let s = "hello";
+let isEmpty = s.empty();
+
+print isEmpty; // false
+</code></pre>
+<ul>
+<li><strong><code>find</code>:</strong> Responsible for trying to figure out if the provided sub-string (a <code>str</code> value) exists within the str value the method was called on. Returns a <code>num</code> value which denotes the index at which the sub-string appears, otherwise returns <code>-1</code>.</li>
+</ul>
+<pre><code class="language-ts">let s = "racecar";
+let idx = s.find("car");
+
+print idx; // 4
+</code></pre>
+<ul>
+<li><strong><code>getAt</code>:</strong> Responsible for returning the <code>str</code> value of length 1 present at the provided index, which is supposed to be an integer number (a <code>num</code> value). Returns a <code>str</code> value.</li>
+</ul>
+<pre><code class="language-ts">let s = "Uryu";
+let ch = s.getAt(1);
+
+print ch; // "r"
+</code></pre>
+<ul>
+<li><strong><code>length</code>:</strong> Responsible for checking and returning the current amount of characters (which are also values of type <code>str</code>) that the <code>str</code> value it was on called on currently has. Returns a <code>num</code> value.</li>
+</ul>
+<pre><code class="language-ts">let s = "Ichigo";
+let sLength = s.length();
+
+print sLength; // 6
+</code></pre>
+<ul>
+<li><strong><code>split</code>:</strong> Responsible for generating a <code>list</code> value where each value is of <code>str</code> type. This method receives as its unique argument a value of <code>str</code> type that works as the separator. Returns a <code>list</code> value.</li>
+</ul>
+<pre><code class="language-ts">let s = "one-two-three";
+let l = s.split("-");
+
+print l; // ["one", "two", "three"]
+</code></pre>
+<ul>
+<li><strong><code>setAt</code>:</strong> Responsible for setting the value stored at the provided index to the value that was provided (which must be a <code>str</code> value of length <code>1</code>). Returns <code>nil</code>.</li>
+</ul>
+<pre><code class="language-ts">let s = "Dice";
+print s; // "Dice"
+
+s.setAt(0, "N");
+print s; // "Nice"
+</code></pre>
+<ul>
+<li><strong><code>substr</code>:</strong> Responsible for retrieving a sub-string from the str value it was called on. The method receives two arguments that are integer numbers (values of <code>num</code> type) that work as the start and end delimiters. It is worth mentioning that both delimiters are <strong>inclusive</strong>. Returns a <code>str</code> value.</li>
+</ul>
+<pre><code class="language-ts">let s = "racecar";
+let subs = s.substr(0, 2);
+
+print subs; // "rac"
+</code></pre>
+<p><strong>Side Note #1: The <code>str</code> type does not have support for indexing using square brackets (<code>[]</code>). However, by using the methods <code>getAt</code> and <code>setAt</code> one can obtain the same behavior.</strong></p>
+<p><strong>Side Note #2: It is important to highlight that any misuse of the methods presented above will result in a runtime error during the program’s execution.</strong></p>
 
                     </main>
 
@@ -277,22 +381,6 @@ false
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

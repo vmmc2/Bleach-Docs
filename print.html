@@ -157,7 +157,7 @@
 <h2 id="what-is-bleach-and-why-it-was-created"><a class="header" href="#what-is-bleach-and-why-it-was-created">What is Bleach and why it was created?</a></h2>
 <p>Bleach is a programming language designed to give Computer Science students a more interesting and rewarding experience while taking their first "Introduction to Compilers" course.</p>
 <p>The language was implemented with this purpose due to the fact that, based on my personal experience and on certain studies (which I will cite at the end of the chapter), such courses tend to be too much focused on its theoretical aspects to the detriment of its practical ones.</p>
-<p>Therefore, it's common for students that are taking this course to sometimes find it boring or even uninteresting and demotivating.</p>
+<p>Therefore, it is common for students that are taking this course to sometimes find it boring or even uninteresting and demotivating.</p>
 <p>Based on this, the motivation to build Bleach was born. The cornerstone idea behind Bleach is: a language that can be used in a classroom environment to teach the most fundamental ideas and concepts of Programming Languages implementation in an incremental way, using well-known languagues and techniques as a basis to such objective.</p>
 <h2 id="a-glimpse-on-bleachs-features"><a class="header" href="#a-glimpse-on-bleachs-features">A glimpse on Bleach's features</a></h2>
 <h3 id="high-level"><a class="header" href="#high-level">High-Level</a></h3>
@@ -168,18 +168,18 @@
 <p>However, you will notice, as you go through this book, that Bleach also has similarities with <strong>Java, Lox, Python, Ruby and Rust</strong> when it comes to syntax.</p>
 <h3 id="dynamically-typed"><a class="header" href="#dynamically-typed">Dynamically Typed</a></h3>
 <p>Here is the first reason to make Bleach a "high-level" scripting language. Our three inspirations that fit in this category are all dynamically typed languages.</p>
-<p>If you don't remember (or don't know) what a dynamically typed language is, don't get nervous. A dynamically typed language is simply a programming language where the variables don't store type information. Instead, the value stored inside a variable holds the type information. This essentialy implies two things:</p>
+<p>If you don't remember (or don't know) what a dynamically typed language is, don't get nervous. A dynamically typed language is simply a programming language where the variables don't store type information. Instead, the value stored inside a variable holds the type information. This essentially implies two things:</p>
 <ul>
 <li>Variables are able to store a value of any type.</li>
 <li>Variables are able to store values of different types at different points in time.</li>
 </ul>
 <p>In contrast to dynamically typed programming languages, there are also statically typed ones. This begs the question:</p>
 <p><strong>Why not make Bleach a statically typed one?</strong></p>
-<p><strong>The answer is straightforward:</strong> If I decided to make it static, I would need to implement a static type system for it and this is simply too much work to learn and implement. Moreover, type systems are no joke. There is a reason this subject has its own course in master's or doctoral programs. This being said, I think it's obvious to conclude that such a thing could not be teached in a complete way in an undergraduate and introductory course. So... yeah, if I made this decision, I would be contradicting myself about Bleach's reason to exist, which is (in case you don't remember) teach the most fundamental ideas and concepts of Programming Languages implementation. Thus, I didn't follow design decisions that led to advanced ideas and concepts in the area of ​​compilers and programming languages</p>
+<p><strong>The answer is straightforward:</strong> If I decided to make it static, I would need to implement a static type system for it and this is simply too much work to learn and implement. Moreover, type systems are no joke. There is a reason this subject has its own course in MsC or PhD programs. That being said, I think it is obvious to conclude that such a thing could not be teached in a complete way in an undergraduate and introductory course. So... yeah, if I made this decision, I would be contradicting myself about Bleach's reason to exist, which is (in case you don't remember) teach the most fundamental ideas and concepts of Programming Languages implementation. Thus, I didn't follow design decisions that led to advanced ideas and concepts in the area of ​​compilers and programming languages</p>
 <h3 id="automatic-memory-management"><a class="header" href="#automatic-memory-management">Automatic Memory Management</a></h3>
 <p>One of the reasons that motivates the creation of "high-level" scripting languages is the need to free programmers from the burden of manually managing memory (Yes, I am looking at you: <code>malloc</code>, <code>calloc</code>, <code>realloc</code> and <code>free</code>).</p>
-<p>Since Bleach fits into the category of "high-level" scripting languages, it's not a language with manual memory management. Instead, it has an automatic one.</p>
-<p>Essentialy, this means that Bleach's runtime () will handle the allocation and deallocation of memory for us. Since this implementation of Bleach is a Tree-Walk Interpreter, things work in a different way than a Garbage Collector, for example. Yes, this implementation doesn't contain one written from scratch.</p>
+<p>Since Bleach fits into the category of "high-level" scripting languages, it is not a language with manual memory management. Instead, it has an automatic one.</p>
+<p>Essentially, this means that Bleach's runtime () will handle the allocation and deallocation of memory for us. Since this implementation of Bleach is a Tree-Walk Interpreter, things work in a different way than a Garbage Collector, for example. Yes, this implementation doesn't contain one written from scratch.</p>
 <p>Briefly explaining, in a Tree-Walk Interpreter an AST (Abstract Syntax Tree) will be generated by the parser. After some static analysis steps, the AST will be given to the interpreter, so it can execute the code represented by the AST.</p>
 <p>In such type of interpreter, the execution of code simply means that a traversal through the generated AST will be done. When doing such traversal, two things happen:</p>
 <ul>
@@ -188,80 +188,59 @@
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="data-types"><a class="header" href="#data-types">Data Types</a></h1>
 <h2 id="overview"><a class="header" href="#overview">Overview</a></h2>
-<p>In short, Bleach's built-in types are just the 5 listed below (4 built-in types have been implemented by now):</p>
+<p>In short, Bleach's built-in types are just the 5 listed below. These data types are divided into 2 categories (Scalar Types and Compound Types):</p>
+<ul>
+<li>
 <p><strong>Scalar Types:</strong></p>
 <ul>
 <li><code>bool</code></li>
-<li><code>num</code></li>
 <li><code>nil</code></li>
+<li><code>num</code></li>
 </ul>
+</li>
+<li>
 <p><strong>Compound Types:</strong></p>
 <ul>
-<li><code>str</code> (Work in progress)</li>
-<li><code>list</code> (Not implemented yet)</li>
+<li><code>list</code></li>
+<li><code>str</code></li>
 </ul>
-<p>It's important to mention that such built-in types are divided into two groups: <strong>scalar types</strong> and <strong>compound types.</strong> I'll walkthrough each of such groups and their respective types, giving brief explanations and examples.</p>
+</li>
+</ul>
 <h2 id="scalar-types"><a class="header" href="#scalar-types">Scalar Types</a></h2>
-<p>A scalar type is a type that can only represent a single value. As seen above, Bleach has three primary scalar types: <code>bool</code>, <code>num</code> and  <code>nil</code>. You may recognize these from other programming languages. Let’s see how they work in Bleach:</p>
+<p>A scalar type is a type that can only represent a single value. As seen above, Bleach has three primary scalar types: <code>bool</code>, <code>nil</code> and  <code>num</code>. You may recognize these from other programming languages. Let’s see how they work in Bleach:</p>
 <h3 id="type-bool"><a class="header" href="#type-bool">Type: <code>bool</code></a></h3>
-<p>The Boolean type. Such type is used to perform logical operations and is vastly used in logic and Boolean algebra.</p>
-<p>In Bleach, things are not different, we have two possible values for such type (and, obviously, a literal for each value):</p>
+<p>This data type is used to represent one of two possible values: true or false. Such values are used to express logical conditions and to control the execution of certain parts of a program’s source code. As in other languages, the only two possible values for this specific data type are:</p>
 <pre><code class="language-c++">true
 false
 </code></pre>
-<h4 id="side-note-truthy-and-falsey-values"><a class="header" href="#side-note-truthy-and-falsey-values">Side Note: Truthy and Falsey values</a></h4>
-<p>Bleach, like Ruby and many other programming languages, has the concepts of <strong>truthy</strong> and <strong>falsey</strong> values to determine the truthiness or falseness of values when evaluating conditions, such as in <code>if</code> statements, <code>do-while</code> loops, <code>for</code> loops, <code>while</code> loops and ternary operators (<code>?</code>).</p>
-<p>Basically, this means that values of any type (built-in or user-defined) can be used where a value of <code>bool</code> type is expected.</p>
-<p>In short, Bleach follows this convention:</p>
+<p>In this context, it is important to mention that Bleach takes inspiration from Ruby and other modern programming languages and implement the concept of "truthy" and "falsey" values in order to evaluate the truthiness or the falseness of values when they are being evaluated inside <code>if</code> statements, loops (<code>while</code>, <code>do-while</code>, <code>for</code>) and ternary operators (<code>condition ? expression_1 : expression_2</code>).</p>
+<p>Essentially, this means that, in Bleach, values of any type (built-in or user-defined) can be used in places where a value of type <code>bool</code> is expected. Moreover, Bleach opted to follow the same convention of Ruby in this matter:</p>
 <ul>
 <li><strong>Falsey values:</strong> <code>false</code>, <code>nil</code>.</li>
 <li><strong>Truthy values:</strong> Any other value that is not <code>false</code> nor <code>nil</code>.</li>
 </ul>
+<h3 id="type-nil"><a class="header" href="#type-nil">Type: <code>nil</code></a></h3>
+<p>This type is an old acquaintance for most programmers. The nil type has just one possible value, the <code>nil</code> value. In short this value conveys the idea of "no value" or the "absence of a value".</p>
+<pre><code class="language-ruby">nil
+</code></pre>
+<p>In other programming languages, such type might be called <code>null</code>, <code>nil</code>, <code>NULL</code> or <code>nullptr</code>. Here, in Bleach, we are going to follow Ruby's influence and use <code>nil</code> to denote this idea.</p>
+<p>It is common knowledge that there are lots of arguments for not having such type in a language since null pointer errors have been causing a lot of headache since Tony Hoare introduced this idea back in the 60s.</p>
+<p>However, according to Robert Nystrom (author of the "Crafting Interpreters" book and creator of the Lox programming language, which are both the major references Bleach where got its inspiration), if you want to implement a statically-typed language, it would be worth trying to ban this type. However, in a dynamically-typed language (which is Bleach's case), eliminating it is often more annoying and troublesome than allowing it. Thus, Nystrom's advice was followed on this matter.</p>
 <h3 id="type-num"><a class="header" href="#type-num">Type: <code>num</code></a></h3>
-<p>For the sake of simplicity, Bleach has only one type to represent numbers: the <code>num</code> type.</p>
-<p>Behind the scenes, such type is implemented using a double-precision floating point number (The C++ <code>double</code> type).</p>
-<p>I implemented it this way because double-precision floating point numbers can also represent a wide range of integers, covering a lot of territory, while maintaining the simplicity that I innitialy envisioned.</p>
+<p>In favor of simplicity, Bleach has only one type to represent numbers: the <code>num</code> type. This type can be used to represent both integers and floating-point numbers.</p>
+<p>Behind the scenes, this type is implemented with a double-precision floating-point type, which allows Bleach to cover a lot of territory when it comes to numerical values while still keeping the simplicity initially envisioned for the language.</p>
 <p>Usually, mature and popular programming languages have lots of syntax for numbers (binary, hexadecimal, octal, scientific notation, etc).</p>
-<p>Since Bleach's purpose is to be a programming language , we'll settle for basic integer and decimal literals, like the ones shown below:</p>
+<p>Since Bleach's purpose is to be an educational programming language, it has support for just basic integer and decimal literals, like the ones shown below:</p>
 <pre><code class="language-c++">2.71828
 3.14159
 23
+-16
+-9.9845
 </code></pre>
-<h3 id="type-nil"><a class="header" href="#type-nil">Type: <code>nil</code></a></h3>
-<p>This is an old friend to many of us.</p>
-<p>The nil type is a type that has only one value (<code>nil</code>). It conveys the idea of “no value” or "absence of a value".</p>
-<pre><code class="language-ruby">nil
-</code></pre>
-<p>In other programming languages, such type is called <code>null</code>, <code>nil</code>, <code>NULL</code> or <code>nullptr</code>.</p>
-<p>Here, in Bleach, we are going to follow Ruby's influence and use <code>nil</code> to denote this idea. This will help us distinguish between Bleach's <code>nil</code> value and C++ <code>nullptr</code> value (which is the equivalent value in the underlying implementation language).</p>
-<p>I know what you might be thinking right now... There are lots of arguments for not having a null value in a language since null pointer errors have been causing a lot of headache since Tony Hoare introduced this idea back in the 60s.</p>
-<p>However, according to Robert Nystrom (author of the "Crafting Interpreters" book and creator of the Lox programming language, which are both the major references Bleach where got its inspiration), if you want to implement a statically-typed language, it would be worth trying to ban NULL values. However, in a dynamically-typed language (which is Bleach's case), eliminating it is often more annoying and troublesome than allowing it. So I opted to follow Nystrom's advice on this matter.</p>
 <h2 id="compound-types"><a class="header" href="#compound-types">Compound Types</a></h2>
-<p>Compound types are basically types that can group multiple values into one. Bleach has two primitive compound types: <code>str</code> and <code>list</code>. Let's take a look at them:</p>
-<h3 id="type-str"><a class="header" href="#type-str">Type: <code>str</code></a></h3>
-<p>Again, nothing new here. If you have some experience with programming you already recognize this type. In Bleach, the <code>str</code> type represents an indexed-sequence of characters (a string), typically used to store and manipulate text.</p>
-<p>Some examples of literal values of this type:</p>
-<pre><code class="language-c++">"I am a string";
-""; // The empty string.
-"123"; // This is a string, not a value of type "num".
-</code></pre>
-<p>There are some aspects of this type that might differ from what you have seen in the previous languages you have worked with. Thus, I think it's a good idea to explain such aspects in more details:</p>
-<p>It's a sequence type. This means that value of the <code>str</code> type can be indexed. Indexing allows you to access individual characters from the value (which, in Bleach, are also values of type <code>str</code>).</p>
-<p>In Bleach, literals values of this type are <strong>always</strong> enclosed by double quotes.</p>
-<p>Finally, this type has the following methods associated with it <strong>(None of them have been implemented yet)</strong>:</p>
-<ul>
-<li><strong><code>clear</code>:</strong> Returns <code>nil</code>. This method cleans the contents from the value of <code>str</code> type. This change is made in-place.</li>
-<li><strong><code>empty</code>:</strong> Returns a <code>bool</code> value that signals whether the <code>str</code> value is empty or not.</li>
-<li><strong><code>find</code>:</strong> Returns a <code>num</code> value that identifies the index where there is the first occurrence of a provided substring (a value of type <code>str</code>) inside another value of type <code>str</code>. If the provided substring doesn't appear, the method returns <code>-1</code>.</li>
-<li><strong><code>length</code>:</strong> Returns a <code>num</code> value that represents the number of characters in the <code>str</code> value.</li>
-<li><strong><code>pop_back</code>:</strong> Returns a <code>str</code> value. This method removes the last character from the <code>str</code> value.</li>
-<li><strong><code>push_back</code>:</strong> Returns <code>nil</code>. This method adds another value of type <code>str</code> at the end of the <code>str</code> value.</li>
-<li><strong><code>size</code>:</strong> Returns a <code>num</code> value that represents the number of characters in the <code>str</code> value.</li>
-<li><strong><code>substr</code>:</strong> Returns a value of type <code>str</code> which is the substring of another value of type <code>str</code>. Such method expects two indexes (left, right), both of which are inclusive.</li>
-</ul>
+<p>Compound types are basically types that can group multiple values into one. Bleach has two primitive compound types: <code>list</code> and <code>str</code>. Let's take a look at them:</p>
 <h3 id="type-list"><a class="header" href="#type-list">Type: <code>list</code></a></h3>
-<p>If you are familiar with Python, then here it is an old friend of you. In Bleach, the <code>list</code> type represents an indexed-sequence of elements.</p>
-<p>Some examples of literal values of this type:</p>
+<p>Taking inspiration from Python, Bleach has this type. Here, the <code>list</code> type represents a linear-sequence of elements. As previously stated, Bleach is a dynamically-typed language, just like Python. Thus, the <code>list</code> type can store values of different typeswith no issues. Moreover, Bleach has support for list literals, just as the ones shown below:</p>
 <pre><code class="language-c++">[0, 1, 2, 3, 2.71, 3.14159]; // A list where all elements are of type "num".
 ["hello", "there"]; // A list where all elements are of type "str".
 []; // An empty list.
@@ -269,43 +248,164 @@ false
 [nil, nil, nil]; // A list where all elements are of type "nil".
 [false, "Brazil", 9.98, true, nil]; // A list where elements are of different types. This is allowed in Bleach.
 </code></pre>
-<p>There are some aspects of this type that might differ from what you have seen in the previous languages you have worked with. Thus, I think it's a good idea to explain such aspects in more details:</p>
-<p>It's a sequence type. This means that lists can be indexed. Indexing allows you to access individual elements from the list.</p>
-<p>Finally, this type has the following methods associated with it <strong>(None of them have been implemented yet)</strong>:</p>
+<p>There are some aspects of this type that might differ from what you have seen in the previous languages you have worked with. The <code>list</code> type in Bleach has the following useful methods that makes the student’s life easier when working with this type.</p>
+<p>Finally, this type has the following methods associated with it:</p>
 <ul>
-<li><strong><code>back</code>:</strong> Returns the last element of a value of type <code>list</code>. However, it does not make any changes to the value of type <code>list</code>.</li>
-<li><strong><code>clear</code>:</strong> Returns <code>nil</code>. This method cleans the content from the value of <code>list</code> type. This change is made in-place.</li>
-<li><strong><code>empty</code>:</strong> Returns a <code>bool</code> value that signals whether the <code>list</code> value is empty or not.</li>
-<li><strong><code>front</code>:</strong> Returns the first element of a value of type <code>list</code>. However, it does not make any changes to the value of type <code>list</code>.</li>
-<li><strong><code>pop_back</code>:</strong> Returns the last element of a value of type <code>list</code>. This method removes the last element from the <code>list</code> value.</li>
-<li><strong><code>push_back</code>:</strong> Returns <code>nil</code>. This method adds an element of any type (whether it's a built-in or user-defined one) at the end of the <code>list</code> value.</li>
-<li><strong><code>size</code>:</strong> Returns a <code>num</code> value that represents the number of elements in the <code>list</code> value.</li>
+<li><strong><code>append</code>:</strong> Responsible for adding one value of any type to the end of the list value it was called on. Returns <code>nil</code>.</li>
 </ul>
+<pre><code class="language-ts">let l = [];
+l.append(1);
+
+print l; // [1]
+</code></pre>
+<ul>
+<li><strong><code>clear</code>:</strong> Method responsible for deleting every element that is currently stored inside the list value it was called on. Returns <code>nil</code>.</li>
+</ul>
+<pre><code class="language-ts">let l = [1, 2, 3, 4, nil, "hello"];
+l.clear();
+
+print l; // []
+</code></pre>
+<ul>
+<li><strong><code>empty</code>:</strong> Responsible for checking whether the list value it was called on currently has values stored inside it or not. Returns a <code>bool</code> value.</li>
+</ul>
+<pre><code class="language-ts">let l = [1, 2, 3];
+let isEmpty = l.empty();
+
+print isEmpty; // false
+</code></pre>
+<ul>
+<li><strong><code>fill</code>:</strong> Responsible for resizing the list value it was called on to a provided size and also filling all of its indexes with a provided value of any type. Returns <code>nil</code>.</li>
+</ul>
+<pre><code class="language-ts">let l = [];
+l.fill("hello", 3);
+
+print l; // ["hello", "hello", "hello"]
+</code></pre>
+<ul>
+<li><strong><code>getAt</code>:</strong> Responsible for returning the value present at the provided index, which must be an integer number (represented by a <code>num</code> value). Returns a value of any type. Trying to get a value from an index that does not exist in the <code>list</code> value will result in a runtime error being thrown.</li>
+</ul>
+<pre><code class="language-ts">let l = [1, 2, 3];
+let v = l.getAt(0);
+
+print v; // 1
+</code></pre>
+<ul>
+<li><strong><code>pop</code>:</strong> Responsible for deleting and returning the last element present inside a <code>list</code> value, if any. Returns a value of any type. In case the <code>list</code> value is already empty, calling this method will result in a runtime error being thrown.</li>
+</ul>
+<pre><code class="language-ts">let l = [42, 54, 23, 6];
+let lastValue = l.pop();
+
+print lastValue; // 6
+</code></pre>
+<ul>
+<li><strong><code>setAt</code>:</strong> Responsible for setting a value stored at the provided index, which must be an integer number (represented by a <code>num</code> value) to the value that was provided. Returns <code>nil</code>. Trying to set a value to an index that does not exist in the <code>list</code> value will result in a runtime error being thrown.</li>
+</ul>
+<pre><code class="language-ts">let l = [1, 2, 3];
+l.setAt(0, 3.14159);
+
+print l; // [3.14159, 2, 3]
+</code></pre>
+<ul>
+<li><strong><code>size</code>:</strong> Responsible for checking and returning the current amount of elements that the list value it was on called on currently has. Returns a <code>num</code> value.</li>
+</ul>
+<pre><code class="language-ts">let l = [2.71, 3.14, 9.98];
+let lSize = l.size();
+
+print lSize; // 3
+</code></pre>
+<p><strong>Side Note #1: The <code>list</code> type does not have support for indexing using square brackets (<code>[]</code>). However, by using the methods <code>getAt</code> and <code>setAt</code> one can obtain the same behavior.</strong></p>
+<p><strong>Side Note #2: It is important to highlight that any misuse of the methods presented above will result in a runtime error during the program’s execution.</strong></p>
+<h3 id="type-str"><a class="header" href="#type-str">Type: <code>str</code></a></h3>
+<p>Also taking inspiration from Python, Bleach has this type. The str type represents an indexed-sequence of characters (a string), typically used to store and manipulate text. Just as the <code>list</code> type, Bleach also has support for literal values of this type, as shown below:</p>
+<pre><code class="language-c++">"I am a string";
+""; // The empty string.
+"123"; // This is a string, not a value of type "num".
+</code></pre>
+<p>There are other aspects about the str type that must be mentioned.</p>
+<p>First of all, it is important to recall that it is a sequence type. In short, it means that values of this  type can be indexed. In a string, indexing usually allows the programmer to access individual characters from the value, which, in the Bleach programming language, are also values of the <code>str</code> type.</p>
+<p>Also, in Bleach, literals values of this type are always enclosed by double quotes (<code>""</code>).</p>
+<p>Finally, as in Python, this type has the some methods available:</p>
+<ul>
+<li><strong><code>empty</code>:</strong> Responsible for checking whether the <code>str</code> value it was called is equal to <code>""</code> or not. Returns a <code>bool</code> value.</li>
+</ul>
+<pre><code class="language-ts">let s = "hello";
+let isEmpty = s.empty();
+
+print isEmpty; // false
+</code></pre>
+<ul>
+<li><strong><code>find</code>:</strong> Responsible for trying to figure out if the provided sub-string (a <code>str</code> value) exists within the str value the method was called on. Returns a <code>num</code> value which denotes the index at which the sub-string appears, otherwise returns <code>-1</code>.</li>
+</ul>
+<pre><code class="language-ts">let s = "racecar";
+let idx = s.find("car");
+
+print idx; // 4
+</code></pre>
+<ul>
+<li><strong><code>getAt</code>:</strong> Responsible for returning the <code>str</code> value of length 1 present at the provided index, which is supposed to be an integer number (a <code>num</code> value). Returns a <code>str</code> value.</li>
+</ul>
+<pre><code class="language-ts">let s = "Uryu";
+let ch = s.getAt(1);
+
+print ch; // "r"
+</code></pre>
+<ul>
+<li><strong><code>length</code>:</strong> Responsible for checking and returning the current amount of characters (which are also values of type <code>str</code>) that the <code>str</code> value it was on called on currently has. Returns a <code>num</code> value.</li>
+</ul>
+<pre><code class="language-ts">let s = "Ichigo";
+let sLength = s.length();
+
+print sLength; // 6
+</code></pre>
+<ul>
+<li><strong><code>split</code>:</strong> Responsible for generating a <code>list</code> value where each value is of <code>str</code> type. This method receives as its unique argument a value of <code>str</code> type that works as the separator. Returns a <code>list</code> value.</li>
+</ul>
+<pre><code class="language-ts">let s = "one-two-three";
+let l = s.split("-");
+
+print l; // ["one", "two", "three"]
+</code></pre>
+<ul>
+<li><strong><code>setAt</code>:</strong> Responsible for setting the value stored at the provided index to the value that was provided (which must be a <code>str</code> value of length <code>1</code>). Returns <code>nil</code>.</li>
+</ul>
+<pre><code class="language-ts">let s = "Dice";
+print s; // "Dice"
+
+s.setAt(0, "N");
+print s; // "Nice"
+</code></pre>
+<ul>
+<li><strong><code>substr</code>:</strong> Responsible for retrieving a sub-string from the str value it was called on. The method receives two arguments that are integer numbers (values of <code>num</code> type) that work as the start and end delimiters. It is worth mentioning that both delimiters are <strong>inclusive</strong>. Returns a <code>str</code> value.</li>
+</ul>
+<pre><code class="language-ts">let s = "racecar";
+let subs = s.substr(0, 2);
+
+print subs; // "rac"
+</code></pre>
+<p><strong>Side Note #1: The <code>str</code> type does not have support for indexing using square brackets (<code>[]</code>). However, by using the methods <code>getAt</code> and <code>setAt</code> one can obtain the same behavior.</strong></p>
+<p><strong>Side Note #2: It is important to highlight that any misuse of the methods presented above will result in a runtime error during the program’s execution.</strong></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="comments"><a class="header" href="#comments">Comments</a></h1>
 <h2 id="overview-1"><a class="header" href="#overview-1">Overview</a></h2>
 <p>Ideally, every programmer tries its best to make their code readable and understandable. However, there might be scenarios in which extra explanation is very welcomed.</p>
 <p>In such scenarios, programmers leave comments in their code that the compiler/interpreter will ignore but people reading the code may find useful.</p>
-<p>In Bleach, a programmer is allowed to write two different types of comments inside the code present in a Bleach file (<code>.bch</code>).</p>
+<p>By taking inspiration from C, in Bleach, a programmer is allowed to write two different types of comments inside the code present in a Bleach file (<code>.bch</code>).</p>
 <h2 id="single-line-comments"><a class="header" href="#single-line-comments">Single-Line Comments</a></h2>
 <p>In Bleach, a single-line comment starts with two slashes (<code>//</code>), and the comment continues until the end of the line, just like the example below:</p>
 <pre><code class="language-c">// Here you can put some extra information that the person reading your code might find useful.
 </code></pre>
 <p>For comments that extend beyond a single line, you’ll need to include <code>//</code> on each line, like this:</p>
-<pre><code class="language-c">// This is the beginning of what it's going to be a very long comment.
+<pre><code class="language-c">// This is the beginning of what it is going to be a very long comment.
 // Instead of making the user go all the way to the end of the line above
 // we can divide comments in different lines. However, always needing to use
 // // character seems to be very cumbersome.
 </code></pre>
 <p>Remember that comments can also be placed at the end of lines containing code:</p>
-<pre><code class="language-ts">let x = 123.45; // It's allowed to put a comment after a line of code.
-</code></pre>
-<p>However, Bleach, as Rust, recommends that the comment should appear on a separate line above the code it’s annotating:</p>
-<pre><code class="language-ts">// The variable below holds an approximate value of the constant Pi.
-let pi = 3.14159;
+<pre><code class="language-ts">let x = 123.45; // It is allowed to put a comment after a line of code.
 </code></pre>
 <h2 id="multi-line-comments"><a class="header" href="#multi-line-comments">Multi-Line Comments</a></h2>
-<p>For the reason mentioned above, Bleach also has support for multi-line comments.</p>
-<p>In Bleach, a multi-line comment has a beginning and also and ending. The beginning is denoted by a <code>/*</code>, while the ending is denoted by a <code>*/</code>. Everything that is written between these characters is considered a comment and, therefore, will be ignored by the Bleach Interpreter during runtime.</p>
+<p>Also like C, Bleach has support for multi-line comments.</p>
+<p>In Bleach, a multi-line comment has a beginning and also an ending. The beginning is denoted by a <code>/*</code>, while the ending is denoted by a <code>*/</code>. Everything that is written between these characters is considered a comment and, therefore, will be ignored by the Bleach Interpreter during runtime.</p>
 <p>The example below shows how to use them properly:</p>
 <pre><code class="language-ts">/*
 This
@@ -322,40 +422,46 @@ let e = 2.71;
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="variables"><a class="header" href="#variables">Variables</a></h1>
 <h2 id="overview-2"><a class="header" href="#overview-2">Overview</a></h2>
-<p>As you might already know, in a programming language, a variable is just a name associated with a storage location in memory. Such storage location is responsible for holding data that can be changed during the execution of a program.</p>
-<p>Another way to think about this is that variables allow us, developers, to store, retrieve and manipulate data by using the variable's name instead of needing to interact with the memory address where variable's data is at.</p>
+<p>A variable, as in most programming languages, can be viewed as just a name associated with a storage location in memory. Such storage location is responsible for holding data that can be changed during the execution of a program.</p>
 <h2 id="variables-in-bleach"><a class="header" href="#variables-in-bleach">Variables in Bleach</a></h2>
-<p><strong>The first point that is important to mention when it comes to variables in the Bleach language is that all of them are mutable.</strong></p>
-<p>Which means that, once a variable is declared, the programmer is allowed to perform any amount of assignments later on the program that is being written.</p>
-<p><strong>The second point that must be mentioned is that there is no concept of constants in Bleach. There are just mutable variables, as explained above.</strong></p>
-<p>The third point is that, in order to declare a new variable in Bleach, the programmer must use the <code>let</code> keyword:</p>
-<pre><code class="language-ts">let variable = "A str value";
+<p>In Bleach this is not different. Variables still have this main functionality. However, they have some particularities that might differ from variables in other programming languages. Such peculiarities are listed below:</p>
+<ul>
+<li>In Bleach, all variables are mutable. In other words, once a variable is declared, any amount of assignments are allowed to be performed on this declared variable.</li>
+<li>A direct consequence of the particularity explained above is that there is no concept of constants in Bleach.</li>
+<li>In Bleach, to declare a new variable, the let keyword must be used:</li>
+</ul>
+<pre><code class="language-ts">let s = "A value of type 'str'";
 </code></pre>
-<p>The fourth one is that, if during the declaration of a variable, an initializer is not provided, then, by default, the variable will store the <code>nil</code> value inside itself:</p>
+<ul>
+<li>In Bleach, if the declaration of a variable does not have an initializer, then, by default, the variable will store the <code>nil</code> value:</li>
+</ul>
 <pre><code class="language-ts">let someVariable;
 print someVariable; // nil
 </code></pre>
-<p>The last point, and maybe the most important of them all, is that since Bleach is a dynamically-typed programming language, its variables don't have types associated with them. <strong>Instead, it's the values that have types.</strong> The most important implication of this is that a variable can hold a value of any type at different points in time.</p>
-<p>In practice, Bleach allows the code snippet below with no problems:</p>
+<ul>
+<li>Since Bleach is a dynamically-typed programming language, variables do not have types associated with them. Instead, it is the value stored inside of a variable that has a type. The most important consequence of this fact is that a variable can hold values of different types at different points in time:</li>
+</ul>
 <pre><code class="language-ts">let a = "hello";
 print a; // "hello"
 
-a = 42;
-print a; // 42
+a = nil;
+print a; // nil
+
+a = 3.14 + 2.71;
+print a; // 5.85
 </code></pre>
 <h2 id="global-variables"><a class="header" href="#global-variables">Global Variables</a></h2>
 <p><strong>In case you need a refresh, a global variable is just a variable that has been declared outside of all functions, methods or classes, making it accessible from any part of the program.</strong></p>
 <p>Unlike local variables, that are confined to the scope in which they are declared (e.g., within a function), a global one has a larger scope and, thus, can be accessed, modified, or referenced from anywhere in the program, including within functions, methods or other code blocks.</p>
-<p><strong>One point that makes Bleach kind of unique is the fact that the programmer is allowed to redeclare a global variable anytime. This decision was made considering the fact that Bleach's interpreter is not only restricted to execute Bleach files, but can also run in a REPL mode and keeping track of which global variables were declared in such scenario is kind of annoying most of the times. Thus, I opted to make this implementation decision.</strong></p>
-<p>Essentialy, this means that the line of code below is perfectly valid:</p>
+<p><strong>One point that makes Bleach kind of unique is the fact that the programmer is allowed to redeclare a global variable anytime. This decision was made considering the fact that Bleach's interpreter is not only restricted to execute Bleach files, but can also run in a REPL mode and keeping track of which global variables were declared in such scenario is kind of annoying most of the times. Thus, this implementation decision was made.</strong></p>
+<p>In practice, this means that the line of code below is perfectly valid:</p>
 <pre><code class="language-ts">let pi = 3.14159;
 // write some code in the global scope.
 let pi = 9.51413;
 </code></pre>
 <h2 id="local-variables"><a class="header" href="#local-variables">Local Variables</a></h2>
-<p>Refreshing your mind: a local variable is a variable that is declared within a specific block of code, such as a function, method, an if statement or a loop statement. By the way, this is exactly how local variables work in Bleach.</p>
-<p>The scope of a local variable is limited to the block in which it is defined, meaning it can only be accessed and used within that block.</p>
-<p>Once the block of code finishes executing, the local variable is typically destroyed, and its memory is released.</p>
+<p>As expected from most programming language, Bleach supports local variables, which are those declared within a specific block of code, such as a function, method, an <code>if-elif-else</code> statement or a loop statement (<code>while</code>, <code>do-while</code>, <code>for</code>).</p>
+<p>In this regard, it is important to remember the reader that the scope of a local variable is limited to the block in which it is defined, meaning it can only be accessed and used within that block. Furthermore, once the block of code finishes executing, the local variable is normally destroyed, and its memory is released.</p>
 <p>The code snippet below shows an example of a variable that been declared inside a function and, thus, is an example of a local variable:</p>
 <pre><code class="language-ts">function foo(){
   let bar = "This is a local variable";
@@ -368,14 +474,17 @@ foo();
 </code></pre>
 <h2 id="variable-assignment"><a class="header" href="#variable-assignment">Variable Assignment</a></h2>
 <p>As shown above, a variable in Bleach can be declared through the use of the <code>let</code> keyword.</p>
-<p>Moreover, since there is no idea of immutability of variables in Bleach, it's allowed to assign different values of different types at different points in time to the declared variable. To do that, the programmer uses the assignment operator <code>=</code>.</p>
-<p>However, I would like to present some interesting semantics related to variable assignment in Bleach.</p>
-<p>The first one is that, in Bleach, an assignment is an expression. Not a statement. This has some interesting consequences.</p>
-<p>For example, since a variable assignment is an expression, it produces a value. Such value is the one that is being assigned to the variable:</p>
+<p>Moreover, since there is no idea of immutability of variables in Bleach, it is allowed to assign different values of different types at different points in time to the declared variable. To do that, the programmer uses the assignment operator <code>=</code>.</p>
+<p>Before moving forward, it is important to explain 2 semantic details of variable assignment in Bleach:</p>
+<ul>
+<li>The first one is that, in Bleach, an assignment is an expression. Not a statement. This has some interesting consequences. For example, since a variable assignment is an expression, it produces a value. Such value is the one that is being assigned to the variable:</li>
+</ul>
 <pre><code class="language-ts">let foo;
 print foo = 20; // 20
 </code></pre>
-<p>The second one is that it's completely possible to assign a value to more than one variable at once in the same assignment expression:</p>
+<ul>
+<li>The second one, which is a direct consequence of the first one, is that it is completely possible to assign a value to more than one variable at once in the same assignment expression:</li>
+</ul>
 <pre><code class="language-ts">let x = 20;
 let y = 42;
 
@@ -385,10 +494,10 @@ print x; // 13;
 print y; // 13;
 </code></pre>
 <h2 id="variable-shadowing"><a class="header" href="#variable-shadowing">Variable Shadowing</a></h2>
-<p>In case you are not familiar (or don't remember), variable shadowing is a process that commonly happens in programming.</p>
-<p>It's an effect where a variable declared within a certain scope (typically a local scope) has the same name as a variable in an outer scope.</p>
+<p>In case you are not familiar (or do not remember), variable shadowing is a process that commonly happens in programming.</p>
+<p>It is an effect where a variable declared within a certain scope (typically a local scope) has the same name as a variable in an outer scope.</p>
 <p>Then, the inner variable "shadows" or "hides" the outer variable within the scope where it is declared, meaning that within that scope, the inner variable takes precedence, and the outer variable cannot be directly accessed.</p>
-<p>The shadowing effect occurs because, before the program actually starts its execution, usually compilers an interpreters (and this includes the Bleach interpreter) do a static-time pass through the source code called "resolving". In this pass, variables are resolved by searching through scopes, starting from the innermost scope and moving outward. If a variable is found in an inner scope with the same name as one in an outer scope, the inner variable is used, effectively "shadowing" the outer one.</p>
+<p>The shadowing effect occurs because, before the program actually starts its execution, usually compilers and interpreters (and this includes the Bleach interpreter) do a static-time pass through the source code called "resolving". In this pass, variables are resolved by searching through scopes, starting from the innermost scope and moving outwards. If a variable is found in an inner scope with the same name as one in an outer scope, the inner variable is used, effectively "shadowing" the outer one.</p>
 <p>Pay attention to the fact that the shadowing effect is limited to the scope of the inner variable. Once the program exits that scope, the outer variable becomes "visible" to the program again.</p>
 <p>The example below shows a clear example of variable shadowing:</p>
 <pre><code class="language-ts">let a = 42;
@@ -422,9 +531,9 @@ print foo; // "hi"
 <h2 id="overview-3"><a class="header" href="#overview-3">Overview</a></h2>
 <p>As you also already know, operators in a programming language are symbols that are responsible for executing an operation on one or more operands (values or variables) in order to produce a result.</p>
 <p>Operators are fundamental building blocks in a programming language, allowing the programmer to manipulate data, perform calculations, compare values, and much more.</p>
-<p>In this page, we'll see what operators Bleach provides to us and how each of them behave and, at the end, we'll also see what is the precedence of each of these operators.</p>
+<p>In this page, the operators provided by Bleach are going to be presented to us. Also, there will be explanations about how each of them behave in different scenarios and, at the end, the precedence table of Bleach's is presented for consulting purposes.</p>
 <h2 id="unary-operators"><a class="header" href="#unary-operators">Unary Operators</a></h2>
-<p>An unary operator is, as its name suggests, an operator that expects just one operand. Bleach has two operators that fall in this category.</p>
+<p>These operators expects just 1 operand. Bleach has 2 operators that fall in this class.</p>
 <h3 id="arithmetical"><a class="header" href="#arithmetical">Arithmetical</a></h3>
 <p><strong>Negation (<code>-</code>):</strong> Negates the value of an operand of type <code>num</code>.</p>
 <pre><code class="language-ts">let number = 5;
@@ -437,62 +546,76 @@ print !b; // false
 print !!b; // true
 </code></pre>
 <h2 id="binary-operators"><a class="header" href="#binary-operators">Binary Operators</a></h2>
-<p>A binary operator is, as its name suggests, an operator that expects just two operands. Bleach has 12 operators that fall in this category.</p>
+<p>These operators expects just 2 operands. Bleach has 13 operators that fall in this class.</p>
 <h3 id="arithmetical-1"><a class="header" href="#arithmetical-1">Arithmetical</a></h3>
-<p><strong>Addition (<code>+</code>):</strong> This operator expects two operands. However it behaves differently depending on the types of the two received operands.</p>
-<ul>
-<li>Left operand (<code>num</code>) and Right operand (<code>num</code>): Adds the second (right) operand operands to the first (left) operand.</li>
-</ul>
+<h4 id="addition--this-operator-expects-2-operands-however-it-behaves-differently-depending-on-the-types-of-the-two-received-operands"><a class="header" href="#addition--this-operator-expects-2-operands-however-it-behaves-differently-depending-on-the-types-of-the-two-received-operands"><strong>Addition (<code>+</code>):</strong> This operator expects 2 operands. However it behaves differently depending on the types of the two received operands.</a></h4>
+<p><strong>Left operand (<code>num</code>) and Right operand (<code>num</code>):</strong> Adds the second (right) operand to the first (left) operand, producing a new value of type <code>num</code>.</p>
 <pre><code class="language-ts">print 2 + 3; // 5
 print 2.71 + 3.14159; // 5.85159
 </code></pre>
-<ul>
-<li>Left operand (<code>str</code>) and Right operand (<code>str</code>): Concatenates the second (right) operand to the first (left) operand.</li>
-</ul>
+<p><strong>Left operand (<code>str</code>) and Right operand (<code>str</code>):</strong> Concatenates the second (right) operand to the first (left) operand, producing a new value of type <code>str</code>.</p>
 <pre><code class="language-ts">print "hello," + " there!"; // "hello, there!"
 print "a" + "b"; // "ab"
 </code></pre>
-<ul>
-<li>Left operand (<code>num</code>) and Right operand (<code>str</code>): Converts the first (left) operand from the <code>num</code> type to the <code>str</code> type. Then, concatenates the second (right) operand to the first (left) operand, producing a new value of type <code>str</code>.</li>
-</ul>
+<p><strong>Left operand (<code>num</code>) and Right operand (<code>str</code>):</strong> Converts the first (left) operand from the <code>num</code> type to the <code>str</code> type. Then, concatenates the second (right) operand to the first (left) operand, producing a new value of type <code>str</code>.</p>
 <pre><code class="language-ts">print 2 + "two"; // "2two"
 </code></pre>
-<ul>
-<li>Left operand (<code>str</code>) and Right operand (<code>num</code>): Converts the second (right) operand from the type <code>num</code> to the type <code>str</code>. Then, concatenates the second (right) operand to the first (left) operand, producing a new value of type <code>str</code>.</li>
-</ul>
+<p><strong>Left operand (<code>str</code>) and Right operand (<code>num</code>):</strong> Converts the second (right) operand from the type <code>num</code> to the type <code>str</code>. Then, concatenates the second (right) operand to the first (left) operand, producing a new value of type <code>str</code>.</p>
 <pre><code class="language-ts">print "two" + 2; // "two2"
 </code></pre>
-<p><strong>Subtraction (<code>-</code>):</strong> This operator expects two operands of type <code>num</code>. It subtracts the second (right) operand from the first (left) operand.</p>
+<p><strong>Left operand (<code>list</code>) and Right operand (<code>list</code>):</strong> Concatenates the second (right) operand to the first (left) operand, producing a new value of type <code>list</code>.</p>
+<pre><code class="language-ts">print [1, 2, 3] + [4, 5, 6] // [1, 2, 3, 4, 5, 6]
+</code></pre>
+<p><strong>Left operand (<code>str</code>) and Right operand (<code>BleachInstance</code>):</strong> Calls the <code>"str"</code> method of the second (right) operand, which is an instance of an user-defined type (this is a default method that returns the string representation of an instance of an user-defined type). Then, concatenates the second (right) operand to the first (left) operand, producing a new value of type <code>str</code>.</p>
+<p><strong>Left operand (<code>BleachInstance</code>) and Right operand (<code>str</code>):</strong> Concatenates the second (right) operand to the string representation of the first (left) operand, which is an instance of an user-defined type. This happens because the <code>"str"</code> method of the first (left) operand is called, which also returns a value of type <code>str</code>. This produces a new value of type <code>str</code>.</p>
+<h4 id="subtraction---this-operator-expects-2-operands-of-type-num-it-subtracts-the-second-right-operand-from-the-first-left-operand"><a class="header" href="#subtraction---this-operator-expects-2-operands-of-type-num-it-subtracts-the-second-right-operand-from-the-first-left-operand"><strong>Subtraction (<code>-</code>):</strong> This operator expects 2 operands of type <code>num</code>. It subtracts the second (right) operand from the first (left) operand.</a></h4>
 <pre><code class="language-ts">print 5 - 3; // 2
 </code></pre>
-<p><strong>Multiplication (<code>*</code>):</strong> This operator expects two operands of type <code>num</code>. It multiplies the first (left) operand by the second (right) operand.</p>
+<h4 id="multiplication--this-operator-expects-2-operands-of-type-num-it-multiplies-the-first-left-operand-by-the-second-right-operand"><a class="header" href="#multiplication--this-operator-expects-2-operands-of-type-num-it-multiplies-the-first-left-operand-by-the-second-right-operand"><strong>Multiplication (<code>*</code>):</strong> This operator expects 2 operands of type <code>num</code>. It multiplies the first (left) operand by the second (right) operand.</a></h4>
 <pre><code class="language-ts">print 1.5 * 4; // 6
 </code></pre>
-<p><strong>Division (<code>/</code>):</strong> This operator expects two operands of type <code>num</code>. It divides the first (left) operand by the second (right) operand.</p>
+<h4 id="division--this-operator-expects-2-operands-of-type-num-it-divides-the-first-left-operand-by-the-second-right-operand"><a class="header" href="#division--this-operator-expects-2-operands-of-type-num-it-divides-the-first-left-operand-by-the-second-right-operand"><strong>Division (<code>/</code>):</strong> This operator expects 2 operands of type <code>num</code>. It divides the first (left) operand by the second (right) operand.</a></h4>
 <pre><code class="language-ts">print 5 / 2; // 2
 print 1 / 3; // 0.333333333333333
 </code></pre>
+<h4 id="remainder-this-operator-expects-2-operands-of-type-num-it-divides-the-first-left-operand-also-called-dividend-by-the-second-right-operand-also-called-divisor-and-returns-the-remainder-of-this-division-a-value-of-type-num-it-is-worth-mentioning-that-if-the-value-of-the-divisor-is-0-then-a-runtime-error-will-be-thrown"><a class="header" href="#remainder-this-operator-expects-2-operands-of-type-num-it-divides-the-first-left-operand-also-called-dividend-by-the-second-right-operand-also-called-divisor-and-returns-the-remainder-of-this-division-a-value-of-type-num-it-is-worth-mentioning-that-if-the-value-of-the-divisor-is-0-then-a-runtime-error-will-be-thrown"><strong>Remainder(<code>%</code>):</strong> This operator expects 2 operands of type <code>num</code>. It divides the first (left) operand, also called dividend, by the second (right) operand, also called divisor, and returns the remainder of this division (a value of type <code>num</code>). It is worth mentioning that if the value of the divisor is 0, then a runtime error will be thrown.</a></h4>
+<pre><code class="language-ts">print 5 % 2; // 1
+print 1 % 3; // 1
+print -10 % 4; // -2
+</code></pre>
 <h3 id="comparisonrelational"><a class="header" href="#comparisonrelational">Comparison/Relational</a></h3>
-<p><strong>Greater Than (<code>&gt;</code>):</strong> This operator expects two operands of type <code>num</code>. It checks whether or not the first (left) operand is greater than the second (right) operand.</p>
+<h4 id="greater-than--this-operator-expects-2-operands-of-type-num-or-2-operands-of-type-str-it-checks-whether-or-not-the-first-left-operand-is-greater-than-the-second-right-operand"><a class="header" href="#greater-than--this-operator-expects-2-operands-of-type-num-or-2-operands-of-type-str-it-checks-whether-or-not-the-first-left-operand-is-greater-than-the-second-right-operand"><strong>Greater Than (<code>&gt;</code>):</strong> This operator expects 2 operands of type <code>num</code> or 2 operands of type <code>str</code>. It checks whether or not the first (left) operand is greater than the second (right) operand.</a></h4>
 <pre><code class="language-ts">print 5 &gt; 2; // true
 print 1 &gt; 3; // false
 </code></pre>
-<p><strong>Greater Than or Equal (<code>&gt;=</code>):</strong> This operator expects two operands of type <code>num</code>. It checks whether or not the first (left) operand is greater than or equal to the second (right) operand.</p>
+<pre><code class="language-ts">print "z" &gt; "a"; // true
+print "a" &gt; "z"; // false
+</code></pre>
+<h4 id="greater-than-or-equal--this-operator-expects-two-operands-of-type-num-or-2-operands-of-type-str-it-checks-whether-or-not-the-first-left-operand-is-greater-than-or-equal-to-the-second-right-operand"><a class="header" href="#greater-than-or-equal--this-operator-expects-two-operands-of-type-num-or-2-operands-of-type-str-it-checks-whether-or-not-the-first-left-operand-is-greater-than-or-equal-to-the-second-right-operand"><strong>Greater Than or Equal (<code>&gt;=</code>):</strong> This operator expects two operands of type <code>num</code> or 2 operands of type <code>str</code>. It checks whether or not the first (left) operand is greater than or equal to the second (right) operand.</a></h4>
 <pre><code class="language-ts">print 5 &gt;= 2; // true
 print -1 &gt;= -1 // true
 print 1 &gt;= 3; // false
 </code></pre>
-<p><strong>Lesser Than (<code>&lt;</code>):</strong> This operator expects two operands of type <code>num</code>. It checks whether or not the first (left) operand is lesser than the second (right) operand.</p>
+<pre><code class="language-ts">print "aa" &gt;= "aa"; // true
+print "za" &gt;= "zz"; // false
+</code></pre>
+<h4 id="lesser-than--this-operator-expects-two-operands-of-type-num-or-2-operands-of-type-str-it-checks-whether-or-not-the-first-left-operand-is-lesser-than-the-second-right-operand"><a class="header" href="#lesser-than--this-operator-expects-two-operands-of-type-num-or-2-operands-of-type-str-it-checks-whether-or-not-the-first-left-operand-is-lesser-than-the-second-right-operand"><strong>Lesser Than (<code>&lt;</code>):</strong> This operator expects two operands of type <code>num</code> or 2 operands of type <code>str</code>. It checks whether or not the first (left) operand is lesser than the second (right) operand.</a></h4>
 <pre><code class="language-ts">print 5 &lt; 2; // false
 print 1 &lt; 3; // true
 </code></pre>
-<p><strong>Lesser Than or Equal (<code>&lt;=</code>):</strong> This operator expects two operands of type <code>num</code>. It checks whether or not the first (left) operand is lesser than or equal to the second (right) operand.</p>
+<pre><code class="language-ts">print "a" &lt; "z"; // true
+print "z" &lt; "a"; // false
+</code></pre>
+<h4 id="lesser-than-or-equal--this-operator-expects-two-operands-of-type-num-or-2-operands-of-type-str-it-checks-whether-or-not-the-first-left-operand-is-lesser-than-or-equal-to-the-second-right-operand"><a class="header" href="#lesser-than-or-equal--this-operator-expects-two-operands-of-type-num-or-2-operands-of-type-str-it-checks-whether-or-not-the-first-left-operand-is-lesser-than-or-equal-to-the-second-right-operand"><strong>Lesser Than or Equal (<code>&lt;=</code>):</strong> This operator expects two operands of type <code>num</code> or 2 operands of type <code>str</code>. It checks whether or not the first (left) operand is lesser than or equal to the second (right) operand.</a></h4>
 <pre><code class="language-ts">print 5 &lt;= 2; // false
 print 0 &lt;= 0; // true
 print 1 &lt;= 3; // true
 </code></pre>
+<pre><code class="language-ts">print "z" &lt;= "z"; // true
+print "zz" &lt;= "az"; // false
+</code></pre>
 <h3 id="equality"><a class="header" href="#equality">Equality</a></h3>
-<p><strong>Equal (<code>==</code>):</strong> This operator expects two operands of the following built-in types (<code>bool</code>, <code>nil</code>, <code>num</code>, <code>str</code>). It checks whether the values are of the same type and, if that's the case, checks whether such values are the same.</p>
+<h4 id="equal--this-operator-expects-two-operands-of-the-following-built-in-types-bool-nil-num-str-it-checks-whether-the-values-are-of-the-same-type-and-if-thats-the-case-checks-whether-such-values-are-the-same-returns-true-if-both-conditions-are-true-otherwise-returns-false"><a class="header" href="#equal--this-operator-expects-two-operands-of-the-following-built-in-types-bool-nil-num-str-it-checks-whether-the-values-are-of-the-same-type-and-if-thats-the-case-checks-whether-such-values-are-the-same-returns-true-if-both-conditions-are-true-otherwise-returns-false"><strong>Equal (<code>==</code>):</strong> This operator expects two operands of the following built-in types (<code>bool</code>, <code>nil</code>, <code>num</code>, <code>str</code>). It checks whether the values are of the same type and, if that's the case, checks whether such values are the same. Returns <code>true</code> if both conditions are true. Otherwise, returns <code>false</code>.</a></h4>
 <pre><code class="language-ts">print 2 == 2; // true
 print 2 == (1 + 1) // true
 print 2 == 3; // false
@@ -504,7 +627,7 @@ print true == true; // true
 print true == false; // false
 print true == !!true; // true
 </code></pre>
-<p><strong>Not Equal (<code>!=</code>):</strong> This operator expects two operands of the following built-in types (<code>bool</code>, <code>nil</code>, <code>num</code>, <code>str</code>). It checks whether the values are of the same type (if they are not of the same type, such comparison returns <code>false</code>) and, if they are of the same type, it then checks whether such values are not the same.</p>
+<h4 id="not-equal--this-operator-expects-two-operands-of-the-following-built-in-types-bool-nil-num-str-it-checks-whether-the-values-are-of-the-same-type-if-they-are-not-of-the-same-type-such-comparison-returns-false-and-if-they-are-of-the-same-type-it-then-checks-whether-such-values-are-not-the-same-returns-true-if-one-or-both-conditions-mentioned-above-are-not-satisfied-otherwise-returns-false"><a class="header" href="#not-equal--this-operator-expects-two-operands-of-the-following-built-in-types-bool-nil-num-str-it-checks-whether-the-values-are-of-the-same-type-if-they-are-not-of-the-same-type-such-comparison-returns-false-and-if-they-are-of-the-same-type-it-then-checks-whether-such-values-are-not-the-same-returns-true-if-one-or-both-conditions-mentioned-above-are-not-satisfied-otherwise-returns-false"><strong>Not Equal (<code>!=</code>):</strong> This operator expects two operands of the following built-in types (<code>bool</code>, <code>nil</code>, <code>num</code>, <code>str</code>). It checks whether the values are of the same type (if they are not of the same type, such comparison returns <code>false</code>) and, if they are of the same type, it then checks whether such values are not the same. Returns <code>true</code> if one (or both) conditions mentioned above are not satisfied. Otherwise, returns <code>false</code>.</a></h4>
 <pre><code class="language-ts">print 2 != 2; // false
 print 2 != (1 + 1) // false
 print 2 != 3; // true
@@ -517,19 +640,18 @@ print true != false; // true
 print true != !!true; // false
 </code></pre>
 <h3 id="logical-1"><a class="header" href="#logical-1">Logical</a></h3>
-<p><strong>And (<code>and</code>):</strong> This operator returns <code>true</code> if both of its operands are truthy values. Otherwise, it returns <code>false</code>. Remember that this operator performs short-circuiting when possible.</p>
+<h4 id="and-and-this-operator-returns-true-if-both-of-its-operands-are-truthy-values-otherwise-it-returns-false-remember-that-this-operator-performs-short-circuiting-when-possible"><a class="header" href="#and-and-this-operator-returns-true-if-both-of-its-operands-are-truthy-values-otherwise-it-returns-false-remember-that-this-operator-performs-short-circuiting-when-possible"><strong>And (<code>and</code>):</strong> This operator returns <code>true</code> if both of its operands are truthy values. Otherwise, it returns <code>false</code>. Remember that this operator performs short-circuiting when possible.</a></h4>
 <pre><code class="language-ts">print 5 and 2; // true
 print 5 and false; // false
 print false and nil; // false
 </code></pre>
-<p><strong>Or (<code>or</code>):</strong> This operator returns <code>true</code> if one of its operands are truthy values. Otherwise, it returns <code>false</code>. Remember that this operator performs short-circuiting when possible.</p>
+<h4 id="or-or-this-operator-returns-true-if-one-of-its-operands-are-truthy-values-otherwise-it-returns-false-remember-that-this-operator-performs-short-circuiting-when-possible"><a class="header" href="#or-or-this-operator-returns-true-if-one-of-its-operands-are-truthy-values-otherwise-it-returns-false-remember-that-this-operator-performs-short-circuiting-when-possible"><strong>Or (<code>or</code>):</strong> This operator returns <code>true</code> if one of its operands are truthy values. Otherwise, it returns <code>false</code>. Remember that this operator performs short-circuiting when possible.</a></h4>
 <pre><code class="language-ts">print 5 or 2; // true
 print 5 or false; // true
 print false or nil; // false
 </code></pre>
-<h2 id="ternary-operator"><a class="header" href="#ternary-operator">Ternary Operator</a></h2>
-<p>An unary operator is, as its name suggests, an operator that expects just three operands. Bleach has just one operator that fall in this category.</p>
-<p><strong>Ternary (<code>? :</code>):</strong>  This operator is essentialy a concise way to perform conditional operations in a programming language. It is used to evaluate a condition and return one of two values based on whether the condition is true or false. As previously seen, the ternary operator is called "ternary" because it operates on three operands.</p>
+<h3 id="ternary-operator"><a class="header" href="#ternary-operator">Ternary Operator</a></h3>
+<h4 id="ternary-condition--expression_1--expression_2--a-ternary-operator-is-as-its-name-suggests-an-operator-that-expects-3-operands-the-reader-might-be-familiar-with-this-operator-since-it-is-widely-used-in-both-c-and-c-this-operator-provides-another-way-of-executing-conditional-operations-it-is-used-to-evaluate-a-condition-and-return-one-of-two-values-based-on-whether-the-condition-evaluates-to-true-or-false-the-three-operands-expected-by-the-ternary-operator-can-be-of-any-type-built-in-or-user-defined-the-first-one-is-evaluated-by-the-ternary-operator-with-respect-to-its-truthiness-of-falseness-if-the-value-is-truthy-then-the-operator-returns-the-second-operand-otherwise-it-returns-the-third-operand-the-example-below-shows-how-to-properly-use-such-operator"><a class="header" href="#ternary-condition--expression_1--expression_2--a-ternary-operator-is-as-its-name-suggests-an-operator-that-expects-3-operands-the-reader-might-be-familiar-with-this-operator-since-it-is-widely-used-in-both-c-and-c-this-operator-provides-another-way-of-executing-conditional-operations-it-is-used-to-evaluate-a-condition-and-return-one-of-two-values-based-on-whether-the-condition-evaluates-to-true-or-false-the-three-operands-expected-by-the-ternary-operator-can-be-of-any-type-built-in-or-user-defined-the-first-one-is-evaluated-by-the-ternary-operator-with-respect-to-its-truthiness-of-falseness-if-the-value-is-truthy-then-the-operator-returns-the-second-operand-otherwise-it-returns-the-third-operand-the-example-below-shows-how-to-properly-use-such-operator"><strong>Ternary (<code>condition ? expression_1 : expression_2</code>):</strong>  A ternary operator is, as its name suggests, an operator that expects 3 operands. The reader might be familiar with this operator since it is widely used in both C and C++. This operator provides another way of executing conditional operations. It is used to evaluate a condition and return one of two values based on whether the condition evaluates to <code>true</code> or <code>false</code>. The three operands expected by the ternary operator can be of any type (built-in or user-defined). The first one is evaluated by the ternary operator with respect to its truthiness of falseness. If the value is "truthy", then the operator returns the second operand. Otherwise, it returns the third operand. The example below shows how to properly use such operator.</a></h4>
 <pre><code class="language-ts">print 2 == 2 ? "2 is equal to 2" : "2 is not equal to two"; // "2 is equal to 2"
 </code></pre>
 <h2 id="operator-precedence"><a class="header" href="#operator-precedence">Operator Precedence</a></h2>
@@ -537,36 +659,29 @@ print false or nil; // false
 <p>In the list shown below, the smaller the index is, the higher the precedence of such operator is. Operators present in the same index have the same precedence and will be evaluated from left-to-right as they appear in an expression.</p>
 <div class="table-wrapper"><table><thead><tr><th>Precendence</th><th>Operator</th></tr></thead><tbody>
 <tr><td>1</td><td><code>!</code>, <code>-</code> (unary)</td></tr>
-<tr><td>2</td><td><code>*</code>, <code>/</code></td></tr>
+<tr><td>2</td><td><code>*</code>, <code>/</code>, <code>%</code></td></tr>
 <tr><td>3</td><td><code>+</code>, <code>-</code> (binary)</td></tr>
 <tr><td>4</td><td><code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code></td></tr>
 <tr><td>5</td><td><code>==</code>, <code>!=</code></td></tr>
 <tr><td>6</td><td><code>and</code></td></tr>
 <tr><td>7</td><td><code>or</code></td></tr>
-<tr><td>8</td><td><code>? : </code> (ternary)</td></tr>
+<tr><td>8</td><td><code>condition ? expr_1 : expr_2</code> (ternary)</td></tr>
 <tr><td>9</td><td><code>=</code> (assignment)</td></tr>
 </tbody></table>
 </div><div style="break-before: page; page-break-before: always;"></div><h1 id="control-flow-structures"><a class="header" href="#control-flow-structures">Control Flow Structures</a></h1>
 <h2 id="overview-4"><a class="header" href="#overview-4">Overview</a></h2>
-<p>Control Flow Structures are constructs that dictate the order in which statements are executed. They allow the program to make decisions, repeat operations, and manage the flow of execution based on certain conditions.</p>
+<p>Control Flow Structures are constructs that allow the programmers to dictate in what order and by how many times instructions or code blocks are executed.</p>
+<p>These entities are responsible for allowing branching mechanisms, decision-making and repetition in a program. The main consequence of this is that a program can have a more dynamic and sophisticated behavior.</p>
+<p>In Bleach, there are 3 classes of control-flow structures:</p>
 <h2 id="conditional-statements"><a class="header" href="#conditional-statements">Conditional Statements</a></h2>
 <p>Such statements allow the program to execute certain blocks of code based on whether a condition evaluates to <code>true</code> or <code>false</code>.</p>
-<h3 id="if-statement"><a class="header" href="#if-statement"><code>if</code> Statement</a></h3>
+<h3 id="if-elif-else-statement"><a class="header" href="#if-elif-else-statement"><code>if-elif-else</code> Statement</a></h3>
 <p>The <code>if</code> statement is one of the fundamental control flow structures in programming.</p>
 <p>It allows the program to execute a block of code only if a specified condition is true.</p>
 <p>If the condition is false, then the code block associated to the <code>if</code> is not executed, and alternative blocks of code can be executed by using <code>elif</code> clauses or an <code>else</code> clause.</p>
-<p>Remember that, during runtime, the clauses of an <code>if</code> statement are evaluated from top to bottom. Also, once the condition of a clause is met, its associated block will be executed and then the rest of clauses won't even be looked at by the interpreter. Instead, it goes straight forward to the next statement. Bleach is no exception in this matter.</p>
+<p>Remember that, during runtime, the clauses of an <code>if</code> statement are evaluated from top to bottom. Also, once the condition of a clause is met, its associated block will be executed and then the rest of clauses will not even be "looked at" by the interpreter. Instead, it goes straight forward to the next statement. Bleach is no exception in this matter.</p>
 <p>Also remember that is completely possible to nest an infinite amount of <code>if</code> statements in a program. Bleach can handle such scenarios with no issues.</p>
-<p>It's important to mention that one does not need to add a block after an <code>if</code>, <code>elif</code> or <code>else</code> clause. This means that the code snippet below executes without any problems:</p>
-<pre><code class="language-ts">let foo = "hi";
-
-if(foo == "hi")
-  print "Found a 'hi' string!";
-elif(foo == "oi")
-  print "Fount an 'oi' string!";
-else
-  print "Found something else inside the 'foo' variable";
-</code></pre>
+<p><strong>It is important to mention that one needs to add a block after an <code>if</code>, <code>elif</code> or <code>else</code> clause. Otherwise, a syntax error will be thrown by the interpreter. This happens because such statements create a new local scope.</strong></p>
 <p><strong>Last but not least, Bleach, different from some other programming languages, allows the programmers to declare variables inside the code blocks associated to the clauses of an <code>if</code> statement. If you do this, you must keep in mind that the scope of such variable will be restricted to the block associated to the specific clause.</strong></p>
 <p>Simple example of a code snippet that uses an <code>if</code> statement:</p>
 <pre><code class="language-ts">let number = 2;
@@ -594,15 +709,17 @@ if(n == 42){
 }
 </code></pre>
 <h2 id="loops"><a class="header" href="#loops">Loops</a></h2>
-<p>Loop statements are used to repeat a block of code multiple times, either a fixed number of times or until a certain condition is met.</p>
+<p>Loop statements are used to repeat a block of code multiple times, either a fixed number of times or until a certain condition is not met anymore.</p>
+<p>Bleach has support for 3 different types of loop statements: <code>while</code>, <code>do-while</code> and <code>for</code>.</p>
 <p>One important thing to mention is that, for all types of loop structures, there is support for early exiting (with the <code>break</code> keyword) and iteration skipping (with the <code>continue</code> keyword).</p>
+<p>Last but not least, just as in conditional statements, Bleach also allows the nesting of loop statements.</p>
 <h3 id="while"><a class="header" href="#while">While</a></h3>
-<p>This one is a control flow structure present in almost every programming language that allows the programmer to repeatedly execute a block of code as long as a specified condition remains true.</p>
+<p>This control flow structure present in almost every programming language that allows the programmer to repeatedly execute a block of code as long as a specified condition remains true.</p>
 <p>It is typically used when the number of iterations is not known beforehand and the loop should continue while a certain condition is met. When such condition is not met anymmore, then the execution of the loop terminates.</p>
 <p>Also remember that the condition of a <code>while</code> loop is evaluated before each iteration of the loop. Which means that, in some cases, the <code>while</code> loop might not even execute.</p>
 <p>Another thing that is important to mention is that the programmer can use a variable of any type as the condition of a <code>while</code> loop.</p>
-<p><strong>As we've seen, each value, no matter its type is considered either "truthy" or "falsey". In practice, this means that you don't need to necessarily only use values of type <code>bool</code> or expressions that evaluate to such type.</strong></p>
-<p><strong>One important peculiarity of <code>while</code> loops in Bleach is that they need a block after the condition. In practice, this means that the following code snippet will not even execute:</strong></p>
+<p><strong>As we have seen, each value, no matter its type, is considered either "truthy" or "falsey". In practice, this means that you don't need to necessarily only use values of type <code>bool</code> or expressions that evaluate to such type.</strong></p>
+<p><strong>One important peculiarity of <code>while</code> loops in Bleach is that they need a block after the condition. This happens because they create a local scope. In practice, this means that the following code snippet will not even execute:</strong></p>
 <pre><code class="language-ts">let counter = 0;
 
 while(counter &lt; 10) // No block present.
@@ -618,9 +735,9 @@ while(counter &lt; 10){ // A block is present.
 <h3 id="do-while-loop"><a class="header" href="#do-while-loop">Do-While Loop</a></h3>
 <p>This is another a type of control flow structure very similar to the <code>while</code> loop present above and that is ubiquitous in programming languages.</p>
 <p>A <code>do-while</code> executes a block of code at least once before checking its condition.</p>
-<p>That is key difference between a <code>do-while</code> loop and a regular <code>while</code> loop: the condition in a <code>do-while</code> loop is checked after the loop’s code has executed, not before. This guarantees that the loop’s code will always run at least once, even if the condition evaluates to the <code>false</code> value. This might sound problematic, but there are some niche scenarios where this behavior comes in handy.</p>
-<p>Another thing that is important to mention is that, as the programmer could use a variable of any type as the condition of a <code>while</code> loop, he/she/they can do the same thing in a <code>do-while</code> loop.</p>
-<p>As we've seen, each value, no matter its type is considered either "truthy" or "falsey". In practice, this means that you don't need to necessarily only use values of type <code>bool</code> or expressions that evaluate to such type.</p>
+<p>That is key difference between a <code>do-while</code> loop and a regular <code>while</code> loop: the condition in a <code>do-while</code> loop is checked after the loop’s code has executed, not before. This guarantees that the loop’s code will always run at least once, even if the condition evaluates to the <code>false</code> value in its first iteration. This might sound problematic, but there are some niche scenarios where this behavior comes in handy.</p>
+<p>Another thing that is important to mention is that, as the programmer could use a variable of any type as the condition of a <code>while</code> loop, the same thing can be done in a <code>do-while</code> loop.</p>
+<p>As we have seen, each value, no matter its type is considered either "truthy" or "falsey". In practice, this means that you do not need to necessarily only use values of type <code>bool</code> or expressions that evaluate to such type.</p>
 <p><strong>Last, but not least, as the <code>while</code> loops require, the <code>do-while</code> loops in Bleach need a block between the keywords <code>do</code> and <code>while</code>. In practice, this means that the following code snippet will not even execute:</strong></p>
 <pre><code class="language-ts">let counter = 0;
 
@@ -636,22 +753,22 @@ do{
 }while(counter &lt; 10);
 </code></pre>
 <h3 id="for-loop"><a class="header" href="#for-loop">For Loop</a></h3>
-<p>Finally! Here is the last kind of control flow structure that fits into the loops category. The <code>for</code> statement is a control flow structure that allows the programmer to repeatedly execute a block of code not only by a specific number of times but also until some condition evaluates to <code>true</code>.</p>
-<p>Unlike the <code>while</code> and <code>do-while</code> loops, a <code>for</code> loop is particularly useful in scenarios where the developer knows in advance how many times he/she/they want such loop to iterate.</p>
-<p>In case you don't remember the structure of a <code>for</code> loop, let's do a simple refresh: A <code>for</code> loop has 4 components, which are:</p>
+<p>Here is the last kind of control flow structure that fits into the loops category. The <code>for</code> statement is a control flow structure that allows the programmer to repeatedly execute a block of code not only by a specific number of times but also while some condition keeps evaluating to <code>true</code>.</p>
+<p>Unlike the <code>while</code> and <code>do-while</code> loops, a <code>for</code> loop is particularly useful in scenarios where the developer knows in advance how many times a loop is supposed to iterate.</p>
+<p>In case you don't remember the structure of a <code>for</code> loop, here comes a simple refresh. A <code>for</code> loop has 4 components, which are:</p>
 <ul>
 <li><strong>Initialization:</strong> This is where you declare and initialize a loop control variable. This happens only once, at the beginning of the loop. <strong>In Bleach, the programmer is also allowed to put an expression statement in this place.</strong></li>
 <li><strong>Condition:</strong> This is a logical expression that is evaluated before each iteration of the loop. If the condition evalutes to <code>true</code>, the loop continues. Otherwise, if it evaluates to <code>false</code>, the loop finishes its execution.</li>
-<li><strong>Increment:</strong> This is an expression that updates the loop control variable after each iteration. It usually increments or decrements the loop variable. To be honest, this can be any kind of expression. Not necessarily an expression that updates the loop control variable of the <code>for</code> loop.</li>
-<li><strong>Code Block:</strong> The block of code that will be executed each time the condition is true.</li>
+<li><strong>Increment:</strong> This is an expression that updates the loop control variable after each iteration. It usually increments or decrements the loop variable. This can be any kind of expression. Not necessarily an expression that updates the loop control variable of the <code>for</code> loop.</li>
+<li><strong>Code Block:</strong> The block of code that will be executed each time the condition is evaluated to <code>true</code>.</li>
 </ul>
-<p><strong>It's also important to mention that the first three components might be absent inside the structure of a <code>for</code> loop.</strong></p>
+<p><strong>It is also important to mention that the first 3 components might be absent inside the structure of a <code>for</code> loop.</strong></p>
 <p>In short, this is the expected structure of a <code>for</code> loop in Bleach:</p>
 <pre><code class="language-ts">for(initialization; condition; increment){
   // the code of the block goes here.
 }
 </code></pre>
-<p><strong>Last, but not least, as the <code>while</code> and <code>do-while</code> loops require, the <code>for</code> loops in Bleach need a block between the keywords after its <code>)</code> character. In practice, this means that the following code snippet will not even execute:</strong></p>
+<p><strong>Last, but not least, as the <code>while</code> and <code>do-while</code> loops require, the <code>for</code> loops in Bleach need a block between the keywords after its <code>)</code> character. Such kind of loop also creates a new scope. In practice, this means that the following code snippet will not even execute:</strong></p>
 <pre><code class="language-ts">for(let counter = 0; counter &lt; 10; counter = counter + 1)
   print counter;
 </code></pre>
@@ -668,6 +785,7 @@ do{
 <li><code>continue</code></li>
 </ul>
 <p>The statements that use these keywords are used to control the flow of loops (<code>for</code>, <code>while</code> and <code>do-while</code>) statements.</p>
+<p>If any of these keywords are used out of a loop, then an error will be thrown.</p>
 <p>They provide mechanisms that allow the programmer to modify the normal flow of loop execution based on particular conditions. This is useful when the developer wants to exit a loop early based on a dynamic condition instead of waiting for the loop to naturally complete all its iterations.</p>
 <h3 id="the-break-keywordstatement"><a class="header" href="#the-break-keywordstatement">The <code>break</code> keyword/statement</a></h3>
 <p>This statement is used to immediately exit a loop.</p>
@@ -713,17 +831,17 @@ do{
 <div style="break-before: page; page-break-before: always;"></div><h1 id="functions"><a class="header" href="#functions">Functions</a></h1>
 <h2 id="overview-5"><a class="header" href="#overview-5">Overview</a></h2>
 <p>A function is a reusable block of code that is usually made by a programmer with the intent to make it perform a specific task.</p>
-<p>Functions, as we already know, are fundamental building blocks in programming, allowing programmers to organize, reuse, and manage code more efficiently.</p>
+<p>Moreover, functions, as widely known, are fundamental building blocks in programming, allowing programmers to organize, reuse, and manage code more efficiently.</p>
 <h2 id="functions-1"><a class="header" href="#functions-1">Functions</a></h2>
-<p>In other words, a function is a self-contained block of code that can be ran by calling the its name.</p>
+<p>In other words, a function is a self-contained block of code that can be ran by calling its name and passing arguments to it, if needed.</p>
 <p>Functions can take inputs (or not), process them, and return an output (or not). They help in breaking down complex problems into smaller, manageable tasks.</p>
 <p>Below, you can see a code snippet that shows the structure of a function declaration statement in Bleach:</p>
 <pre><code class="language-ts">function funtionName(parameter1, parameter2, parameter3){
-    // Code to execute
-    return value;
+  // Code to execute
+  return value;
 }
 </code></pre>
-<p><strong>It's important to mention that if the programmer ommits the <code>return</code> statement from the function declaration statement, then when such function is called, it will, by default, return the <code>nil</code> value.</strong></p>
+<p><strong>It is important to mention that if the programmer ommits the <code>return</code> statement from the function declaration statement, then when such function is called, it will, by default, return the <code>nil</code> value.</strong></p>
 <h2 id="function-calls"><a class="header" href="#function-calls">Function Calls</a></h2>
 <p>To execute the function and get the result, you call it by its name and provide the necessary arguments:</p>
 <pre><code class="language-ts">function add(a, b){
@@ -737,15 +855,20 @@ let result = add(a, b);
 
 print result;  // 5
 </code></pre>
-<p><strong>Important limitations that must be mentioned: In Bleach, functions don't have support optional parameters, nor for default value for its parameters, and also cannot be overloaded.</strong></p>
+<p><strong>Side Note #1: In Bleach, functions don't have support for optional parameters, or for default value for its parameters, and also cannot be overloaded.</strong></p>
+<p><strong>Side Note #2: An important note about function semantics in Bleach is how values of different types are passed into a function during a call: by value or by reference. In Bleach's case, the semantics are:</strong></p>
+<ul>
+<li><strong>By reference:</strong> <code>list</code> and instances of user-defined types.</li>
+<li><strong>By value:</strong> <code>bool</code>, <code>nil</code>, <code>num</code> and <code>str</code>.</li>
+</ul>
 <h2 id="functions-are-first-class-citizens"><a class="header" href="#functions-are-first-class-citizens">Functions are First-Class citizens</a></h2>
 <p>As the title says, in Bleach, function are considered first-class citizens.</p>
-<p>This means that functions are treated like any other value in the Bleach:</p>
+<p><strong>This means that functions are treated like any other value in the Bleach:</strong></p>
 <ul>
-<li>They can be assigned to variables</li>
-<li>They can be passed as arguments to other functions</li>
-<li>They can bereturned from functions</li>
-<li>They can be stored in data structures.</li>
+<li><strong>They can be assigned to variables.</strong></li>
+<li><strong>They can be passed as arguments to other functions.</strong></li>
+<li><strong>They can bereturned from functions.</strong></li>
+<li><strong>They can be stored in data structures.</strong></li>
 </ul>
 <p>Essentially, functions can be manipulated and used just like any other data type available in the Bleach language.</p>
 <h2 id="anonymous-functions-lambda-functions"><a class="header" href="#anonymous-functions-lambda-functions">Anonymous Functions (Lambda Functions)</a></h2>
@@ -754,8 +877,8 @@ print result;  // 5
 <p>In many programming languages, such as C++, JavaScript, Python and Typescrip, these functions are often used for short, simple operations where defining a full named function might be considered an overkill.</p>
 <p>Anonymous functions are typically used in situations where a function is required only temporarily, often as an argument to another function.</p>
 <p>In Bleach, this is not different.</p>
-<p>When it comes down to syntax, Bleach took the Python approach to this problem and added a little twist aiming for more readability. It uses the <code>lambda</code> keyword and also the arrow operator <code>-&gt;</code>.</p>
-<p>When it comes to semantics, rest assured. Bleach anonymous/lambda functions are as powerful as the normal ones.</p>
+<p>When it comes down to syntax, Bleach took the Python approach to this problem and added a little twist aiming for more readability. It uses the <code>lambda</code> keyword and also the arrow symbol <code>-&gt;</code>.</p>
+<p>When it comes to semantics, rest assured. Bleach anonymous/lambda functions are as powerful as the default ones.</p>
 <p>The example below shows how to define an anonymous/lambda function and call it:</p>
 <pre><code class="language-ts">let add = lambda -&gt; (x, y){ return x + y; };
 
@@ -771,14 +894,13 @@ print add(10, 5); // 15
 <p>A class is basically a blueprint for creating objects (instances).</p>
 <p>Usually, a class defines a set of attributes (variables) and methods (functions) that the created objects will have as its disposal.</p>
 <p>Classes are a fundamental part of object-oriented programming (OOP) due to the fact that such featus allows the programmer to define custom data types and their associated behaviors based on his/her/their needs.</p>
-<p><strong>When it comes down to the concept of classes, there are a couple of concepts that directly tied to it:</strong></p>
+<p><strong>When it comes down to the concept of classes, there are a couple of concepts that are directly tied to it:</strong></p>
 <ol>
 <li><strong>Attributes/Fields</strong></li>
 <li><strong>Methods</strong></li>
 <li><strong>Instances</strong></li>
 <li><strong>Inheritance</strong></li>
 </ol>
-<p>For the rest of this page, I am going to explain how each of these concepts are handled in Bleach.</p>
 <p>In Bleach, a class declaration statement follows the syntax shown below:</p>
 <pre><code class="language-c++">class Person{
   method init(name, age){
@@ -821,21 +943,25 @@ print square.compute_diagonal(square.length); // 7.071067811865476
 <h2 id="methods"><a class="header" href="#methods">Methods</a></h2>
 <p>A method is just a function that belongs to a class and is responsible for defining actions and behaviors that objects created from the class can execute at runtime.</p>
 <p>Usually, methods typically operate on the data that is stored inside the attributes/fields of an instance and,thus, can modify the state of the instance.</p>
-<p>Making it very simple, a method is essentialy a function that is tied to a class definition.</p>
+<p>Making it very simple, a method is essentially a function that is tied to a class definition.</p>
 <p><strong>As seen above, in a class declaration statement, if the programmer wants to declare a new method, then he/she/they just need to follow the same syntax of a function declaration statement, but instead of using the <code>function</code> keyword, change it by the <code>method</code> keyword.</strong></p>
-<p><strong>The <code>init</code> method:</strong> It's just a special method usually present in classes and known as the constructor of a class. It’s automatically called when a new instance of the class is created. This method is where the programmer typically sets up the initial state of an object by initializing instance attributes.</p>
+<p><strong>Side Note #1: Bleach has 2 special methods by default in every class. Such methods are presented below:</strong></p>
+<ul>
+<li><strong>The <code>init</code> method:</strong> It is just a special method usually present in classes and known as the constructor of a class. It is automatically called when a new instance of the class is created. This method is where the programmer typically sets up the initial state of an object by initializing instance attributes. This method can be changed by the programmer to change the functionality of the constructor of a desired class. Last but not least, this method is supposed to always return the created instance. There is no need to use write a <code>return</code> statement inside it. Moreover, if one does it and tries to return a value of another type, then a runtime error will be thrown.</li>
+<li><strong>The <code>str</code> method:</strong> It is just a special method usually present in classes and known as the string representation of a class. It is automatically called when the programmer uses the <code>print</code> statement, or the <code>std::io::print</code> native function, or concatenates an instance of a class with a value of type <code>str</code>. Last but not least, this method can also be changed by the programmer in order to return a string that better reflects the identity of an instance created from a class.</li>
+</ul>
 <h2 id="instances"><a class="header" href="#instances">Instances</a></h2>
-<p>Essentialy, an instance is an individual object created from a class.</p>
+<p>Essentially, an instance is an individual object created from a class.</p>
 <p>Remember that each instance has its own unique set of attributes/fields, but shares methods with other instances of the same class.</p>
 <p><strong>In short, you can think of an instance of just a bag of data that can change during runtime and that has methods associated with it that might operate on such data.</strong></p>
 <h2 id="self"><a class="header" href="#self">Self</a></h2>
-<p>The keyword <code>self</code> serves for a very specific purpose inside the methods of a class: It's a reference to the current instance of the class. It's used to refer to the current instance on which a method is being invoked.</p>
+<p>The keyword <code>self</code> serves for a very specific purpose inside the methods of a class: It is a reference to the current instance of the class. It is used to refer to the current instance on which a method is being invoked.</p>
 <p>By using it, the progammer is able to access and modify the instance’s attributes and methods. Contrary to Python's approach, in Bleach the name <code>self</code> is mandatory if the programmer wants to refer to the current instance of the class.</p>
 <h2 id="inheritance"><a class="header" href="#inheritance">Inheritance</a></h2>
-<p><strong>As we all know, inheritance is a fundamental concept in object-oriented programming which allows a class to inherit attributes and methods from another class.</strong></p>
+<p><strong>As is widely known, inheritance is a fundamental concept in object-oriented programming which allows a class to inherit attributes and methods from another class.</strong></p>
 <p><strong>The major purpose for the existence of inheritance is to promote code reuse and to establish a natural hierarchy between classes.</strong></p>
 <p><strong>In Bleach, as in other popular languages such as C++, C#, Java , JavaScript and Python, inheritance allows the programmer to create a new class based on an existing class, extending or modifying its functionality.</strong></p>
-<p>Going further, Bleach follows a very similar implementation of inheritance to that of Python with just one major difference: <strong>For simplicity purposes, Bleach only supports single inheritance whereas Python has support for multiple inheritance (Talking about this, such a thing can be easily added to the Bleach Interpreter and it's a good practice for students to deepen their knowledge).</strong></p>
+<p>Going further, Bleach follows a very similar implementation of inheritance to that of Python with just one major difference: <strong>For simplicity purposes, Bleach only supports single inheritance whereas Python has support for multiple inheritance (Talking about this, such a thing can be easily added to the Bleach Interpreter and it is a good practice for students to deepen their knowledge).</strong></p>
 <p>As usual, the code snippet below shows how inheritance, method overriding and the <code>super</code> keyword work in practice:</p>
 <pre><code class="language-c++">class Animal{
   method init(name){
@@ -899,7 +1025,7 @@ cat.speak(); // "Felicia is a Siamese and meows."
 // At this point, the value of the user_input variable is "hello";
 </code></pre>
 <h4 id="function-stdioprint"><a class="header" href="#function-stdioprint">Function: <code>std::io::print</code></a></h4>
-<p>This native function is responsible for printing content provided by the user to console/terminal. It can take any number arguments of any type, whether it's built-in or user-defined. Then it prints the string representation of such values to the console separating them by a <code> </code> character.</p>
+<p>This native function is responsible for printing content provided by the user to console/terminal. It can take any number arguments of any type, whether it is built-in or user-defined. Then it prints the string representation of such values to the console separating them by a <code> </code> character.</p>
 <p>Usage:</p>
 <pre><code class="language-ts">let n = 3.14;
 let name = "Ryan";
@@ -909,9 +1035,31 @@ let is_earth_flat = false;
 std::io::print(n, name, nothing, is_earth_flat); // 3.14 Ryan nil false
 </code></pre>
 <h4 id="function-stdiofileread"><a class="header" href="#function-stdiofileread">Function <code>std::io::fileRead</code></a></h4>
-<p>Not implemented yet.</p>
+<p>This native function is responsible for or receiving a value of the type <code>str</code> that represents the path (absolute or relative) to a <code>.txt</code> file, reading its contents and returning them as a <code>str</code> value. It takes a vlaue of type <code>str</code> as its unique argument and returns a value of type <code>str</code>, the content of the <code>.txt</code> file.</p>
+<p>Usage:</p>
+<pre><code class="language-ts">let filePath = "path/to/the/desired/txt/file"; // Can be absolute or relative path to the desired ".txt" file.
+let fileContent = std::io::fileRead(filePath);
+
+print fileContent; // Prints the content of the ".txt" file.
+</code></pre>
 <h4 id="function-stdiofilewrite"><a class="header" href="#function-stdiofilewrite">Function <code>std::io::fileWrite</code></a></h4>
-<p>Not implemented yet.</p>
+<p>This native function is responsible for receiving a value of the type <code>str</code> representing a path (absolute or relative) to a <code>.txt</code> file, a value of the type <code>str</code> representing the opening mode of the file to be read (which can be <code>"a"</code> for append or <code>"w"</code> for write), another value of the type <code>str</code> representing the content to be written to the file and a value of the type <code>bool</code> signaling whether or not a newline (<code>\n</code>) must be inserted at the end of such content in the file. This function returns a <code>nil</code> value.</p>
+<p>Usage #1:</p>
+<pre><code class="language-ts">let filePath = "path/to/the/desired/txt/file"; // Can be absolute or relative path to the desired ".txt" file.
+let openingMode = "w"; // Write Mode.
+let contentToWrite = "Hello, World!";
+let insertNewlineAtTheEnd = true;
+
+std::io::fileWrite(filePath, openingMode, contentToWrite, insertNewlineAtTheEnd);
+</code></pre>
+<p>Usage #2:</p>
+<pre><code class="language-ts">let filePath = "path/to/the/desired/txt/file"; // Can be absolute or relative path to the desired ".txt" file.
+let openingMode = "a"; // Append Mode.
+let contentToWrite = "A new line below the 'Hello, World!' line.";
+let insertNewlineAtTheEnd = true;
+
+std::io::fileWrite(filePath, openingMode, contentToWrite, insertNewlineAtTheEnd);
+</code></pre>
 <h3 id="namespace-stdchrono"><a class="header" href="#namespace-stdchrono">Namespace: <code>std::chrono</code></a></h3>
 <p><strong>Contains native functions related to time and clock operations.</strong></p>
 <h4 id="function-stdchronoclock"><a class="header" href="#function-stdchronoclock">Function: <code>std::chrono::clock</code></a></h4>
@@ -935,9 +1083,17 @@ std::io::print("The observed task took", duration_in_seconds, "seconds to be exe
 let absolute_number = std::math::abs(n); // 10
 </code></pre>
 <h4 id="function-stdmathceil"><a class="header" href="#function-stdmathceil">Function: <code>std::math::ceil</code></a></h4>
-<p>Not implemented yet.</p>
+<p>This native function is responsible for receiving a value of type <code>num</code> and returning the smallest integer number that is bigger than the provided value. This function returns a value of type <code>num</code>.</p>
+<p>Usage:</p>
+<pre><code class="language-ts">let n = 10.23;
+let ceil_n = std::math::ceil(n); // 11
+</code></pre>
 <h4 id="function-stdmathfloor"><a class="header" href="#function-stdmathfloor">Function: <code>std::math::floor</code></a></h4>
-<p>Not implemented yet.</p>
+<p>This native function is responsible for receiving a value of type <code>num</code> and returning the largest integer that is smaller than the provided value. This function returns a value of type <code>num</code>.</p>
+<p>Usage:</p>
+<pre><code class="language-ts">let n = 1.21;
+let floor_n = std::math::floor(n); // 1
+</code></pre>
 <h4 id="function-stdmathlog"><a class="header" href="#function-stdmathlog">Function: <code>std::math::log</code></a></h4>
 <p>This native function is responsible for calculating the logarithm of a value given the base to be used. It takes two arguments of type <code>num</code>. The first argument is base the and the second argument is the mantissa. Its return value is the computed logarithm, a value of type <code>num</code>, given the provided arguments.</p>
 <p><strong>Important: The first argument (the base of the logarithm) must not be equal to <code>1</code>. Also, the second argument (the argument) must be a number greater than <code>0</code>. If either of these conditions is not met, then such native function will throw a runtime error when called.</strong></p>
@@ -953,8 +1109,6 @@ let logarithm = std::math::log(base, mantissa); // 3
 let exponent = 3;
 let exponentiation_result = std::math::pow(base, exponent); // 8
 </code></pre>
-<h4 id="function-stdmathsetprecision"><a class="header" href="#function-stdmathsetprecision">Function: <code>std::math::setprecision</code></a></h4>
-<p>Not implemented yet.</p>
 <h4 id="function-stdmathsqrt"><a class="header" href="#function-stdmathsqrt">Function: <code>std::math::sqrt</code></a></h4>
 <p>This native function is responsible for calculating the square root of a given value (the radicand). It takes just one argument of type <code>num</code>. Its return value is the square root of the provided radicand, a value of type <code>num</code>, given the provided argument.</p>
 <p><strong>Important: This native function is not able to deal with negative values. If the user provide such a value, a runtime error will be thrown.</strong></p>
@@ -971,6 +1125,44 @@ let square_root_of_two = std::math::sqrt(n); // 1.414213562373095
 <pre><code class="language-ts">let left = 3.5;
 let right = 3.7;
 std::io::print(std::random::random(left, right));
+</code></pre>
+<h3 id="namespace-stdutils"><a class="header" href="#namespace-stdutils">Namespace: <code>std::utils</code></a></h3>
+<p><strong>Contains native functions related to utility functions that might be useful to the programmer in specific scenarios.</strong></p>
+<h4 id="function-stdutilsord"><a class="header" href="#function-stdutilsord">Function: <code>std::utils::ord</code></a></h4>
+<p>This native function is responsible for receiving a value of type <code>str</code> of length 1 and returning its respective ASCII integer number, which is a value of type <code>num</code>. Passing a value of type <code>str</code> with length different than 1 will result in a runtime error.</p>
+<p>Usage:</p>
+<pre><code class="language-ts">let A_ascIICode = std::utils::ord("A");
+print A_ascIICode; // 65
+
+let a_ascIICode = std::utils::ord("a");
+print a_ascIICode; // 97
+</code></pre>
+<h4 id="function-stdutilsstrtobool"><a class="header" href="#function-stdutilsstrtobool">Function: <code>std::utils::strToBool</code></a></h4>
+<p>This native function is responsible for receiving a value of type <code>str</code> that represents a boolean as its unique argument. The function converts the value of type <code>str</code> into its respective value of type <code>bool</code> and, then, returns such value. If the value of the type <code>str</code> does not represent a boolean, a runtime error is thrown.</p>
+<p>Usage:</p>
+<pre><code class="language-ts">let t_as_string = "true";
+print t_as_string; // "true"
+
+let t_as_boolean = std::utils::strToBool(t_as_string);
+print t_as_boolean; // true
+</code></pre>
+<h4 id="function-stdutilsstrtonil"><a class="header" href="#function-stdutilsstrtonil">Function: <code>std::utils::strToNil</code></a></h4>
+<p>This native function is responsible for receiving a value of type <code>str</code> that represents the <code>nil</code> value as its unique argument. The function converts the value of the type ````str<code>into this value and, then, returns it. If the value of the type</code>str<code>does not represent</code>nil```, a runtime error is thrown.</p>
+<p>Usage:</p>
+<pre><code class="language-ts">let nil_as_string = "nil";
+print nil_as_string; // "nil"
+
+let nil_value = std::utils::strToNil(nil_as_string);
+print nil_value; // nil
+</code></pre>
+<h4 id="function-stdutilsstrtonum"><a class="header" href="#function-stdutilsstrtonum">Function: <code>std::utils::strToNum</code></a></h4>
+<p>This native function is responsible for receiving a value of type <code>str</code> that represents a number as its unique argument. The function converts the value of type <code>str</code> into its respective value of type <code>num</code> and, then, returns such value. If the value of the type <code>str</code> does not represent a number, a runtime error is thrown.</p>
+<p>Usage:</p>
+<pre><code class="language-ts">let num_as_string = "3.14159";
+print num_as_string; // "3.14159"
+
+let num_as_string = std::utils::strToNum(nil_as_string);
+print num_as_string; // 3.14159
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="bleach-context-free-grammar-versions"><a class="header" href="#bleach-context-free-grammar-versions">Bleach Context-Free Grammar Versions</a></h1>
 <ul>
@@ -1535,6 +1727,46 @@ arguments → expression ( "," expression )*
 primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | lambdaFunctionExpr | IDENTIFIER | "super" . IDENTIFIER
 lambdaFunctionExpr → "lambda" "-&gt;" "(" parameters? ")" block
 </code></pre>
+<h2 id="version-0220"><a class="header" href="#version-0220">Version 0.22.0</a></h2>
+<ul>
+<li><strong>Now loops (<code>for</code>, <code>do-while</code>, <code>while</code>) must be followed by a block.</strong></li>
+</ul>
+<pre><code class="language-txt">program → statement* EOF
+statement → block | breakStmt | classDeclStmt | continueStmt | doWhileStmt | exprStmt | forStmt | funcDeclStmt | ifStmt | printStmt | returnStmt | varDeclStmt | whileStmt
+block → "{" statement* "}"
+breakStmt → "break" ";"
+classDeclStmt → "class" IDENTIFIER ( "inherits" IDENTIFIER )? "{" methodDeclStmt* "}"
+methodDeclStmt → "method" method
+method → IDENTIFIER "(" parameters? ")" block
+continueStmt → "continue" ";"
+doWhileStmt → "do" block "while" "(" expression ")" ";"
+exprStmt → expression ";"
+forStmt → "for" "(" ( varDecl | exprStmt | ";" ) expression? ";" expression? ")" block
+funcDeclStmt → "function" function
+function → IDENTIFIER "(" parameters? ")" block
+parameters → IDENTIFIER ( "," IDENTIFIER )*
+ifStmt → "if" "(" expression ")" statement
+         ( "elif" "(" expression ")" statement )*
+         ( "else" statement )?
+printStmt → "print" expression ";"
+returnStmt → "return" expression? ";"
+varDeclStmt → "let" IDENTIFIER ( "=" expression )? ";"
+whileStmt → "while" "(" expression ")" block
+expression → assignment
+assignment → ( call "." )? IDENTIFIER "=" assignment | ternary
+ternary → logic_or ( "?" expression ":" expression )*
+logic_or → logic_and ( "or" logic_and )*
+logic_and → equality ( "and" equality )*
+equality → comparison ( ( "!=" | "==" ) comparison )*
+comparison → term ( ( "&gt;" | "&gt;=" | "&lt;" | "&lt;=" ) term )*
+term → factor ( ( "-" | "+" ) factor )*
+factor → unary ( ( "/" | "*" | "%" ) unary )*
+unary → ( "!" | "-" ) unary | call
+call → primary ( "(" arguments? ")" | "." IDENTIFIER | "[" expression "]" )*
+arguments → expression ( "," expression )*
+primary → "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | lambdaFunctionExpr | IDENTIFIER | "super" . IDENTIFIER
+lambdaFunctionExpr → "lambda" "-&gt;" "(" parameters? ")" block
+</code></pre>
 
                     </main>
 
@@ -1553,22 +1785,6 @@ lambdaFunctionExpr → "lambda" "-&gt;" "(" parameters? ")" block
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 
