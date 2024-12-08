@@ -76,20 +76,61 @@ There are some aspects of this type that might differ from what you have seen in
 
 Finally, this type has the following methods associated with it:
   * __```append```:__ Responsible for adding one value of any type to the end of the list value it was called on. Returns ```nil```.
-  * __```clear```:__ Method responsible for deleting every element that is currently stored inside
-the list value it was called on. Returns ```nil```.
-  * __```empty```:__ Responsible for checking whether the list value it was called on currently
-has values stored inside it or not. Returns a ```bool``` value.
-  * __```fill```:__ Responsible for resizing the list value it was called on to a provided size and
-also filling all of its indexes with a provided value of any type. Returns ```nil```.
-  * __```getAt```:__ Responsible for returning the value present at the provided index. Returns
-a value of any type.
-  * __```pop```:__ Responsible for deleting and returning the last element present inside a list
-value, if any. Returns a value of any type.
-  * __```setAt```:__ Responsible for setting the value stored at the provided index to the value
-that was provided. Returns ```nil```.
-  * __```size```:__ Responsible for checking and returning the current amount of elements that
-the list value it was on called on currently has. Returns a ```num``` value.
+  ```ts
+  let l = [];
+  l.append(1);
+  
+  print l; // [1]
+  ```
+  * __```clear```:__ Method responsible for deleting every element that is currently stored inside the list value it was called on. Returns ```nil```.
+  ```ts
+  let l = [1, 2, 3, 4, nil, "hello"];
+  l.clear();
+
+  print l; // []
+  ```
+  * __```empty```:__ Responsible for checking whether the list value it was called on currently has values stored inside it or not. Returns a ```bool``` value.
+  ```ts
+  let l = [1, 2, 3];
+  let isEmpty = l.empty();
+
+  print isEmpty; // false
+  ```
+  * __```fill```:__ Responsible for resizing the list value it was called on to a provided size and also filling all of its indexes with a provided value of any type. Returns ```nil```.
+  ```ts
+  let l = [];
+  l.fill("hello", 3);
+
+  print l; // ["hello", "hello", "hello"]
+  ```
+  * __```getAt```:__ Responsible for returning the value present at the provided index, which must be an integer number (represented by a ```num``` value). Returns a value of any type. Trying to get a value from an index that does not exist in the ```list``` value will result in a runtime error being thrown.
+  ```ts
+  let l = [1, 2, 3];
+  let v = l.getAt(0);
+
+  print v; // 1
+  ```
+  * __```pop```:__ Responsible for deleting and returning the last element present inside a ```list``` value, if any. Returns a value of any type. In case the ```list``` value is already empty, calling this method will result in a runtime error being thrown.
+  ```ts
+  let l = [42, 54, 23, 6];
+  let lastValue = l.pop();
+
+  print lastValue; // 6
+  ```
+  * __```setAt```:__ Responsible for setting a value stored at the provided index, which must be an integer number (represented by a ```num``` value) to the value that was provided. Returns ```nil```. Trying to set a value to an index that does not exist in the ```list``` value will result in a runtime error being thrown.
+  ```ts
+  let l = [1, 2, 3];
+  l.setAt(0, 3.14159);
+
+  print l; // [3.14159, 2, 3]
+  ```
+  * __```size```:__ Responsible for checking and returning the current amount of elements that the list value it was on called on currently has. Returns a ```num``` value.
+  ```ts
+  let l = [2.71, 3.14, 9.98];
+  let lSize = l.size();
+
+  print lSize; // 3
+  ```
 
 __Side Note #1: The ```list``` type does not have support for indexing using square brackets (```[]```). However, by using the methods ```getAt``` and ```setAt``` one can obtain the same behavior.__
 
@@ -111,24 +152,56 @@ First of all, it is important to recall that it is a sequence type. In short, it
 Also, in Bleach, literals values of this type are always enclosed by double quotes (```""```).
 
 Finally, as in Python, this type has the some methods available:
-  * __```empty```:__ Responsible for checking whether the str value it was called is equal to ""
-or not. Returns a bool value.
-  * __```find```:__ Responsible for trying to figure out if the provided sub-string (a str value)
-exists within the str value the method was called on. Returns a num value which
-denotes the index at which the sub-string appears, otherwise returns -1.
-  * __```getAt```:__ Responsible for returning the str value of length 1 present at the provided
-index. Returns a str value.
-  * __```length```:__ Responsible for checking and returning the current amount of characters
-(which are also values of type str) that the str value it was on called on currently
-has. Returns a num value.
-  * __```split```:__ Responsible for generating a list where each value is of str type. This
-method receives as its unique argument a value of str type that works as the sepa-
-rator. Returns a list value.
-  * __```setAt```:__ Responsible for setting the value stored at the provided index to the value
-that was provided (which must be a str value of length 1). Returns nil.
-  * __```substr```:__ Responsible for retrieving a sub-string from the str value it was called on.
-The method receives two arguments of num type that work as the start and end
-delimiters. Returns a str value.
+  * __```empty```:__ Responsible for checking whether the ```str``` value it was called is equal to ```""``` or not. Returns a ```bool``` value.
+  ```ts
+  let s = "hello";
+  let isEmpty = s.empty();
+
+  print isEmpty; // false
+  ```
+  * __```find```:__ Responsible for trying to figure out if the provided sub-string (a ```str``` value) exists within the str value the method was called on. Returns a ```num``` value which denotes the index at which the sub-string appears, otherwise returns ```-1```.
+  ```ts
+  let s = "racecar";
+  let idx = s.find("car");
+
+  print idx; // 4
+  ```
+  * __```getAt```:__ Responsible for returning the ```str``` value of length 1 present at the provided index, which is supposed to be an integer number (a ```num``` value). Returns a ```str``` value.
+  ```ts
+  let s = "Uryu";
+  let ch = s.getAt(1);
+
+  print ch; // "r"
+  ```
+  * __```length```:__ Responsible for checking and returning the current amount of characters (which are also values of type ```str```) that the ```str``` value it was on called on currently has. Returns a ```num``` value.
+  ```ts
+  let s = "Ichigo";
+  let sLength = s.length();
+
+  print sLength; // 6
+  ```
+  * __```split```:__ Responsible for generating a ```list``` value where each value is of ```str``` type. This method receives as its unique argument a value of ```str``` type that works as the separator. Returns a ```list``` value.
+  ```ts
+  let s = "one-two-three";
+  let l = s.split("-");
+
+  print l; // ["one", "two", "three"]
+  ```
+  * __```setAt```:__ Responsible for setting the value stored at the provided index to the value that was provided (which must be a ```str``` value of length ```1```). Returns ```nil```.
+  ```ts
+  let s = "Dice";
+  print s; // "Dice"
+
+  s.setAt(0, "N");
+  print s; // "Nice"
+  ```
+  * __```substr```:__ Responsible for retrieving a sub-string from the str value it was called on. The method receives two arguments that are integer numbers (values of ```num``` type) that work as the start and end delimiters. It is worth mentioning that both delimiters are __inclusive__. Returns a ```str``` value.
+  ```ts
+  let s = "racecar";
+  let subs = s.substr(0, 2);
+
+  print subs; // "rac"
+  ```
 
 __Side Note #1: The ```str``` type does not have support for indexing using square brackets (```[]```). However, by using the methods ```getAt``` and ```setAt``` one can obtain the same behavior.__
 

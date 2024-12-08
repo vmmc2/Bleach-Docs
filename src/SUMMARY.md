@@ -1,7 +1,7 @@
 # Summary
 
 # Bleach Language Documentation
-- [Introduction and Bleach Inspirations](./bleach_lang_intro.md)
+- [Introduction and Inspirations](./bleach_lang_intro.md)
 - [Data Types](./bleach_data_types.md)
 - [Comments](./bleach_comments.md)
 - [Variables](./bleach_variables.md)
