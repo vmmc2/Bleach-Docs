@@ -186,11 +186,31 @@ let is_earth_flat = false;
 std::io::print(n, name, nothing, is_earth_flat); // 3.14 Ryan nil false
 </code></pre>
 <h4 id="function-stdiofileread"><a class="header" href="#function-stdiofileread">Function <code>std::io::fileRead</code></a></h4>
-<p>This native function is responsible for or receiving a str value that represents the path (absolute or relative) to a .txt file, reading its contents and returning them as a <code>str</code> value. It takes 1 argument of type <code>str</code> and returns 1 value of type <code>str</code>.</p>
+<p>This native function is responsible for or receiving a value of the type <code>str</code> that represents the path (absolute or relative) to a <code>.txt</code> file, reading its contents and returning them as a <code>str</code> value. It takes a vlaue of type <code>str</code> as its unique argument and returns a value of type <code>str</code>, the content of the <code>.txt</code> file.</p>
 <p>Usage:</p>
+<pre><code class="language-ts">let filePath = "path/to/the/desired/txt/file"; // Can be absolute or relative path to the desired ".txt" file.
+let fileContent = std::io::fileRead(filePath);
+
+print fileContent; // Prints the content of the ".txt" file.
+</code></pre>
 <h4 id="function-stdiofilewrite"><a class="header" href="#function-stdiofilewrite">Function <code>std::io::fileWrite</code></a></h4>
-<p>This native function is responsible for receiving a <code>str</code> value representing a path (absolute or relative) to a .txt file, a str value representing the opening mode of the file to be read (which can be <code>"a"</code> for append or <code>"w"</code> for write), another <code>str</code> value representing the content to be written to the file and a <code>bool</code> value signaling whether or not a newline must be inserted at the end of such content in the file.</p>
-<p>Usage:</p>
+<p>This native function is responsible for receiving a value of the type <code>str</code> representing a path (absolute or relative) to a <code>.txt</code> file, a value of the type <code>str</code> representing the opening mode of the file to be read (which can be <code>"a"</code> for append or <code>"w"</code> for write), another value of the type <code>str</code> representing the content to be written to the file and a value of the type <code>bool</code> signaling whether or not a newline (<code>\n</code>) must be inserted at the end of such content in the file. This function returns a <code>nil</code> value.</p>
+<p>Usage #1:</p>
+<pre><code class="language-ts">let filePath = "path/to/the/desired/txt/file"; // Can be absolute or relative path to the desired ".txt" file.
+let openingMode = "w"; // Write Mode.
+let contentToWrite = "Hello, World!";
+let insertNewlineAtTheEnd = true;
+
+std::io::fileWrite(filePath, openingMode, contentToWrite, insertNewlineAtTheEnd);
+</code></pre>
+<p>Usage #2:</p>
+<pre><code class="language-ts">let filePath = "path/to/the/desired/txt/file"; // Can be absolute or relative path to the desired ".txt" file.
+let openingMode = "a"; // Append Mode.
+let contentToWrite = "A new line below the 'Hello, World!' line.";
+let insertNewlineAtTheEnd = true;
+
+std::io::fileWrite(filePath, openingMode, contentToWrite, insertNewlineAtTheEnd);
+</code></pre>
 <h3 id="namespace-stdchrono"><a class="header" href="#namespace-stdchrono">Namespace: <code>std::chrono</code></a></h3>
 <p><strong>Contains native functions related to time and clock operations.</strong></p>
 <h4 id="function-stdchronoclock"><a class="header" href="#function-stdchronoclock">Function: <code>std::chrono::clock</code></a></h4>
@@ -214,9 +234,17 @@ std::io::print("The observed task took", duration_in_seconds, "seconds to be exe
 let absolute_number = std::math::abs(n); // 10
 </code></pre>
 <h4 id="function-stdmathceil"><a class="header" href="#function-stdmathceil">Function: <code>std::math::ceil</code></a></h4>
-<p>Not implemented yet.</p>
+<p>This native function is responsible for receiving a value of type <code>num</code> and returning the smallest integer number that is bigger than the provided value. This function returns a value of type <code>num</code>.</p>
+<p>Usage:</p>
+<pre><code class="language-ts">let n = 10.23;
+let ceil_n = std::math::ceil(n); // 11
+</code></pre>
 <h4 id="function-stdmathfloor"><a class="header" href="#function-stdmathfloor">Function: <code>std::math::floor</code></a></h4>
-<p>Not implemented yet.</p>
+<p>This native function is responsible for receiving a value of type <code>num</code> and returning the largest integer that is smaller than the provided value. This function returns a value of type <code>num</code>.</p>
+<p>Usage:</p>
+<pre><code class="language-ts">let n = 1.21;
+let floor_n = std::math::floor(n); // 1
+</code></pre>
 <h4 id="function-stdmathlog"><a class="header" href="#function-stdmathlog">Function: <code>std::math::log</code></a></h4>
 <p>This native function is responsible for calculating the logarithm of a value given the base to be used. It takes two arguments of type <code>num</code>. The first argument is base the and the second argument is the mantissa. Its return value is the computed logarithm, a value of type <code>num</code>, given the provided arguments.</p>
 <p><strong>Important: The first argument (the base of the logarithm) must not be equal to <code>1</code>. Also, the second argument (the argument) must be a number greater than <code>0</code>. If either of these conditions is not met, then such native function will throw a runtime error when called.</strong></p>
@@ -250,15 +278,43 @@ let right = 3.7;
 std::io::print(std::random::random(left, right));
 </code></pre>
 <h3 id="namespace-stdutils"><a class="header" href="#namespace-stdutils">Namespace: <code>std::utils</code></a></h3>
-<p><strong>Contains native functions related to utility functions.</strong></p>
+<p><strong>Contains native functions related to utility functions that might be useful to the programmer in specific scenarios.</strong></p>
 <h4 id="function-stdutilsord"><a class="header" href="#function-stdutilsord">Function: <code>std::utils::ord</code></a></h4>
+<p>This native function is responsible for receiving a value of type <code>str</code> of length 1 and returning its respective ASCII integer number, which is a value of type <code>num</code>. Passing a value of type <code>str</code> with length different than 1 will result in a runtime error.</p>
 <p>Usage:</p>
+<pre><code class="language-ts">let A_ascIICode = std::utils::ord("A");
+print A_ascIICode; // 65
+
+let a_ascIICode = std::utils::ord("a");
+print a_ascIICode; // 97
+</code></pre>
 <h4 id="function-stdutilsstrtobool"><a class="header" href="#function-stdutilsstrtobool">Function: <code>std::utils::strToBool</code></a></h4>
+<p>This native function is responsible for receiving a value of type <code>str</code> that represents a boolean as its unique argument. The function converts the value of type <code>str</code> into its respective value of type <code>bool</code> and, then, returns such value. If the value of the type <code>str</code> does not represent a boolean, a runtime error is thrown.</p>
 <p>Usage:</p>
+<pre><code class="language-ts">let t_as_string = "true";
+print t_as_string; // "true"
+
+let t_as_boolean = std::utils::strToBool(t_as_string);
+print t_as_boolean; // true
+</code></pre>
 <h4 id="function-stdutilsstrtonil"><a class="header" href="#function-stdutilsstrtonil">Function: <code>std::utils::strToNil</code></a></h4>
+<p>This native function is responsible for receiving a value of type <code>str</code> that represents the <code>nil</code> value as its unique argument. The function converts the value of the type ````str<code>into this value and, then, returns it. If the value of the type</code>str<code>does not represent</code>nil```, a runtime error is thrown.</p>
 <p>Usage:</p>
+<pre><code class="language-ts">let nil_as_string = "nil";
+print nil_as_string; // "nil"
+
+let nil_value = std::utils::strToNil(nil_as_string);
+print nil_value; // nil
+</code></pre>
 <h4 id="function-stdutilsstrtonum"><a class="header" href="#function-stdutilsstrtonum">Function: <code>std::utils::strToNum</code></a></h4>
+<p>This native function is responsible for receiving a value of type <code>str</code> that represents a number as its unique argument. The function converts the value of type <code>str</code> into its respective value of type <code>num</code> and, then, returns such value. If the value of the type <code>str</code> does not represent a number, a runtime error is thrown.</p>
 <p>Usage:</p>
+<pre><code class="language-ts">let num_as_string = "3.14159";
+print num_as_string; // "3.14159"
+
+let num_as_string = std::utils::strToNum(nil_as_string);
+print num_as_string; // 3.14159
+</code></pre>
 
                     </main>
 
