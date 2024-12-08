@@ -74,7 +74,7 @@ A method is just a function that belongs to a class and is responsible for defin
 
 Usually, methods typically operate on the data that is stored inside the attributes/fields of an instance and,thus, can modify the state of the instance.
 
-Making it very simple, a method is essentialy a function that is tied to a class definition.
+Making it very simple, a method is essentially a function that is tied to a class definition.
 
 __As seen above, in a class declaration statement, if the programmer wants to declare a new method, then he/she/they just need to follow the same syntax of a function declaration statement, but instead of using the ```function``` keyword, change it by the ```method``` keyword.__
 

@@ -44,11 +44,14 @@ std::io::print(n, name, nothing, is_earth_flat); // 3.14 Ryan nil false
 ```
 
 #### Function ```std::io::fileRead```
-Not implemented yet.
+This native function is responsible for or receiving a str value that represents the path (absolute or relative) to a .txt file, reading its contents and returning them as a ```str``` value. It takes 1 argument of type ```str``` and returns 1 value of type ```str```.
+
+Usage:
 
 #### Function ```std::io::fileWrite```
-Not implemented yet.
+This native function is responsible for receiving a ```str``` value representing a path (absolute or relative) to a .txt file, a str value representing the opening mode of the file to be read (which can be ```"a"``` for append or ```"w"``` for write), another ```str``` value representing the content to be written to the file and a ```bool``` value signaling whether or not a newline must be inserted at the end of such content in the file.
 
+Usage:
 
 ### Namespace: ```std::chrono```
 __Contains native functions related to time and clock operations.__
@@ -110,9 +113,6 @@ let exponent = 3;
 let exponentiation_result = std::math::pow(base, exponent); // 8
 ```
 
-#### Function: ```std::math::setprecision```
-Not implemented yet.
-
 #### Function: ```std::math::sqrt```
 This native function is responsible for calculating the square root of a given value (the radicand). It takes just one argument of type ```num```. Its return value is the square root of the provided radicand, a value of type ```num```, given the provided argument.
 
@@ -139,3 +139,23 @@ let left = 3.5;
 let right = 3.7;
 std::io::print(std::random::random(left, right));
 ```
+
+
+### Namespace: ```std::utils```
+__Contains native functions related to utility functions.__
+
+#### Function: ```std::utils::ord```
+
+Usage: 
+
+#### Function: ```std::utils::strToBool```
+
+Usage: 
+
+#### Function: ```std::utils::strToNil```
+
+Usage: 
+
+#### Function: ```std::utils::strToNum```
+
+Usage: 

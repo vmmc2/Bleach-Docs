@@ -186,9 +186,11 @@ let is_earth_flat = false;
 std::io::print(n, name, nothing, is_earth_flat); // 3.14 Ryan nil false
 </code></pre>
 <h4 id="function-stdiofileread"><a class="header" href="#function-stdiofileread">Function <code>std::io::fileRead</code></a></h4>
-<p>Not implemented yet.</p>
+<p>This native function is responsible for or receiving a str value that represents the path (absolute or relative) to a .txt file, reading its contents and returning them as a <code>str</code> value. It takes 1 argument of type <code>str</code> and returns 1 value of type <code>str</code>.</p>
+<p>Usage:</p>
 <h4 id="function-stdiofilewrite"><a class="header" href="#function-stdiofilewrite">Function <code>std::io::fileWrite</code></a></h4>
-<p>Not implemented yet.</p>
+<p>This native function is responsible for receiving a <code>str</code> value representing a path (absolute or relative) to a .txt file, a str value representing the opening mode of the file to be read (which can be <code>"a"</code> for append or <code>"w"</code> for write), another <code>str</code> value representing the content to be written to the file and a <code>bool</code> value signaling whether or not a newline must be inserted at the end of such content in the file.</p>
+<p>Usage:</p>
 <h3 id="namespace-stdchrono"><a class="header" href="#namespace-stdchrono">Namespace: <code>std::chrono</code></a></h3>
 <p><strong>Contains native functions related to time and clock operations.</strong></p>
 <h4 id="function-stdchronoclock"><a class="header" href="#function-stdchronoclock">Function: <code>std::chrono::clock</code></a></h4>
@@ -230,8 +232,6 @@ let logarithm = std::math::log(base, mantissa); // 3
 let exponent = 3;
 let exponentiation_result = std::math::pow(base, exponent); // 8
 </code></pre>
-<h4 id="function-stdmathsetprecision"><a class="header" href="#function-stdmathsetprecision">Function: <code>std::math::setprecision</code></a></h4>
-<p>Not implemented yet.</p>
 <h4 id="function-stdmathsqrt"><a class="header" href="#function-stdmathsqrt">Function: <code>std::math::sqrt</code></a></h4>
 <p>This native function is responsible for calculating the square root of a given value (the radicand). It takes just one argument of type <code>num</code>. Its return value is the square root of the provided radicand, a value of type <code>num</code>, given the provided argument.</p>
 <p><strong>Important: This native function is not able to deal with negative values. If the user provide such a value, a runtime error will be thrown.</strong></p>
@@ -249,6 +249,16 @@ let square_root_of_two = std::math::sqrt(n); // 1.414213562373095
 let right = 3.7;
 std::io::print(std::random::random(left, right));
 </code></pre>
+<h3 id="namespace-stdutils"><a class="header" href="#namespace-stdutils">Namespace: <code>std::utils</code></a></h3>
+<p><strong>Contains native functions related to utility functions.</strong></p>
+<h4 id="function-stdutilsord"><a class="header" href="#function-stdutilsord">Function: <code>std::utils::ord</code></a></h4>
+<p>Usage:</p>
+<h4 id="function-stdutilsstrtobool"><a class="header" href="#function-stdutilsstrtobool">Function: <code>std::utils::strToBool</code></a></h4>
+<p>Usage:</p>
+<h4 id="function-stdutilsstrtonil"><a class="header" href="#function-stdutilsstrtonil">Function: <code>std::utils::strToNil</code></a></h4>
+<p>Usage:</p>
+<h4 id="function-stdutilsstrtonum"><a class="header" href="#function-stdutilsstrtonum">Function: <code>std::utils::strToNum</code></a></h4>
+<p>Usage:</p>
 
                     </main>
 
